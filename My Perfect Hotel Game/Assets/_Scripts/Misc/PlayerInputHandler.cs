@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Scripts.Misc
+namespace Misc
 {
     public static class PlayerInputHandler
     {
