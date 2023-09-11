@@ -20,10 +20,10 @@ namespace Player
             
             for (int i = 0; i < _selectableObjectList.Count; i++)
             {
-                var vector1 = ray.direction;
-                var vector2 = _selectableObjectList[i].transform.position - ray.origin;
+                var rayDirection = ray.direction;
+                var directionFromRayOriginToSelectableObject = _selectableObjectList[i].transform.position - ray.origin;
 
-                float lookPercentage = Vector3.Dot(vector1.normalized, vector2.normalized);
+                float lookPercentage = Vector3.Dot(rayDirection.normalized, directionFromRayOriginToSelectableObject.normalized);
                 
                 _selectableObjectList[i].SetLookPercentage(lookPercentage);
 
