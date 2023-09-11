@@ -9,9 +9,15 @@ namespace Player
     {
         [SerializeField] private List<InteractableObject.InteractableObject> _selectableObjectList;
         [SerializeField] private float _threshold = 0.925f;
+        [SerializeField] private float _interactDistance = 0.25f;
+
+        private InteractableObject.InteractableObject _interactableObject;
         
         public void Check(Ray ray)
         {
+            
+            float closest = 0;
+            
             for (int i = 0; i < _selectableObjectList.Count; i++)
             {
                 var rayDirection = ray.direction;
@@ -22,6 +28,9 @@ namespace Player
                 _selectableObjectList[i].SetLookPercentage(lookPercentage);
 
                 if (!(lookPercentage > _threshold) || !(lookPercentage > closest)) continue;
+                
+                closest = lookPercentage;
+                _interactableObject = _selectableObjectList[i];
             }
         }
     }
