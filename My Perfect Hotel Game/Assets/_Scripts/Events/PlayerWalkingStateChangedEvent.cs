@@ -1,9 +1,10 @@
 using System;
+using Interfaces;
 using UnityEngine;
 
 namespace Events
 {
-    public class PlayerWalkingStateChangedEvent : MonoBehaviour
+    public class PlayerWalkingStateChangedEvent : MonoBehaviour, IEvent
     {
         public event EventHandler<bool> Event;
 

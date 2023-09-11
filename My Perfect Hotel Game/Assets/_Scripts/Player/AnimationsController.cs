@@ -1,29 +1,29 @@
-using Events;
 using UnityEngine;
 
 namespace Player
 {
-    [RequireComponent(typeof(Animator), typeof(PlayerWalkingStateChangedEvent))]
+    [RequireComponent(typeof(Animator))]
     public class AnimationsController : MonoBehaviour
     {
-        private static readonly int IsWalking = Animator.StringToHash(nameof(IsWalking));
-        
         private Animator _animator;
-        private PlayerWalkingStateChangedEvent _playerWalkingStateChangedEvent;
+        private Player _player;
 
         private void Awake()
         {
-            _playerWalkingStateChangedEvent = GetComponent<PlayerWalkingStateChangedEvent>();
+            _player = GetComponent<Player>();
             _animator = GetComponent<Animator>();
         }
-
-        private void Start() => 
-            _playerWalkingStateChangedEvent.Event += OnPlayerWalkingStateChangedEvent;
+        
+        private void OnEnable() => 
+            _player.WalkingStateChangedEvent.Event += OnWalkingStateChangedEvent;
+        
+        private void OnDisable() => 
+            _player.WalkingStateChangedEvent.Event -= OnWalkingStateChangedEvent;
 
         private void OnDestroy() =>
-            _playerWalkingStateChangedEvent.Event -= OnPlayerWalkingStateChangedEvent;
+            _player.WalkingStateChangedEvent.Event -= OnWalkingStateChangedEvent;
 
-        private void OnPlayerWalkingStateChangedEvent(object sender, bool isWalking) => 
-            _animator.SetBool(IsWalking, isWalking);
+        private void OnWalkingStateChangedEvent(object sender, bool isWalking) => 
+            _animator.SetBool(AnimationsParams.IsWalking, isWalking);
     }
 }
