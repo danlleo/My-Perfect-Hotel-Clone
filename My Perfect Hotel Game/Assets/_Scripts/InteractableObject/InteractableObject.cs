@@ -5,7 +5,7 @@ namespace InteractableObject
 {
     [SelectionBase]
     [DisallowMultipleComponent]
-    public class Selectable : MonoBehaviour
+    public class InteractableObject : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _lookPercentageLabel;
 

@@ -5,19 +5,13 @@ using UnityEngine;
 namespace Player
 {
     [DisallowMultipleComponent]
-    public class Interact : MonoBehaviour, ISelector
+    public class Interact : MonoBehaviour
     {
-        [SerializeField] private List<Selectable> _selectableObjectList;
+        [SerializeField] private List<InteractableObject.InteractableObject> _selectableObjectList;
         [SerializeField] private float _threshold = 0.925f;
-        
-        private Selectable _selection;
         
         public void Check(Ray ray)
         {
-            _selection = null;
-
-            float closest = 0;
-            
             for (int i = 0; i < _selectableObjectList.Count; i++)
             {
                 var rayDirection = ray.direction;
@@ -28,13 +22,7 @@ namespace Player
                 _selectableObjectList[i].SetLookPercentage(lookPercentage);
 
                 if (!(lookPercentage > _threshold) || !(lookPercentage > closest)) continue;
-                
-                closest = lookPercentage;
-                _selection = _selectableObjectList[i];
             }
         }
-
-        public Selectable GetSelected()
-            => _selection;
     }
 }
