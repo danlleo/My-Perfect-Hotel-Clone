@@ -5,10 +5,11 @@ namespace Player
 {
     public class PlayerMovement : MonoBehaviour
     {
+        private const float PLAYER_RADIUS = .5f;
+        private const float PLAYER_HEIGHT = 1f;
+        
         [SerializeField] private float _moveSpeed = 4f;
-
         private Camera _camera;
-
         private Vector2 _startFingerTouchedPosition;
         private Vector2 _endFingerTouchedPosition;
         private bool _isWalking;
@@ -49,27 +50,27 @@ namespace Player
         private void HandleMovement() 
         {
             float moveDistance = _moveSpeed * Time.deltaTime;
-            const float playerRadius = .5f;
-            const float playerHeight = 1f;
-            Vector3 point1 = transform.position;
-            Vector3 point2 = point1 + Vector3.up * playerHeight;
+            Vector3 playerBottomPoint = transform.position;
+            Vector3 playerTopPoint = playerBottomPoint + Vector3.up * PLAYER_HEIGHT;
             var screenSpaceDirection = (_endFingerTouchedPosition - _startFingerTouchedPosition).normalized;
             var worldSpaceDirection = new Vector3(screenSpaceDirection.x, transform.position.y,
                 screenSpaceDirection.y);
 
-            bool canMove = !Physics.CapsuleCast(point1, point2, playerRadius, worldSpaceDirection, moveDistance);
+            bool canMove = !Physics.CapsuleCast(playerBottomPoint, playerTopPoint, PLAYER_RADIUS, worldSpaceDirection, moveDistance);
 
             if (!canMove) 
             {
                 var moveDirX = new Vector3(worldSpaceDirection.x, 0f, 0f);
-                canMove = worldSpaceDirection.x is < -0.5f or > +0.5f && !Physics.CapsuleCast(point1, point2, playerRadius, moveDirX, moveDistance);
+                canMove = worldSpaceDirection.x is < -0.5f or > +0.5f && !Physics.CapsuleCast(playerBottomPoint, playerTopPoint, PLAYER_RADIUS, moveDirX, moveDistance);
 
-                if (canMove) worldSpaceDirection = moveDirX;
+                if (canMove) 
+                    worldSpaceDirection = moveDirX;
 
                 var moveDirZ = new Vector3(0f, 0f, worldSpaceDirection.z);
-                canMove = worldSpaceDirection.z is < -0.5f or > +0.5f && !Physics.CapsuleCast(point1, point2, playerRadius, moveDirZ, moveDistance);
+                canMove = worldSpaceDirection.z is < -0.5f or > +0.5f && !Physics.CapsuleCast(playerBottomPoint, playerTopPoint, PLAYER_RADIUS, moveDirZ, moveDistance);
 
-                if (canMove) worldSpaceDirection = moveDirZ;
+                if (canMove) 
+                    worldSpaceDirection = moveDirZ;
             }
 
             if (canMove) transform.position += _moveSpeed * Time.deltaTime * worldSpaceDirection;
