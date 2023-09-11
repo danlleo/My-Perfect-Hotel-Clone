@@ -1211,7 +1211,7 @@ MonoBehaviour:
   _interactableObjectList:
   - {fileID: 325282081}
   _threshold: 0.45
-  _interactDistance: 0.55
+  _interactDistance: 0.2
 --- !u!114 &1821653560
 MonoBehaviour:
   m_ObjectHideFlags: 0
