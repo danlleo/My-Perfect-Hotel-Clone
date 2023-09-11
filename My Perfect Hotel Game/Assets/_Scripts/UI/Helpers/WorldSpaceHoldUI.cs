@@ -15,10 +15,8 @@ namespace UI.Helpers
         private float _displayTimeInSeconds;
 
         private void Awake()
-        {
-            _camera = Camera.main;
-            Initialize(Vector3.zero, 2f, (() => print("fart")));
-        }
+            => _camera = Camera.main;
+        
         public void Initialize(Vector3 worldPosition, float displayTimeInSeconds, Action onComplete)
         {
             _worldPosition = worldPosition;

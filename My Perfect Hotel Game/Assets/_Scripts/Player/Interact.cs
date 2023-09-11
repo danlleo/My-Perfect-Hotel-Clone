@@ -38,7 +38,6 @@ namespace Player
        private void PerformInteract()
         {
             var ray = new Ray(_detectInteractableObjectPoint.position, _detectInteractableObjectPoint.forward);
-            float closest = 0;
             
             foreach (var interactableObject in _interactableObjectList)
             {
@@ -47,16 +46,13 @@ namespace Player
 
                 float lookPercentage = Vector3.Dot(rayDirection.normalized, directionFromRayOriginToSelectableObject.normalized);
 
-                if (!(lookPercentage > _threshold) || !(lookPercentage > closest)) continue;
-                
-                closest = lookPercentage;
-                _interactable = interactableObject;
+                if (!(lookPercentage > _threshold)) continue;
 
-                if (Vector3.Distance(transform.position, interactableObject.transform.position) >=
-                    _interactDistance)
-                {
-                    _interactable.Interact();
-                }
+                if (!(Vector3.Distance(transform.position, interactableObject.transform.position) <=
+                      _interactDistance)) continue;
+                
+                _interactable = interactableObject;
+                _interactable.Interact();
             }
         }
     }
