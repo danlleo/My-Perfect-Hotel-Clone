@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Misc
 {
-    public static class PlayerInputHandler
+    public static class InputHandler
     {
         public static bool IsMouseButtonDownThisFrame()
             => Input.GetMouseButtonDown(0);

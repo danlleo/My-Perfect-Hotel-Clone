@@ -1,27 +1,35 @@
+using System;
 using Misc;
 using UnityEngine;
 
 namespace Player
 {
+    [RequireComponent(typeof(Animator))]
     public class Movement : MonoBehaviour
     {
         private const float PLAYER_RADIUS = .5f;
         private const float PLAYER_HEIGHT = 1f;
-        
+
+        private static readonly int IsWalking = Animator.StringToHash(nameof(IsWalking));
+
         [SerializeField] private float _moveSpeed = 4f;
         [SerializeField] private LayerMask _playerCollisionLayerMask;
-        
         private Vector2 _startFingerTouchedPosition;
         private Vector2 _endFingerTouchedPosition;
-        
         private bool _isWalking;
-        
+        private Animator _animator;
+
+        private void Awake()
+        {
+            _animator = GetComponent<Animator>();
+        }
+
         private void Update()
         {
-            if (PlayerInputHandler.IsMouseButtonDownThisFrame())
+            if (InputHandler.IsMouseButtonDownThisFrame())
                 _startFingerTouchedPosition = Input.mousePosition;
             
-            if (PlayerInputHandler.IsMouseButtonHeldThisFrame())
+            if (InputHandler.IsMouseButtonHeldThisFrame())
             {
                 _endFingerTouchedPosition = Input.mousePosition;
 
@@ -36,10 +44,12 @@ namespace Player
                 }
             }
 
-            if (!PlayerInputHandler.IsMouseButtonUpThisFrame()) return;
+            if (!InputHandler.IsMouseButtonUpThisFrame()) return;
 
             _startFingerTouchedPosition = Vector2.zero;
             _endFingerTouchedPosition = Vector2.zero;
+            
+            _animator.SetBool(IsWalking, false);
         }
 
         /// <summary>
@@ -58,6 +68,8 @@ namespace Player
             if (canMove) transform.position += _moveSpeed * Time.deltaTime * directionToMove;
 
             _isWalking = directionToMove != Vector3.zero;
+            
+            _animator.SetBool(IsWalking, true);
         }
 
         /// <summary>
