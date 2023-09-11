@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace UI.Helpers
@@ -11,18 +12,22 @@ namespace UI.Helpers
         private Action _onComplete;
         private Camera _camera;
         
-        private float _displayTime;
-        private float _timer;
+        private float _displayTimeInSeconds;
 
         private void Awake()
             => _camera = Camera.main;
-
-        public void Initialize(Vector3 worldPosition, float displayTime, Action onComplete)
+        
+        public void Initialize(Vector3 worldPosition, float displayTimeInSeconds, Action onComplete)
         {
             _worldPosition = worldPosition;
-            _displayTime = displayTime;
+            _displayTimeInSeconds = displayTimeInSeconds;
             _onComplete = onComplete;
+
+            StartCoroutine(PerformActionAfterTimeRoutine(_onComplete));
         }
+
+        public void Initialize(Vector3 worldPosition)
+            => _worldPosition = worldPosition;
 
         private void Update()
         {
@@ -35,17 +40,17 @@ namespace UI.Helpers
         /// </summary>
         private void DisplayAtScreenPosition()
         {
-            transform.position = _stayAtScreenPosition;
             _stayAtScreenPosition = _camera.WorldToScreenPoint(_worldPosition);
-            _timer += Time.deltaTime;
-
-            if (!(_timer > _displayTime)) return;
-            
-            _onComplete?.Invoke();
-            ResetTimer();
+            transform.position = _stayAtScreenPosition;
         }
 
-        private void ResetTimer()
-            => _timer = 0f;
+        /// <summary>
+        /// If user specified Initialize with onComplete delegate, it will run once after specific period of time
+        /// </summary>
+        private IEnumerator PerformActionAfterTimeRoutine(Action onComplete)
+        {
+            yield return new WaitForSeconds(_displayTimeInSeconds);
+            onComplete?.Invoke();
+        }
     }
 }
