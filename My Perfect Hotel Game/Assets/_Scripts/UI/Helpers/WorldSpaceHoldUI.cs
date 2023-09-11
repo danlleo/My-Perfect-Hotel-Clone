@@ -38,8 +38,13 @@ namespace UI.Helpers
             _stayAtScreenPosition = _camera.WorldToScreenPoint(_worldPosition);
             _timer += Time.deltaTime;
 
-            if (_timer <= _displayTime)
-                _onComplete?.Invoke();
+            if (!(_timer > _displayTime)) return;
+            
+            _onComplete?.Invoke();
+            ResetTimer();
         }
+
+        private void ResetTimer()
+            => _timer = 0f;
     }
 }
