@@ -9,10 +9,9 @@ namespace Player
         private const float PLAYER_HEIGHT = 1f;
         
         [SerializeField] private float _moveSpeed = 4f;
-                
+        [SerializeField] private LayerMask _playerCollisionLayerMask;
         private Vector2 _startFingerTouchedPosition;
         private Vector2 _endFingerTouchedPosition;
-        
         private bool _isWalking;
         
         private void Update()
@@ -46,13 +45,13 @@ namespace Player
         /// </summary>
         private void HandleMovement(Vector3 directionToMove)
         {
-            var moveDistance = _moveSpeed * Time.deltaTime;
+            float moveDistance = _moveSpeed * Time.deltaTime;
 
-            var playerBottomPoint = transform.position;
-            var playerTopPoint = playerBottomPoint + Vector3.up * PLAYER_HEIGHT;
+            Vector3 playerBottomPoint = transform.position;
+            Vector3 playerTopPoint = playerBottomPoint + Vector3.up * PLAYER_HEIGHT;
             
-            var canMove = !Physics.CapsuleCast(playerBottomPoint, playerTopPoint, PLAYER_RADIUS, directionToMove,
-                moveDistance);
+            bool canMove = !Physics.CapsuleCast(playerBottomPoint, playerTopPoint, PLAYER_RADIUS, directionToMove,
+                moveDistance,_playerCollisionLayerMask);
             
             if (canMove) transform.position += _moveSpeed * Time.deltaTime * directionToMove;
 
