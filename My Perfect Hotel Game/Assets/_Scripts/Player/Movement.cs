@@ -1,6 +1,7 @@
 using System;
 using Misc;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Player
 {
@@ -14,7 +15,7 @@ namespace Player
         private static readonly int IsWalking = Animator.StringToHash(nameof(IsWalking));
 
         [SerializeField] private float _moveSpeed = 4f;
-        [SerializeField] private LayerMask _playerCollisionLayerMask;
+        [FormerlySerializedAs("_playerCollisionLayerMask")] [SerializeField] private LayerMask _collisionLayerMask;
         private Vector2 _startFingerTouchedPosition;
         private Vector2 _endFingerTouchedPosition;
         private bool _isWalking;
@@ -64,7 +65,7 @@ namespace Player
             var playerTopPoint = playerBottomPoint + Vector3.up * PLAYER_HEIGHT;
             
             bool canMove = !Physics.CapsuleCast(playerBottomPoint, playerTopPoint, PLAYER_RADIUS, directionToMove,
-                moveDistance,_playerCollisionLayerMask);
+                moveDistance,_collisionLayerMask);
             
             if (canMove) transform.position += _moveSpeed * Time.deltaTime * directionToMove;
 
