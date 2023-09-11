@@ -1,28 +1,26 @@
-using System;
+using Events;
 using Misc;
 using UnityEngine;
 
 namespace Player
 {
-    [RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(AnimationsController), typeof(PlayerWalkingStateChangedEvent))]
     [DisallowMultipleComponent]
     public class Movement : MonoBehaviour
     {
         private const float PLAYER_RADIUS = .5f;
         private const float PLAYER_HEIGHT = 1f;
 
-        private static readonly int IsWalking = Animator.StringToHash(nameof(IsWalking));
-
         [SerializeField] private float _moveSpeed = 4f;
         [SerializeField] private LayerMask _playerCollisionLayerMask;
         private Vector2 _startFingerTouchedPosition;
         private Vector2 _endFingerTouchedPosition;
         private bool _isWalking;
-        private Animator _animator;
+        private PlayerWalkingStateChangedEvent _playerWalkingStateChangedEvent;
 
         private void Awake()
         {
-            _animator = GetComponent<Animator>();
+            _playerWalkingStateChangedEvent = GetComponent<PlayerWalkingStateChangedEvent>();
         }
 
         private void Update()
@@ -49,8 +47,9 @@ namespace Player
 
             _startFingerTouchedPosition = Vector2.zero;
             _endFingerTouchedPosition = Vector2.zero;
+            _isWalking = false;
             
-            _animator.SetBool(IsWalking, false);
+            _playerWalkingStateChangedEvent.Call(this, false);
         }
 
         /// <summary>
@@ -68,9 +67,8 @@ namespace Player
             
             if (canMove) transform.position += _moveSpeed * Time.deltaTime * directionToMove;
 
-            _isWalking = directionToMove != Vector3.zero;
-            
-            _animator.SetBool(IsWalking, true);
+            _isWalking = true;
+            _playerWalkingStateChangedEvent.Call(this, true);
         }
 
         /// <summary>
