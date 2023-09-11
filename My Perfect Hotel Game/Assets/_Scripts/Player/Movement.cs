@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Player
 {
-    public class PlayerMovement : MonoBehaviour
+    public class Movement : MonoBehaviour
     {
         private const float PLAYER_RADIUS = .5f;
         private const float PLAYER_HEIGHT = 1f;
