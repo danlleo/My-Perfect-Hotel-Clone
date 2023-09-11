@@ -4,6 +4,7 @@ using UnityEngine;
 namespace InteractableObject
 {
     [SelectionBase]
+    [DisallowMultipleComponent]
     public class Selectable : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _lookPercentageLabel;

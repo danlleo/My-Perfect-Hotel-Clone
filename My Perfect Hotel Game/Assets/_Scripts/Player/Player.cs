@@ -8,7 +8,6 @@ namespace Player
     public class Player : MonoBehaviour
     {
         [SerializeField] private Transform _raycastStartPoint;
-        [SerializeField] private LayerMask _layerMask;
         
         private Interact _interact;
 

@@ -5,6 +5,7 @@ using UnityEngine;
 namespace Player
 {
     [RequireComponent(typeof(Animator))]
+    [DisallowMultipleComponent]
     public class Movement : MonoBehaviour
     {
         private const float PLAYER_RADIUS = .5f;
