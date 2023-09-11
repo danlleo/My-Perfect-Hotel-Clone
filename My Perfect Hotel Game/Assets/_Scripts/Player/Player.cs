@@ -11,6 +11,9 @@ namespace Player
     [RequireComponent(typeof(PlayerWalkingStateChangedEvent))]
     public class Player : MonoBehaviour
     {
+        public const float RADIUS = .5f;
+        public const float HEIGHT = 1f;
+        
         [HideInInspector] public PlayerWalkingStateChangedEvent WalkingStateChangedEvent;
 
         private void Awake()

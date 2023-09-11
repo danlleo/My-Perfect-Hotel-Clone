@@ -6,9 +6,6 @@ namespace Player
     [DisallowMultipleComponent]
     public class Movement : MonoBehaviour
     {
-        private const float PLAYER_RADIUS = .5f;
-        private const float PLAYER_HEIGHT = 1f;
-
         [SerializeField] private float _moveSpeed = 4f;
         [SerializeField] private LayerMask _collisionLayerMask;
         private Vector2 _startFingerTouchedPosition;
@@ -58,9 +55,9 @@ namespace Player
             float moveDistance = _moveSpeed * Time.deltaTime;
 
             var playerBottomPoint = transform.position;
-            var playerTopPoint = playerBottomPoint + Vector3.up * PLAYER_HEIGHT;
+            var playerTopPoint = playerBottomPoint + Vector3.up * Player.HEIGHT;
             
-            bool canMove = !Physics.CapsuleCast(playerBottomPoint, playerTopPoint, PLAYER_RADIUS, directionToMove,
+            bool canMove = !Physics.CapsuleCast(playerBottomPoint, playerTopPoint, Player.RADIUS, directionToMove,
                 moveDistance,_collisionLayerMask);
             
             if (canMove) transform.position += _moveSpeed * Time.deltaTime * directionToMove;
