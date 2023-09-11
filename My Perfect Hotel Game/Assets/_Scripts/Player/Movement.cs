@@ -1,11 +1,8 @@
-using Events;
 using Misc;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Player
 {
-    [RequireComponent(typeof(AnimationsController), typeof(PlayerWalkingStateChangedEvent))]
     [DisallowMultipleComponent]
     public class Movement : MonoBehaviour
     {
@@ -13,15 +10,15 @@ namespace Player
         private const float PLAYER_HEIGHT = 1f;
 
         [SerializeField] private float _moveSpeed = 4f;
-        [FormerlySerializedAs("_playerCollisionLayerMask")] [SerializeField] private LayerMask _collisionLayerMask;
+        [SerializeField] private LayerMask _collisionLayerMask;
         private Vector2 _startFingerTouchedPosition;
         private Vector2 _endFingerTouchedPosition;
         private bool _isWalking;
-        private PlayerWalkingStateChangedEvent _playerWalkingStateChangedEvent;
+        private Player _player;
 
         private void Awake()
         {
-            _playerWalkingStateChangedEvent = GetComponent<PlayerWalkingStateChangedEvent>();
+            _player = GetComponent<Player>();
         }
 
         private void Update()
@@ -50,7 +47,7 @@ namespace Player
             _endFingerTouchedPosition = Vector2.zero;
             _isWalking = false;
             
-            _playerWalkingStateChangedEvent.Call(this, false);
+            _player.WalkingStateChangedEvent.Call(this, false);
         }
 
         /// <summary>
@@ -69,7 +66,8 @@ namespace Player
             if (canMove) transform.position += _moveSpeed * Time.deltaTime * directionToMove;
 
             _isWalking = true;
-            _playerWalkingStateChangedEvent.Call(this, true);
+            
+            _player.WalkingStateChangedEvent.Call(this, true);
         }
 
         /// <summary>
