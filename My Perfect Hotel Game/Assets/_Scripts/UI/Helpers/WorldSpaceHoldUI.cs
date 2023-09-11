@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace UI.Helpers
 {
+    [DisallowMultipleComponent]
     public class WorldSpaceHoldUI : MonoBehaviour
     {
         private Vector3 _stayAtScreenPosition;
