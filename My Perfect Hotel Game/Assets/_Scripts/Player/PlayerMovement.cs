@@ -45,12 +45,12 @@ namespace Player
         /// </summary>
         private void HandleMovement(Vector3 directionToMove)
         {
-            float moveDistance = _moveSpeed * Time.deltaTime;
+            var moveDistance = _moveSpeed * Time.deltaTime;
 
-            Vector3 playerBottomPoint = transform.position;
-            Vector3 playerTopPoint = playerBottomPoint + Vector3.up * PLAYER_HEIGHT;
+            var playerBottomPoint = transform.position;
+            var playerTopPoint = playerBottomPoint + Vector3.up * PLAYER_HEIGHT;
             
-            bool canMove = !Physics.CapsuleCast(playerBottomPoint, playerTopPoint, PLAYER_RADIUS, directionToMove,
+            var canMove = !Physics.CapsuleCast(playerBottomPoint, playerTopPoint, PLAYER_RADIUS, directionToMove,
                 moveDistance,_playerCollisionLayerMask);
             
             if (canMove) transform.position += _moveSpeed * Time.deltaTime * directionToMove;
