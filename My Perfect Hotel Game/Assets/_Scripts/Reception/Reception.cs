@@ -1,20 +1,32 @@
 using System;
 using InteractableObject;
+using Room;
+using StaticEvents.Reception;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Reception
 {
     [DisallowMultipleComponent]
     public class Reception : Interactable
     {
-        [FormerlySerializedAs("_queueLimit")] [SerializeField] private int _guestInHotelLimit = 4;
-
+        [SerializeField] private int _guestInHotelLimit = 4;
+        
         private int _guestInHotelCount;
 
         private readonly float _interactTimeInSeconds = 1.2f;
         private float _timer;
         
+        private void Update()
+        {
+            if (!(_timer >= _interactTimeInSeconds)) return;
+            
+            PerformAction(() => ReceptionInteractStaticEvent.CallReceptionInteractedEvent(this));
+            ResetTimer();
+        }
+        
+        /// <summary>
+        /// This method will be called when player/servant is close to the counter and interacting with it.
+        /// </summary>
         public override void Interact()
         {
             if (_guestInHotelCount >= _guestInHotelLimit)
@@ -23,14 +35,15 @@ namespace Reception
             IncreaseTimer();
         }
 
-        private void Update()
+        public void AppointGuestToRoom(Guest.Guest guest)
         {
-            if (!(_timer >= _interactTimeInSeconds)) return;
-            
-            PerformAction(() => print("Action performed"));
-            ResetTimer();
+            var room = RoomManager.Instance.GetAvailableRoom();
+            guest.SetRoom(room);
         }
-
+        
+        /// <summary>
+        ///  Perform action after interact time is met
+        /// </summary>
         private void PerformAction(Action action)
             => action?.Invoke();
         
