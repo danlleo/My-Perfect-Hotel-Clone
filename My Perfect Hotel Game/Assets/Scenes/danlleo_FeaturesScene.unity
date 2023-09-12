@@ -634,6 +634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1da4892d14eea544966e0dc10b8de65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bedTransform: {fileID: 0}
 --- !u!1 &652154439
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,8 +721,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 652154439}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.22634815, y: -0.13855554, z: 0.03252982, w: -0.96359265}
-  m_LocalPosition: {x: -5.4, y: 13.69, z: -20.67}
+  m_LocalRotation: {x: 0.40201363, y: 0.0011581628, z: -0.00038821803, w: 0.9156329}
+  m_LocalPosition: {x: -0.9807172, y: 15.643685, z: -20.947245}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -918,6 +919,7 @@ GameObject:
   - component: {fileID: 1154710245}
   - component: {fileID: 1154710246}
   - component: {fileID: 1154710247}
+  - component: {fileID: 1154710248}
   m_Layer: 0
   m_Name: Guest
   m_TagString: Untagged
@@ -963,6 +965,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c37e786382b01584da298ad091490a0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GuestSetRoomEvent: {fileID: 0}
+--- !u!114 &1154710248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154710237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c673d198afb6ee64980e8bf2c0470b56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1279838607

@@ -15,7 +15,10 @@ namespace UI.Helpers
         private float _displayTimeInSeconds;
 
         private void Awake()
-            => _camera = Camera.main;
+        {
+            _camera = Camera.main;
+            Initialize(transform.position);
+        }
         
         public void Initialize(Vector3 worldPosition, float displayTimeInSeconds, Action onComplete)
         {

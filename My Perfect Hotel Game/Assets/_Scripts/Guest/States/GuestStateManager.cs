@@ -3,15 +3,20 @@ using UnityEngine;
 namespace Guest.States
 {
     [DisallowMultipleComponent]
+    [RequireComponent(typeof(Guest))]
     public class GuestStateManager : MonoBehaviour
     {
+        public Guest CurrentGuest { get; private set; }
+        
         private GuestState _currentState;
-
-        private WaitingInReceptionLineState _waitingInReceptionLineState = new();
+        
+        public WaitingInReceptionLineState WaitingInReceptionLine = new();
+        public BookingRoomState BookingRoom = new();
+        public WalkingToRoomBedState WalkingToRoomBed = new();
 
         private void Start()
         {
-            _currentState = _waitingInReceptionLineState;
+            _currentState = WaitingInReceptionLine;
             
             _currentState.EnterState(this);
         }
