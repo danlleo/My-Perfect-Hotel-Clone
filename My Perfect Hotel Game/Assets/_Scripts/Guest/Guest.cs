@@ -6,18 +6,19 @@ namespace Guest
     [RequireComponent(typeof(GuestSetRoomEvent))]
     public class Guest : MonoBehaviour
     {
-        private GuestSetRoomEvent _guestSetRoomEvent;
+        [HideInInspector] public GuestSetRoomEvent GuestSetRoomEvent;
+        
         private Room.Room _room;
 
         private void Awake()
         {
-            _guestSetRoomEvent = GetComponent<GuestSetRoomEvent>();
+            GuestSetRoomEvent = GetComponent<GuestSetRoomEvent>();
         }
 
         public void SetRoom(Room.Room room)
         {
             _room = room;
-            _guestSetRoomEvent.CallGuestSetRoomEvent(_room);
+            GuestSetRoomEvent.CallGuestSetRoomEvent(_room);
         }
         
         // ...
