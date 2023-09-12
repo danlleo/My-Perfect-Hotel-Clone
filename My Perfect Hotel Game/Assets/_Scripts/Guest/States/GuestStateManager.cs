@@ -7,11 +7,11 @@ namespace Guest.States
     {
         private GuestState _currentState;
 
-        private WalkingTowardsReceptionLineState _walkingTowardsReceptionLineState = new();
+        private WaitingInReceptionLineState _waitingInReceptionLineState = new();
 
         private void Start()
         {
-            _currentState = _walkingTowardsReceptionLineState;
+            _currentState = _waitingInReceptionLineState;
             
             _currentState.EnterState(this);
         }

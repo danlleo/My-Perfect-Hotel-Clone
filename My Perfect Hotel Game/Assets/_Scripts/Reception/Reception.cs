@@ -1,22 +1,23 @@
 using System;
 using InteractableObject;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Reception
 {
     [DisallowMultipleComponent]
     public class Reception : Interactable
     {
-        [SerializeField] private int _queueLimit = 4;
+        [FormerlySerializedAs("_queueLimit")] [SerializeField] private int _guestInHotelLimit = 4;
 
-        private int _currentQueueCount;
+        private int _guestInHotelCount;
 
         private readonly float _interactTimeInSeconds = 1.2f;
         private float _timer;
         
         public override void Interact()
         {
-            if (_currentQueueCount >= _queueLimit)
+            if (_guestInHotelCount >= _guestInHotelLimit)
                 return;
 
             IncreaseTimer();
