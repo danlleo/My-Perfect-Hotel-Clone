@@ -9,15 +9,20 @@ namespace Guest.States
         public Guest CurrentGuest { get; private set; }
         
         private GuestState _currentState;
-        
+
+        public WalkingToReceptionQueueLineState WalkingToReceptionQueueLine = new();
         public WaitingInReceptionLineState WaitingInReceptionLine = new();
         public BookingRoomState BookingRoom = new();
         public WalkingToRoomBedState WalkingToRoomBed = new();
 
+        private void Awake()
+        {
+            CurrentGuest = GetComponent<Guest>();
+        }
+
         private void Start()
         {
-            _currentState = WaitingInReceptionLine;
-            
+            _currentState = WalkingToReceptionQueueLine;
             _currentState.EnterState(this);
         }
 

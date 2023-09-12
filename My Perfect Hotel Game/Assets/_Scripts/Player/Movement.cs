@@ -7,11 +7,16 @@ namespace Player
     public class Movement : MonoBehaviour
     {
         [SerializeField] private float _moveSpeed = 4f;
+        
+        [Tooltip("Populate with layers that will be detected as collision, to prevent player through moving them")]
         [SerializeField] private LayerMask _collisionLayerMask;
-        private Vector2 _startFingerTouchedPosition;
-        private Vector2 _endFingerTouchedPosition;
-        private bool _isWalking;
+        
         private Player _player;
+        
+        private Vector2 _startFingerTouchPosition;
+        private Vector2 _heldFingerTouchedPosition;
+        
+        private bool _isWalking;
 
         private void Awake()
         {
@@ -21,15 +26,15 @@ namespace Player
         private void Update()
         {
             if (InputHandler.IsMouseButtonDownThisFrame())
-                _startFingerTouchedPosition = Input.mousePosition;
+                _startFingerTouchPosition = Input.mousePosition;
             
             if (InputHandler.IsMouseButtonHeldThisFrame())
             {
-                _endFingerTouchedPosition = Input.mousePosition;
+                _heldFingerTouchedPosition = Input.mousePosition;
 
-                if (Vector2.Distance(_startFingerTouchedPosition, _endFingerTouchedPosition) > 0f)
+                if (Vector2.Distance(_startFingerTouchPosition, _heldFingerTouchedPosition) > 0f)
                 {
-                    var screenSpaceDirection = (_endFingerTouchedPosition - _startFingerTouchedPosition).normalized;
+                    var screenSpaceDirection = (_heldFingerTouchedPosition - _startFingerTouchPosition).normalized;
                     var worldSpaceDirection = new Vector3(screenSpaceDirection.x, transform.position.y,
                         screenSpaceDirection.y);
                     
@@ -40,8 +45,8 @@ namespace Player
 
             if (!InputHandler.IsMouseButtonUpThisFrame()) return;
 
-            _startFingerTouchedPosition = Vector2.zero;
-            _endFingerTouchedPosition = Vector2.zero;
+            _startFingerTouchPosition = Vector2.zero;
+            _heldFingerTouchedPosition = Vector2.zero;
             _isWalking = false;
             
             _player.WalkingStateChangedEvent.Call(this, false);

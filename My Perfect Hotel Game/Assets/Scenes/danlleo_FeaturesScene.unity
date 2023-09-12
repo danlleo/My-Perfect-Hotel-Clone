@@ -635,6 +635,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bedTransform: {fileID: 0}
+--- !u!1 &486767079
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 486767080}
+  m_Layer: 0
+  m_Name: GuestSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &486767080
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486767079}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -13.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &652154439
 GameObject:
   m_ObjectHideFlags: 0
@@ -920,6 +951,7 @@ GameObject:
   - component: {fileID: 1154710246}
   - component: {fileID: 1154710247}
   - component: {fileID: 1154710248}
+  - component: {fileID: 1154710249}
   m_Layer: 0
   m_Name: Guest
   m_TagString: Untagged
@@ -968,6 +1000,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GuestSetRoomEvent: {fileID: 0}
+  _receptionLineQueueTransform: {fileID: 1802006965}
 --- !u!114 &1154710248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -980,6 +1013,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c673d198afb6ee64980e8bf2c0470b56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1154710249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154710237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5443ad5fddf425fbdd24ac91429c45c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveSpeed: 4
 --- !u!1 &1279838607
 GameObject:
   m_ObjectHideFlags: 0
@@ -1646,6 +1692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxGuestsLimitInQueueLine: 5
+  _distanceBetweenGuestsInLine: 1.15
 --- !u!1 &1821653554
 GameObject:
   m_ObjectHideFlags: 0
@@ -2071,3 +2118,4 @@ SceneRoots:
   - {fileID: 1701225990}
   - {fileID: 439970952}
   - {fileID: 1961319496}
+  - {fileID: 486767080}
