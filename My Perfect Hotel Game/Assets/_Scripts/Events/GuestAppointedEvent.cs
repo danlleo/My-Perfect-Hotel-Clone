@@ -1,13 +1,14 @@
 using System;
+using Interfaces;
 using UnityEngine;
 
 namespace Events
 {
-    public class GuestAppointedEvent : MonoBehaviour
+    public class GuestAppointedEvent : MonoBehaviour, IEvent
     {
-        public event Action OnGuestAppointed;
+        public event EventHandler Event;
 
-        public void CallGuestAppointedEvent()
-            => OnGuestAppointed?.Invoke();
+        public void Call(object sender)
+            => Event?.Invoke(sender, EventArgs.Empty);
     }
 }

@@ -28,13 +28,13 @@ namespace QueueLines.ReceptionQueueLine
         private void OnEnable()
         {
             ReceptionInteractStaticEvent.OnReceptionInteracted += ReceptionInteractStaticEvent_OnOnReceptionInteracted;
-            GuestSpawnedEvent.OnGuestSpawned += GuestSpawnedEvent_OnOnGuestSpawned;
+            GuestSpawnedEvent.Event += GuestSpawnedEvent_OnOnGuestSpawned;
         }
 
         private void OnDisable()
         {
             ReceptionInteractStaticEvent.OnReceptionInteracted -= ReceptionInteractStaticEvent_OnOnReceptionInteracted;
-            GuestSpawnedEvent.OnGuestSpawned -= GuestSpawnedEvent_OnOnGuestSpawned;
+            GuestSpawnedEvent.Event -= GuestSpawnedEvent_OnOnGuestSpawned;
         }
 
         public bool IsLineFull()
@@ -93,7 +93,7 @@ namespace QueueLines.ReceptionQueueLine
         private void NotifyGuestsInLineAboutPositionChange()
         {
             foreach (var guest in _guestsQueue)
-                guest.GuestReceptionQueueLinePositionChangedEvent.CallGuestReceptionQueueLinePositionChanged();
+                guest.GuestReceptionQueueLinePositionChangedEvent.Call(this);
         }
         
         private void ReceptionInteractStaticEvent_OnOnReceptionInteracted(ReceptionInteractStaticEventArgs receptionInteractStaticEventArgs)
@@ -113,7 +113,7 @@ namespace QueueLines.ReceptionQueueLine
             NotifyGuestsInLineAboutPositionChange();
         }
         
-        private void GuestSpawnedEvent_OnOnGuestSpawned(GuestSpawnedEventArgs guestSpawnedEventArgs)
+        private void GuestSpawnedEvent_OnOnGuestSpawned(object sender, GuestSpawnedEventArgs guestSpawnedEventArgs)
         {
             AddGuestToLine(guestSpawnedEventArgs.Guest);
         }

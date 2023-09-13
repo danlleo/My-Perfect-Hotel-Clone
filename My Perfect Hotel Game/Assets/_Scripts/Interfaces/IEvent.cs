@@ -8,4 +8,11 @@ namespace Interfaces
 
         public void Call(object sender, T eventArgs);
     }
+    
+    public interface IEvent
+    {
+        public event EventHandler Event;
+
+        public void Call(object sender);
+    }
 }

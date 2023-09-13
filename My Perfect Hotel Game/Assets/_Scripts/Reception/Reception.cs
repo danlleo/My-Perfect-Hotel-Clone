@@ -41,7 +41,7 @@ namespace Reception
             room.SetIsNotAvailable();
             
             guest.SetRoom(room);
-            guest.GuestAppointedEvent.CallGuestAppointedEvent();
+            guest.GuestAppointedEvent.Call(this);
         }
         
         /// <summary>

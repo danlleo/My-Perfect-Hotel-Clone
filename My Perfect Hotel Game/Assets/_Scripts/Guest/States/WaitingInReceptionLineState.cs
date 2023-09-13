@@ -1,3 +1,5 @@
+using System;
+
 namespace Guest.States
 {
     public class WaitingInReceptionLineState : GuestState
@@ -7,8 +9,8 @@ namespace Guest.States
         public override void EnterState(GuestStateManager guestStateManager)
         {
             guestStateManager.CurrentGuest.SetHasReachedLinePosition(true);
-            guestStateManager.CurrentGuest.GuestAppointedEvent.OnGuestAppointed += GuestAppointedEvent_OnGuestAppointed;
-            guestStateManager.CurrentGuest.GuestReceptionQueueLinePositionChangedEvent.OnGuestReceptionQueueLinePositionChanged += GuestReceptionQueueLinePositionChangedEvent_OnGuestReceptionQueueLinePositionChanged;
+            guestStateManager.CurrentGuest.GuestAppointedEvent.Event += GuestAppointedEventEvent;
+            guestStateManager.CurrentGuest.GuestReceptionQueueLinePositionChangedEvent.Event += GuestReceptionQueueLinePositionChangedEventEvent;
             
             _guestStateManager = guestStateManager;
         }
@@ -21,17 +23,17 @@ namespace Guest.States
         public override void LeaveState(GuestStateManager guestStateManager)
         {
             guestStateManager.CurrentGuest.SetHasReachedLinePosition(false);
-            guestStateManager.CurrentGuest.GuestAppointedEvent.OnGuestAppointed -= GuestAppointedEvent_OnGuestAppointed;
-            guestStateManager.CurrentGuest.GuestReceptionQueueLinePositionChangedEvent.OnGuestReceptionQueueLinePositionChanged -= GuestReceptionQueueLinePositionChangedEvent_OnGuestReceptionQueueLinePositionChanged;
+            guestStateManager.CurrentGuest.GuestAppointedEvent.Event -= GuestAppointedEventEvent;
+            guestStateManager.CurrentGuest.GuestReceptionQueueLinePositionChangedEvent.Event -= GuestReceptionQueueLinePositionChangedEventEvent;
             guestStateManager.SwitchState(guestStateManager.WalkingToRoomBed);
         }
         
-        private void GuestAppointedEvent_OnGuestAppointed()
+        private void GuestAppointedEventEvent(object sender, EventArgs _)
         {
             LeaveState(_guestStateManager);
         }
         
-        private void GuestReceptionQueueLinePositionChangedEvent_OnGuestReceptionQueueLinePositionChanged()
+        private void GuestReceptionQueueLinePositionChangedEventEvent(object sender, EventArgs _)
         {
             _guestStateManager.CurrentGuest.SetHasReachedLinePosition(false);
             _guestStateManager.SwitchState(_guestStateManager.WalkingToReceptionQueueLine);

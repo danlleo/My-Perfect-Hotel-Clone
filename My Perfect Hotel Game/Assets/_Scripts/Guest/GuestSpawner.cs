@@ -1,3 +1,4 @@
+using Events;
 using QueueLines.ReceptionQueueLine;
 using UnityEngine;
 
@@ -36,7 +37,7 @@ namespace Guest
             var guest = Instantiate(_guestPrefab, _spawnPoint.position, Quaternion.identity);
             guest.Initialize(_receptionQueueLine, _receptionQueueLine.GetWorldPositionToStayInLine(), transform.position);
             
-            _receptionQueueLine.GuestSpawnedEvent.CallGuestSpawnedEvent(guest);
+            _receptionQueueLine.GuestSpawnedEvent.Call(this, new GuestSpawnedEventArgs(guest: guest));
         }
 
         private void ResetTimer()

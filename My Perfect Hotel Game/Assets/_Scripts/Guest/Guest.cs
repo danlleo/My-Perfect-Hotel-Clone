@@ -47,7 +47,7 @@ namespace Guest
         public void SetRoom(Room.Room room)
         {
             Room = room;
-            GuestSetRoomEvent.CallGuestSetRoomEvent(Room);
+            GuestSetRoomEvent.Call(this, new GuestSetRoomEventArgs(room: room));
         }
 
         public void SetPositionInLine(Vector3 positionInLine)

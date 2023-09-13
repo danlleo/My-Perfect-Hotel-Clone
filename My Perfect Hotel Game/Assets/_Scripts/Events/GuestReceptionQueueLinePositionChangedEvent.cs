@@ -1,13 +1,14 @@
 using System;
+using Interfaces;
 using UnityEngine;
 
 namespace Events
 {
-    public class GuestReceptionQueueLinePositionChangedEvent : MonoBehaviour
+    public class GuestReceptionQueueLinePositionChangedEvent : MonoBehaviour, IEvent
     {
-        public event Action OnGuestReceptionQueueLinePositionChanged;
+        public event EventHandler Event;
 
-        public void CallGuestReceptionQueueLinePositionChanged()
-            => OnGuestReceptionQueueLinePositionChanged?.Invoke();
+        public void Call(object sender)
+            => Event?.Invoke(sender, EventArgs.Empty);
     }
 }

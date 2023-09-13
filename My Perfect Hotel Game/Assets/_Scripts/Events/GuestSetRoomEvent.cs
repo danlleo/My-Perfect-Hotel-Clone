@@ -1,15 +1,16 @@
 using System;
+using Interfaces;
 using UnityEngine;
 
 namespace Events
 {
     [DisallowMultipleComponent]
-    public class GuestSetRoomEvent : MonoBehaviour
+    public class GuestSetRoomEvent : MonoBehaviour, IEvent<GuestSetRoomEventArgs>
     {
-        public event Action<GuestSetRoomEventArgs> OnGuestSetRoom;
+        public event EventHandler<GuestSetRoomEventArgs> Event;
 
-        public void CallGuestSetRoomEvent(Room.Room setRoom)
-            => OnGuestSetRoom?.Invoke(new GuestSetRoomEventArgs(setRoom));
+        public void Call(object sender, GuestSetRoomEventArgs setRoom)
+            => Event?.Invoke(sender, setRoom);
     }
 
     public class GuestSetRoomEventArgs : EventArgs

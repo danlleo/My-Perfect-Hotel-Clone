@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Events
 {
+    [DisallowMultipleComponent]
     public class PlayerWalkingStateChangedEvent : MonoBehaviour, IEvent<PlayerWalkingStateChangedEventArgs>
     {
         public event EventHandler<PlayerWalkingStateChangedEventArgs> Event;
@@ -16,6 +17,11 @@ namespace Events
     
     public class PlayerWalkingStateChangedEventArgs : EventArgs
     {
-        public bool IsWalking;
+        public readonly bool IsWalking;
+        
+        public PlayerWalkingStateChangedEventArgs(bool isWalking)
+        {
+            IsWalking = isWalking;
+        }
     }
 }

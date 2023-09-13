@@ -50,10 +50,7 @@ namespace Player
             _heldFingerTouchedPosition = Vector2.zero;
             _isWalking = false;
             
-            _player.WalkingStateChangedEvent.Call(this, new PlayerWalkingStateChangedEventArgs
-            {
-                IsWalking = _isWalking
-            });
+            _player.WalkingStateChangedEvent.Call(this, new PlayerWalkingStateChangedEventArgs(isWalking: _isWalking));
         }
 
         /// <summary>
@@ -73,10 +70,7 @@ namespace Player
 
             _isWalking = true;
             
-            _player.WalkingStateChangedEvent.Call(this, new PlayerWalkingStateChangedEventArgs
-            {
-                IsWalking = _isWalking
-            });
+            _player.WalkingStateChangedEvent.Call(this, new PlayerWalkingStateChangedEventArgs(isWalking: _isWalking));
         }
 
         /// <summary>
