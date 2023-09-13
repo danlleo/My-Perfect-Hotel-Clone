@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Events
 {
-    public abstract class PlayerWalkingStateChangedEvent : MonoBehaviour, IEvent<PlayerWalkingStateChangedEventArgs>
+    public class PlayerWalkingStateChangedEvent : MonoBehaviour, IEvent<PlayerWalkingStateChangedEventArgs>
     {
         public event EventHandler<PlayerWalkingStateChangedEventArgs> Event;
         
