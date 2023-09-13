@@ -7,8 +7,7 @@ namespace Guest.States
     /// </summary>
     public class WalkingToReceptionQueueLineState : GuestState
     {
-        private Vector3 _endPosition = new Vector3(0f, 0f, -4.25f);
-        private float _threshold = .125f;
+        private float _stopMovingThreshold = .125f;
         
         public override void EnterState(GuestStateManager guestStateManager)
         {
@@ -17,11 +16,13 @@ namespace Guest.States
 
         public override void UpdateState(GuestStateManager guestStateManager)
         {
-            var direction = _endPosition - guestStateManager.CurrentGuest.transform.position;
+            var currentPosition = guestStateManager.CurrentGuest.transform.position;
+            var endPosition = guestStateManager.CurrentGuest.GetPositionInLine();
+            var direction = endPosition - currentPosition;
             
             guestStateManager.CurrentGuest.Movement.HandleMovement(direction);
 
-            if (Vector3.Distance(guestStateManager.CurrentGuest.transform.position, _endPosition) <= _threshold)
+            if (Vector3.Distance(currentPosition, endPosition) <= _stopMovingThreshold)
             {
                 LeaveState(guestStateManager);
             }

@@ -1,4 +1,5 @@
 using Events;
+using QueueLines.ReceptionQueueLine;
 using UnityEngine;
 
 namespace Guest
@@ -10,11 +11,11 @@ namespace Guest
         [HideInInspector] public GuestSetRoomEvent GuestSetRoomEvent;
         
         public Movement Movement { get; private set; }
-
-        // For now add through the inspector, later add through the code
-        [SerializeField] private Transform _receptionLineQueueTransform;
-
+        
         private Room.Room _room;
+        private ReceptionQueueLine _receptionQueueLine;
+
+        private Vector3 _positionInLine;
 
         private void Awake()
         {
@@ -22,12 +23,19 @@ namespace Guest
             Movement = GetComponent<Movement>();
         }
 
+        public void Initialize(ReceptionQueueLine receptionQueueLine, Vector3 positionInLine)
+        {
+            _receptionQueueLine = receptionQueueLine;
+            _positionInLine = positionInLine;
+        }
+
         public void SetRoom(Room.Room room)
         {
             _room = room;
             GuestSetRoomEvent.CallGuestSetRoomEvent(_room);
         }
-        
-        // ...
+
+        public Vector3 GetPositionInLine()
+            => _positionInLine;
     }
 }

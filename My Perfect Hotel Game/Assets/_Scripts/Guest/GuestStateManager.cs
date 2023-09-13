@@ -1,6 +1,7 @@
+using Guest.States;
 using UnityEngine;
 
-namespace Guest.States
+namespace Guest
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Guest))]
@@ -22,7 +23,7 @@ namespace Guest.States
 
         private void Start()
         {
-            _currentState = WalkingToReceptionQueueLine;
+            SetDefaultState(WalkingToReceptionQueueLine);
             _currentState.EnterState(this);
         }
 
@@ -36,5 +37,8 @@ namespace Guest.States
             _currentState = targetState;
             _currentState.EnterState(this);
         }
+
+        private void SetDefaultState(GuestState targetState)
+            => _currentState = targetState;
     }
 }

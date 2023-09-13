@@ -1,45 +1,81 @@
+using System;
 using System.Collections.Generic;
+using Events;
 using StaticEvents.Reception;
 using UnityEngine;
 
 namespace QueueLines.ReceptionQueueLine
 {
+    [RequireComponent(typeof(GuestSpawnedEvent))]
+    [DisallowMultipleComponent]
     public class ReceptionQueueLine : MonoBehaviour
     {
+        [HideInInspector] public GuestSpawnedEvent GuestSpawnedEvent;
+        
         [SerializeField] private int _maxGuestsLimitInQueueLine = 5;
         [SerializeField] private float _distanceBetweenGuestsInLine = 1.15f;
         
-        private int _currentGuestsCountInReceptionQueueLine;
+        private int _currentGuestsCountInLine;
 
         private Queue<Guest.Guest> _guestsQueue = new();
+
+        private void Awake()
+        {
+            GuestSpawnedEvent = GetComponent<GuestSpawnedEvent>();
+        }
 
         private void OnEnable()
         {
             ReceptionInteractStaticEvent.OnReceptionInteracted += ReceptionInteractStaticEvent_OnOnReceptionInteracted;
+            GuestSpawnedEvent.OnGuestSpawned += GuestSpawnedEvent_OnOnGuestSpawned;
         }
 
         private void OnDisable()
         {
             ReceptionInteractStaticEvent.OnReceptionInteracted -= ReceptionInteractStaticEvent_OnOnReceptionInteracted;
+            GuestSpawnedEvent.OnGuestSpawned -= GuestSpawnedEvent_OnOnGuestSpawned;
+        }
+        
+        private void GuestSpawnedEvent_OnOnGuestSpawned(GuestSpawnedEventArgs guestSpawnedEventArgs)
+        {
+            AddGuestToLine(guestSpawnedEventArgs.Guest);
         }
 
+        public bool IsLineFull()
+            => _currentGuestsCountInLine == _maxGuestsLimitInQueueLine;
+        
         public Vector3 GetWorldPositionToStayInLine()
         {
-            if (_currentGuestsCountInReceptionQueueLine == 0 || _currentGuestsCountInReceptionQueueLine == 1)
+            if (_currentGuestsCountInLine is 0)
                 return transform.position;
 
-            return Vector3.back * _distanceBetweenGuestsInLine * _currentGuestsCountInReceptionQueueLine;
+            return transform.position - transform.forward * (_distanceBetweenGuestsInLine * _currentGuestsCountInLine);
         }
-
-        public void AddGuestToReceptionQueueLine(Guest.Guest guest)
+        
+        public void RemoveGuestFromLine()
+            => _guestsQueue.Dequeue();
+        
+        private void AddGuestToLine(Guest.Guest guest)
         {
-            if (_currentGuestsCountInReceptionQueueLine == _maxGuestsLimitInQueueLine)
+            if (_currentGuestsCountInLine == _maxGuestsLimitInQueueLine)
             {
                 Debug.LogWarning("Cannot add any more guests to the line because it's full already");
                 return;
             }
             
             _guestsQueue.Enqueue(guest);
+            IncreaseCurrentGuestsCountInLine();
+        }
+
+        private void IncreaseCurrentGuestsCountInLine()
+            => _currentGuestsCountInLine++;
+
+        private void DecreaseCurrentGuestsCountInLine()
+        {
+            if (_currentGuestsCountInLine <= 0)
+                throw new ArgumentException("Current guests count in line cannot be less or equal than zero");
+
+            _currentGuestsCountInLine--;
         }
         
         private Guest.Guest GetNearestStandingToReceptionGuest()

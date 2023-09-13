@@ -1,4 +1,6 @@
-namespace Guest.States
+using Guest.States;
+
+namespace Guest
 {
     public abstract class GuestState
     {
