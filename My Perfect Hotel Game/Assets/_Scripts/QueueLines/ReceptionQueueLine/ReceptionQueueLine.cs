@@ -84,10 +84,13 @@ namespace QueueLines.ReceptionQueueLine
 
         private void UpdatePositionInLineToAllGuests()
         {
-            int index = 0;
+            var index = 0;
 
             foreach (var guest in _guestsQueue)
+            {
                 guest.SetPositionInLine(GetWorldPositionToStayInLine(index));
+                index++;
+            }
         }
         
         private void NotifyGuestsInLineAboutPositionChange()
