@@ -15,6 +15,8 @@ namespace Guest
         public WaitingInReceptionLineState WaitingInReceptionLine = new();
         public BookingRoomState BookingRoom = new();
         public WalkingToRoomBedState WalkingToRoomBed = new();
+        public SleepingOnBedState SleepingOnBed = new();
+        public ReturningToTaxiState ReturningToTaxiState = new();
 
         private void Awake()
         {

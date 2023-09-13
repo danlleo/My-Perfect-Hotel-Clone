@@ -34,7 +34,7 @@ namespace Guest
         private void Spawn()
         {
             var guest = Instantiate(_guestPrefab, _spawnPoint.position, Quaternion.identity);
-            guest.Initialize(_receptionQueueLine, _receptionQueueLine.GetWorldPositionToStayInLine());
+            guest.Initialize(_receptionQueueLine, _receptionQueueLine.GetWorldPositionToStayInLine(), transform.position);
             
             _receptionQueueLine.GuestSpawnedEvent.CallGuestSpawnedEvent(guest);
         }

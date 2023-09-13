@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Guest.States
 {
-    public class WalkingToRoomBedState : GuestState
+    public class ReturningToTaxiState : GuestState
     {
         private readonly float _stopMovingThreshold = .125f;
         
@@ -14,7 +14,7 @@ namespace Guest.States
         public override void UpdateState(GuestStateManager guestStateManager)
         {
             var currentPosition = guestStateManager.CurrentGuest.transform.position;
-            var endPosition = guestStateManager.CurrentGuest.Room.GetBedPosition();
+            var endPosition = guestStateManager.CurrentGuest.GetTaxiPosition();
             var direction = endPosition - currentPosition;
             
             guestStateManager.CurrentGuest.Movement.MoveTo(direction);
@@ -27,7 +27,7 @@ namespace Guest.States
 
         public override void LeaveState(GuestStateManager guestStateManager)
         {
-            guestStateManager.SwitchState(guestStateManager.SleepingOnBed);
+            // ...
         }
     }
 }
