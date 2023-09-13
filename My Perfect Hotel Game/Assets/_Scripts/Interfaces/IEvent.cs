@@ -2,10 +2,10 @@ using System;
 
 namespace Interfaces
 {
-    public interface IEvent
+    public interface IEvent<T> where T : EventArgs 
     {
-        public event EventHandler<bool> Event;
+        public event EventHandler<T> Event;
 
-        public void Call(object sender, bool isWalking);
+        public void Call(object sender, T eventArgs);
     }
 }

@@ -1,3 +1,4 @@
+using Events;
 using Misc;
 using UnityEngine;
 
@@ -49,7 +50,10 @@ namespace Player
             _heldFingerTouchedPosition = Vector2.zero;
             _isWalking = false;
             
-            _player.WalkingStateChangedEvent.Call(this, false);
+            _player.WalkingStateChangedEvent.Call(this, new PlayerWalkingStateChangedEventArgs
+            {
+                IsWalking = _isWalking
+            });
         }
 
         /// <summary>
@@ -69,7 +73,10 @@ namespace Player
 
             _isWalking = true;
             
-            _player.WalkingStateChangedEvent.Call(this, true);
+            _player.WalkingStateChangedEvent.Call(this, new PlayerWalkingStateChangedEventArgs
+            {
+                IsWalking = _isWalking
+            });
         }
 
         /// <summary>

@@ -4,11 +4,18 @@ using UnityEngine;
 
 namespace Events
 {
-    public class PlayerWalkingStateChangedEvent : MonoBehaviour, IEvent
+    public abstract class PlayerWalkingStateChangedEvent : MonoBehaviour, IEvent<PlayerWalkingStateChangedEventArgs>
     {
-        public event EventHandler<bool> Event;
-
-        public void Call(object sender, bool isWalking) => 
-            Event?.Invoke(sender, isWalking);
+        public event EventHandler<PlayerWalkingStateChangedEventArgs> Event;
+        
+        public void Call(object sender, PlayerWalkingStateChangedEventArgs eventArgs)
+        {
+            Event?.Invoke(sender, eventArgs);
+        }
+    }
+    
+    public class PlayerWalkingStateChangedEventArgs : EventArgs
+    {
+        public bool IsWalking;
     }
 }
