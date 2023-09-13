@@ -8,12 +8,11 @@ namespace Guest.States
         {
             guestStateManager.CurrentGuest.SetHasReachedLinePosition(true);
             guestStateManager.CurrentGuest.GuestAppointedEvent.OnGuestAppointed += GuestAppointedEvent_OnGuestAppointed;
-
-            
+            guestStateManager.CurrentGuest.GuestReceptionQueueLinePositionChangedEvent.OnGuestReceptionQueueLinePositionChanged += GuestReceptionQueueLinePositionChangedEvent_OnGuestReceptionQueueLinePositionChanged;
             
             _guestStateManager = guestStateManager;
         }
-        
+
         public override void UpdateState(GuestStateManager guestStateManager)
         {
             // ...
@@ -23,12 +22,19 @@ namespace Guest.States
         {
             guestStateManager.CurrentGuest.SetHasReachedLinePosition(false);
             guestStateManager.CurrentGuest.GuestAppointedEvent.OnGuestAppointed -= GuestAppointedEvent_OnGuestAppointed;
+            guestStateManager.CurrentGuest.GuestReceptionQueueLinePositionChangedEvent.OnGuestReceptionQueueLinePositionChanged -= GuestReceptionQueueLinePositionChangedEvent_OnGuestReceptionQueueLinePositionChanged;
             guestStateManager.SwitchState(guestStateManager.WalkingToRoomBed);
         }
         
         private void GuestAppointedEvent_OnGuestAppointed()
         {
             LeaveState(_guestStateManager);
+        }
+        
+        private void GuestReceptionQueueLinePositionChangedEvent_OnGuestReceptionQueueLinePositionChanged()
+        {
+            _guestStateManager.CurrentGuest.SetHasReachedLinePosition(false);
+            _guestStateManager.SwitchState(_guestStateManager.WalkingToReceptionQueueLine);
         }
     }
 }
