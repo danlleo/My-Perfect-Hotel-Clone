@@ -38,7 +38,10 @@ namespace Reception
         public void AppointGuestToRoom(Guest.Guest guest)
         {
             var room = RoomManager.Instance.GetAvailableRoom();
+            room.SetIsNotAvailable();
+            
             guest.SetRoom(room);
+            guest.GuestAppointedEvent.CallGuestAppointedEvent();
         }
         
         /// <summary>

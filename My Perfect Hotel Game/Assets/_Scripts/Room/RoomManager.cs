@@ -19,5 +19,16 @@ namespace Room
 
             return null;
         }
+
+        public bool HasAvailableRoom()
+        {
+            foreach (var room in _availableRooms)
+            {
+                if (room.IsAvailable)
+                    return true;
+            }
+
+            return false;
+        }
     }
 }

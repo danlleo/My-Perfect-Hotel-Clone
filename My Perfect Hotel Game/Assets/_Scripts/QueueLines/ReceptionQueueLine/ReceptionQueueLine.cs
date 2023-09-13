@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Events;
+using Room;
 using StaticEvents.Reception;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ namespace QueueLines.ReceptionQueueLine
     public class ReceptionQueueLine : MonoBehaviour
     {
         [HideInInspector] public GuestSpawnedEvent GuestSpawnedEvent;
+
+        [SerializeField] private Reception.Reception _reception;
         
         [SerializeField] private int _maxGuestsLimitInQueueLine = 5;
         [SerializeField] private float _distanceBetweenGuestsInLine = 1.15f;
@@ -34,11 +37,6 @@ namespace QueueLines.ReceptionQueueLine
         {
             ReceptionInteractStaticEvent.OnReceptionInteracted -= ReceptionInteractStaticEvent_OnOnReceptionInteracted;
             GuestSpawnedEvent.OnGuestSpawned -= GuestSpawnedEvent_OnOnGuestSpawned;
-        }
-        
-        private void GuestSpawnedEvent_OnOnGuestSpawned(GuestSpawnedEventArgs guestSpawnedEventArgs)
-        {
-            AddGuestToLine(guestSpawnedEventArgs.Guest);
         }
 
         public bool IsLineFull()
@@ -83,8 +81,21 @@ namespace QueueLines.ReceptionQueueLine
         
         private void ReceptionInteractStaticEvent_OnOnReceptionInteracted(ReceptionInteractStaticEventArgs receptionInteractStaticEventArgs)
         {
-            if (_guestsQueue.Count > 0)
-                receptionInteractStaticEventArgs.InteractedReception.AppointGuestToRoom(GetNearestStandingToReceptionGuest());
+            if (_guestsQueue.Count == 0)
+                return;
+
+            if (!RoomManager.Instance.HasAvailableRoom())
+                return;
+            
+            if (!_guestsQueue.Peek().IsWaitingInLine)
+                return;
+            
+            receptionInteractStaticEventArgs.InteractedReception.AppointGuestToRoom(GetNearestStandingToReceptionGuest());
+        }
+        
+        private void GuestSpawnedEvent_OnOnGuestSpawned(GuestSpawnedEventArgs guestSpawnedEventArgs)
+        {
+            AddGuestToLine(guestSpawnedEventArgs.Guest);
         }
     }
 }

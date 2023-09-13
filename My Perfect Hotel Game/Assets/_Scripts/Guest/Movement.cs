@@ -6,9 +6,9 @@ namespace Guest
     {
         [SerializeField] private float _moveSpeed = 4f;
 
-        public void HandleMovement(Vector3 direction)
+        public void MoveTo(Vector3 direction)
         {
-            transform.position += direction * Time.deltaTime * _moveSpeed;
+            transform.position += direction * (Time.deltaTime * _moveSpeed);
         }
     }
 }

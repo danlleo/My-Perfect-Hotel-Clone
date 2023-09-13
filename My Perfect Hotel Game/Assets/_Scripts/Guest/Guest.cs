@@ -5,21 +5,26 @@ using UnityEngine;
 namespace Guest
 {
     [RequireComponent(typeof(GuestSetRoomEvent))]
+    [RequireComponent(typeof(GuestAppointedEvent))]
     [RequireComponent(typeof(Movement))]
     public class Guest : MonoBehaviour
     {
         [HideInInspector] public GuestSetRoomEvent GuestSetRoomEvent;
+        [HideInInspector] public GuestAppointedEvent GuestAppointedEvent;
+        
+        public bool IsWaitingInLine { get; private set; }
         
         public Movement Movement { get; private set; }
+        public Room.Room Room { get; private set; }
         
-        private Room.Room _room;
         private ReceptionQueueLine _receptionQueueLine;
 
         private Vector3 _positionInLine;
-
+        
         private void Awake()
         {
             GuestSetRoomEvent = GetComponent<GuestSetRoomEvent>();
+            GuestAppointedEvent = GetComponent<GuestAppointedEvent>();
             Movement = GetComponent<Movement>();
         }
 
@@ -31,11 +36,14 @@ namespace Guest
 
         public void SetRoom(Room.Room room)
         {
-            _room = room;
-            GuestSetRoomEvent.CallGuestSetRoomEvent(_room);
+            Room = room;
+            GuestSetRoomEvent.CallGuestSetRoomEvent(Room);
         }
 
         public Vector3 GetPositionInLine()
             => _positionInLine;
+
+        public void SetIsWaitingInLine(bool isWaitingInLine)
+            => IsWaitingInLine = isWaitingInLine;
     }
 }
