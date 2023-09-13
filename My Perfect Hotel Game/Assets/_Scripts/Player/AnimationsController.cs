@@ -1,3 +1,5 @@
+using Events;
+using Interfaces;
 using UnityEngine;
 
 namespace Player
@@ -20,10 +22,7 @@ namespace Player
         private void OnDisable() => 
             _player.WalkingStateChangedEvent.Event -= OnWalkingStateChangedEvent;
 
-        private void OnDestroy() =>
-            _player.WalkingStateChangedEvent.Event -= OnWalkingStateChangedEvent;
-
-        private void OnWalkingStateChangedEvent(object sender, bool isWalking) => 
-            _animator.SetBool(AnimationsParams.IsWalking, isWalking);
+        private void OnWalkingStateChangedEvent(object sender, PlayerWalkingStateChangedEventArgs playerWalkingStateChangedEventArgs) => 
+            _animator.SetBool(AnimationsParams.IsWalking, playerWalkingStateChangedEventArgs.IsWalking);
     }
 }
