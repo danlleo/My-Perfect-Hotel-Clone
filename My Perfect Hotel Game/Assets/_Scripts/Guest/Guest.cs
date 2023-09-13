@@ -6,11 +6,15 @@ namespace Guest
 {
     [RequireComponent(typeof(GuestSetRoomEvent))]
     [RequireComponent(typeof(GuestAppointedEvent))]
+    [RequireComponent(typeof(GuestReceptionQueueLinePositionChangedEvent))]
     [RequireComponent(typeof(Movement))]
     public class Guest : MonoBehaviour
     {
         [HideInInspector] public GuestSetRoomEvent GuestSetRoomEvent;
         [HideInInspector] public GuestAppointedEvent GuestAppointedEvent;
+
+        [HideInInspector]
+        public GuestReceptionQueueLinePositionChangedEvent GuestReceptionQueueLinePositionChangedEvent;
         
         public bool HasReachedLinePosition { get; private set; }
         
@@ -29,6 +33,7 @@ namespace Guest
         {
             GuestSetRoomEvent = GetComponent<GuestSetRoomEvent>();
             GuestAppointedEvent = GetComponent<GuestAppointedEvent>();
+            GuestReceptionQueueLinePositionChangedEvent = GetComponent<GuestReceptionQueueLinePositionChangedEvent>();
             Movement = GetComponent<Movement>();
         }
 
@@ -45,6 +50,9 @@ namespace Guest
             GuestSetRoomEvent.CallGuestSetRoomEvent(Room);
         }
 
+        public void SetPositionInLine(Vector3 positionInLine)
+            => _positionInLine = positionInLine;
+        
         public Vector3 GetPositionInLine()
             => _positionInLine;
         

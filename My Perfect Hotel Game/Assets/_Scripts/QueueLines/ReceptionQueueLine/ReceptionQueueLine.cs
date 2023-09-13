@@ -47,6 +47,14 @@ namespace QueueLines.ReceptionQueueLine
 
             return transform.position - transform.forward * (_distanceBetweenGuestsInLine * _currentGuestsCountInLine);
         }
+
+        private Vector3 GetWorldPositionToStayInLine(int index)
+        {
+            if (_currentGuestsCountInLine is 0)
+                return transform.position;
+
+            return transform.position - transform.forward * (_distanceBetweenGuestsInLine * index);
+        }
         
         private void AddGuestToLine(Guest.Guest guest)
         {
@@ -73,6 +81,20 @@ namespace QueueLines.ReceptionQueueLine
         
         private Guest.Guest GetNearestStandingToReceptionGuest()
             => _guestsQueue.Dequeue();
+
+        private void UpdatePositionInLineToAllGuests()
+        {
+            int index = 0;
+
+            foreach (var guest in _guestsQueue)
+                guest.SetPositionInLine(GetWorldPositionToStayInLine(index));
+        }
+        
+        private void NotifyGuestsInLineAboutPositionChange()
+        {
+            foreach (var guest in _guestsQueue)
+                guest.GuestReceptionQueueLinePositionChangedEvent.CallGuestReceptionQueueLinePositionChanged();
+        }
         
         private void ReceptionInteractStaticEvent_OnOnReceptionInteracted(ReceptionInteractStaticEventArgs receptionInteractStaticEventArgs)
         {
@@ -87,6 +109,8 @@ namespace QueueLines.ReceptionQueueLine
             
             receptionInteractStaticEventArgs.InteractedReception.AppointGuestToRoom(GetNearestStandingToReceptionGuest());
             DecreaseCurrentGuestsCountInLine();
+            UpdatePositionInLineToAllGuests();
+            NotifyGuestsInLineAboutPositionChange();
         }
         
         private void GuestSpawnedEvent_OnOnGuestSpawned(GuestSpawnedEventArgs guestSpawnedEventArgs)
