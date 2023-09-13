@@ -6,9 +6,11 @@ namespace Guest.States
         
         public override void EnterState(GuestStateManager guestStateManager)
         {
-            guestStateManager.CurrentGuest.SetIsWaitingInLine(true);
+            guestStateManager.CurrentGuest.SetHasReachedLinePosition(true);
             guestStateManager.CurrentGuest.GuestAppointedEvent.OnGuestAppointed += GuestAppointedEvent_OnGuestAppointed;
 
+            
+            
             _guestStateManager = guestStateManager;
         }
         
@@ -19,7 +21,7 @@ namespace Guest.States
 
         public override void LeaveState(GuestStateManager guestStateManager)
         {
-            guestStateManager.CurrentGuest.SetIsWaitingInLine(false);
+            guestStateManager.CurrentGuest.SetHasReachedLinePosition(false);
             guestStateManager.CurrentGuest.GuestAppointedEvent.OnGuestAppointed -= GuestAppointedEvent_OnGuestAppointed;
             guestStateManager.SwitchState(guestStateManager.WalkingToRoomBed);
         }

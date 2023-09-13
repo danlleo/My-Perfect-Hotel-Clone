@@ -11,7 +11,7 @@ namespace Guest.States
         
         public override void EnterState(GuestStateManager guestStateManager)
         {
-            // 
+            // ...
         }
 
         public override void UpdateState(GuestStateManager guestStateManager)

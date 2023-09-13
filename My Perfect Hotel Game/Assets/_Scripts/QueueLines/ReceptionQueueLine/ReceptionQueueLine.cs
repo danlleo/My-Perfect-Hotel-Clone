@@ -12,8 +12,6 @@ namespace QueueLines.ReceptionQueueLine
     public class ReceptionQueueLine : MonoBehaviour
     {
         [HideInInspector] public GuestSpawnedEvent GuestSpawnedEvent;
-
-        [SerializeField] private Reception.Reception _reception;
         
         [SerializeField] private int _maxGuestsLimitInQueueLine = 5;
         [SerializeField] private float _distanceBetweenGuestsInLine = 1.15f;
@@ -50,9 +48,6 @@ namespace QueueLines.ReceptionQueueLine
             return transform.position - transform.forward * (_distanceBetweenGuestsInLine * _currentGuestsCountInLine);
         }
         
-        public void RemoveGuestFromLine()
-            => _guestsQueue.Dequeue();
-        
         private void AddGuestToLine(Guest.Guest guest)
         {
             if (_currentGuestsCountInLine == _maxGuestsLimitInQueueLine)
@@ -87,10 +82,11 @@ namespace QueueLines.ReceptionQueueLine
             if (!RoomManager.Instance.HasAvailableRoom())
                 return;
             
-            if (!_guestsQueue.Peek().IsWaitingInLine)
+            if (!_guestsQueue.Peek().HasReachedLinePosition)
                 return;
             
             receptionInteractStaticEventArgs.InteractedReception.AppointGuestToRoom(GetNearestStandingToReceptionGuest());
+            DecreaseCurrentGuestsCountInLine();
         }
         
         private void GuestSpawnedEvent_OnOnGuestSpawned(GuestSpawnedEventArgs guestSpawnedEventArgs)

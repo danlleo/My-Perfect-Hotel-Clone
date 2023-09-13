@@ -4,7 +4,7 @@ namespace Guest
 {
     public class Movement : MonoBehaviour
     {
-        [SerializeField] private float _moveSpeed = 4f;
+        [SerializeField] private float _moveSpeed = 1.5f;
 
         public void MoveTo(Vector3 direction)
         {

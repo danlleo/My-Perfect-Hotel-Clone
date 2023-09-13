@@ -12,13 +12,14 @@ namespace Guest
         [HideInInspector] public GuestSetRoomEvent GuestSetRoomEvent;
         [HideInInspector] public GuestAppointedEvent GuestAppointedEvent;
         
-        public bool IsWaitingInLine { get; private set; }
+        public bool HasReachedLinePosition { get; private set; }
         
         public Movement Movement { get; private set; }
         public Room.Room Room { get; private set; }
 
         [SerializeField] private float _timeItTakesToGuestToSleepInSeconds;
         
+        // Will use it later
         private ReceptionQueueLine _receptionQueueLine;
 
         private Vector3 _positionInLine;
@@ -50,10 +51,13 @@ namespace Guest
         public Vector3 GetTaxiPosition()
             => _taxiPosition;
         
-        public void SetIsWaitingInLine(bool isWaitingInLine)
-            => IsWaitingInLine = isWaitingInLine;
+        public void SetHasReachedLinePosition(bool hasReachedLinePosition)
+            => HasReachedLinePosition = hasReachedLinePosition;
 
         public float GetTimeItTakesToGuestToSleepInSeconds()
             => _timeItTakesToGuestToSleepInSeconds;
+
+        public void DestroyGuest()
+            => Destroy(gameObject);
     }
 }

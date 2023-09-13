@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1347430153789584453}
   - component: {fileID: 8681906553594337004}
   - component: {fileID: 1071013788750051807}
+  - component: {fileID: 7379012898504103594}
   m_Layer: 0
   m_Name: Guest
   m_TagString: Untagged
@@ -61,6 +62,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GuestSetRoomEvent: {fileID: 0}
+  GuestAppointedEvent: {fileID: 0}
+  _timeItTakesToGuestToSleepInSeconds: 5
 --- !u!114 &8681906553594337004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,7 +88,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5443ad5fddf425fbdd24ac91429c45c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 4
+  _moveSpeed: 1.5
+--- !u!114 &7379012898504103594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3597092024356207832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb805296d1caba84299dc5fd2efd8c50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5853396316115880722
 GameObject:
   m_ObjectHideFlags: 0

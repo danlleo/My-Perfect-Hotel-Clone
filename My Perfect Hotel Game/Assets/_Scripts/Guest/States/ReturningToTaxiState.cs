@@ -27,7 +27,7 @@ namespace Guest.States
 
         public override void LeaveState(GuestStateManager guestStateManager)
         {
-            // ...
+            guestStateManager.CurrentGuest.DestroyGuest();
         }
     }
 }
