@@ -1,10 +1,10 @@
 using Events;
-using Interfaces;
 using UnityEngine;
 
 namespace Player
 {
     [RequireComponent(typeof(Animator))]
+    [DisallowMultipleComponent]
     public class AnimationsController : MonoBehaviour
     {
         private Animator _animator;

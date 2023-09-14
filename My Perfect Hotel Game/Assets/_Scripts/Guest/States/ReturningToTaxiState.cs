@@ -5,21 +5,23 @@ namespace Guest.States
     public class ReturningToTaxiState : GuestState
     {
         private readonly float _stopMovingThreshold = .125f;
+
+        private Vector3 _endPosition;
         
         public override void EnterState(GuestStateManager guestStateManager)
         {
-            // ...
+            _endPosition = guestStateManager.CurrentGuest.GetTaxiPosition();
+            
+            Debug.Log("Privet");
         }
 
         public override void UpdateState(GuestStateManager guestStateManager)
         {
             var currentPosition = guestStateManager.CurrentGuest.transform.position;
-            var endPosition = guestStateManager.CurrentGuest.GetTaxiPosition();
-            var direction = endPosition - currentPosition;
             
-            guestStateManager.CurrentGuest.Movement.MoveTo(direction);
+            guestStateManager.CurrentGuest.Movement.MoveTo(_endPosition);
 
-            if (Vector3.Distance(guestStateManager.CurrentGuest.transform.position, endPosition) <= _stopMovingThreshold)
+            if (Vector3.Distance(currentPosition, _endPosition) <= _stopMovingThreshold)
             {
                 LeaveState(guestStateManager);
             }

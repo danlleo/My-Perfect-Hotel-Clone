@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace Guest.States
 {
@@ -13,6 +14,8 @@ namespace Guest.States
             guestStateManager.CurrentGuest.GuestReceptionQueueLinePositionChangedEvent.Event += GuestReceptionQueueLinePositionChangedEventEvent;
             
             _guestStateManager = guestStateManager;
+            
+            Debug.Log(guestStateManager.CurrentGuest.gameObject.name);
         }
 
         public override void UpdateState(GuestStateManager guestStateManager)

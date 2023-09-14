@@ -8,6 +8,7 @@ namespace Guest
     [RequireComponent(typeof(GuestAppointedEvent))]
     [RequireComponent(typeof(GuestReceptionQueueLinePositionChangedEvent))]
     [RequireComponent(typeof(Movement))]
+    [DisallowMultipleComponent]
     public class Guest : MonoBehaviour
     {
         [HideInInspector] public GuestSetRoomEvent GuestSetRoomEvent;
@@ -20,7 +21,7 @@ namespace Guest
         
         public Movement Movement { get; private set; }
         public Room.Room Room { get; private set; }
-
+        
         [SerializeField] private float _timeItTakesToGuestToSleepInSeconds;
         
         // Will use it later

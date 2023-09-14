@@ -20,6 +20,8 @@ namespace Reception
         {
             if (!(_timer >= _interactTimeInSeconds)) return;
             
+            print("Interact");
+            
             PerformAction(() => ReceptionInteractStaticEvent.CallReceptionInteractedEvent(this));
             ResetTimer();
         }
@@ -31,7 +33,7 @@ namespace Reception
         {
             if (_guestInHotelCount >= _guestInHotelLimit)
                 return;
-
+            
             IncreaseTimer();
         }
 

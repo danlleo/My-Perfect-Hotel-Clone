@@ -4,23 +4,24 @@ namespace Guest.States
 {
     public class WalkingToRoomBedState : GuestState
     {
-        private readonly float _stopMovingThreshold = .125f;
+        private readonly float _stopMovingThreshold = .25f;
+        
+        private Vector3 _endPosition;
         
         public override void EnterState(GuestStateManager guestStateManager)
         {
-            // ...
+            _endPosition = guestStateManager.CurrentGuest.Room.GetBedPosition();
         }
 
         public override void UpdateState(GuestStateManager guestStateManager)
         {
             var currentPosition = guestStateManager.CurrentGuest.transform.position;
-            var endPosition = guestStateManager.CurrentGuest.Room.GetBedPosition();
-            var direction = endPosition - currentPosition;
             
-            guestStateManager.CurrentGuest.Movement.MoveTo(direction);
+            guestStateManager.CurrentGuest.Movement.MoveTo(_endPosition);
 
-            if (Vector3.Distance(guestStateManager.CurrentGuest.transform.position, endPosition) <= _stopMovingThreshold)
+            if (Vector3.Distance(currentPosition, _endPosition) <= _stopMovingThreshold)
             {
+                Debug.Log("farted");
                 LeaveState(guestStateManager);
             }
         }

@@ -4,11 +4,11 @@ using UnityEngine;
 namespace Player
 {
     [SelectionBase]
-    [DisallowMultipleComponent]
     [RequireComponent(typeof(Movement))]
     [RequireComponent(typeof(Interact))]
     [RequireComponent(typeof(AnimationsController))]
     [RequireComponent(typeof(PlayerWalkingStateChangedEvent))]
+    [DisallowMultipleComponent]
     public class Player : MonoBehaviour
     {
         public const float RADIUS = .5f;
