@@ -26,7 +26,8 @@ namespace Guest.States
 
         public override void LeaveState(GuestStateManager guestStateManager)
         {
-            guestStateManager.CurrentGuest.Room.SetIsAvailable();
+            // guestStateManager.CurrentGuest.Room.SetIsAvailable();
+            guestStateManager.CurrentGuest.Room.LeftRoomEvent.Call(guestStateManager.CurrentGuest.Room);
             guestStateManager.SwitchState(guestStateManager.ReturningToTaxiState);
         }
     }

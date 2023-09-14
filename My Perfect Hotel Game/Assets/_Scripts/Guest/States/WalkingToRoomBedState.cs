@@ -21,7 +21,6 @@ namespace Guest.States
 
             if (Vector3.Distance(currentPosition, _endPosition) <= _stopMovingThreshold)
             {
-                Debug.Log("farted");
                 LeaveState(guestStateManager);
             }
         }

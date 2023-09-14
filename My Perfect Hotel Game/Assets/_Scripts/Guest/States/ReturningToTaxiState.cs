@@ -11,8 +11,6 @@ namespace Guest.States
         public override void EnterState(GuestStateManager guestStateManager)
         {
             _endPosition = guestStateManager.CurrentGuest.GetTaxiPosition();
-            
-            Debug.Log("Privet");
         }
 
         public override void UpdateState(GuestStateManager guestStateManager)
