@@ -1,4 +1,3 @@
-using System;
 using InteractableObject;
 using Room;
 using StaticEvents.Reception;
@@ -18,17 +17,6 @@ namespace Reception
         private readonly float _interactTimeInSeconds = 1.2f;
         private float _timer;
         
-        private void Update()
-        {
-            if (!(_timer >= _interactTimeInSeconds)) return;
-            
-            PerformAction(() =>
-            {
-                ReceptionInteractStaticEvent.CallReceptionInteractedEvent(this);
-                ResetTimer();
-            });
-        }
-        
         /// <summary>
         /// This method will be called when player/servant is close to the counter and interacting with it.
         /// </summary>
@@ -39,6 +27,11 @@ namespace Reception
             
             _progressBarUI.UpdateProgressBar(_timer, _interactTimeInSeconds);
             IncreaseTimer();
+            
+            if (!(_timer >= _interactTimeInSeconds)) return;
+            
+            // Perform action when timer is over
+            ReceptionInteractStaticEvent.CallReceptionInteractedEvent(this, ResetTimer);
         }
 
         public void AppointGuestToRoom(Guest.Guest guest)
@@ -49,12 +42,6 @@ namespace Reception
             guest.SetRoom(room);
             guest.GuestAppointedEvent.Call(this);
         }
-        
-        /// <summary>
-        ///  Perform action after interact time is met
-        /// </summary>
-        private void PerformAction(Action action)
-            => action?.Invoke();
         
         private void IncreaseTimer()
             => _timer += Time.deltaTime;

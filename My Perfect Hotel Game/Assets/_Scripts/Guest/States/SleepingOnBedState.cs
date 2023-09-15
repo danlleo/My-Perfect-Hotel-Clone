@@ -28,7 +28,7 @@ namespace Guest.States
         {
             // guestStateManager.CurrentGuest.Room.SetIsAvailable();
             guestStateManager.CurrentGuest.Room.LeftRoomEvent.Call(guestStateManager.CurrentGuest.Room);
-            guestStateManager.SwitchState(guestStateManager.ReturningToTaxiState);
+            guestStateManager.SwitchState(guestStateManager.WalkingToTaxi);
         }
     }
 }

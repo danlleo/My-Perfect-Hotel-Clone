@@ -111,6 +111,8 @@ namespace QueueLines.ReceptionQueueLine
                 return;
             
             receptionInteractStaticEventArgs.InteractedReception.AppointGuestToRoom(DequeueNearestStandingToReceptionGuest());
+            receptionInteractStaticEventArgs.OnSuccess?.Invoke();
+            
             DecreaseCurrentGuestsCountInLine();
             UpdatePositionInLineToAllGuests();
             NotifyGuestsInLineAboutPositionChange();

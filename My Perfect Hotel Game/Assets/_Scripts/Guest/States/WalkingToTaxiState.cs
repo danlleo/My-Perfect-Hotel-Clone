@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace Guest.States
 {
-    public class ReturningToTaxiState : GuestState
+    public class WalkingToTaxiState : GuestState
     {
-        private readonly float _stopMovingThreshold = .125f;
+        private readonly float _stopMovingThreshold = .2f;
 
         private Vector3 _endPosition;
         

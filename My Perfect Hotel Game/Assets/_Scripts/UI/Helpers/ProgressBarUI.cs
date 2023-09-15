@@ -13,5 +13,8 @@ namespace UI.Helpers
 
             _background.fillAmount = t;
         }
+
+        public void ClearProgressBar()
+            => _background.fillAmount = 0;
     }
 }
