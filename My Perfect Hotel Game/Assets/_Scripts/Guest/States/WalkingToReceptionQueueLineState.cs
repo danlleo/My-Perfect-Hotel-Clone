@@ -35,7 +35,7 @@ namespace Guest.States
 
         public override void LeaveState(GuestStateManager guestStateManager)
         {
-            guestStateManager.SwitchState(guestStateManager.WaitingInReceptionLine);
+            guestStateManager.SwitchState(guestStateManager.WaitingInReceptionLineState);
         }
 
         private void GuestReceptionQueueLinePositionChangedEventEvent(object sender, EventArgs e)

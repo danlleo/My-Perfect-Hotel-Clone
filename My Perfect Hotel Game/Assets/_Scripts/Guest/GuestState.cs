@@ -1,5 +1,3 @@
-using Guest.States;
-
 namespace Guest
 {
     public abstract class GuestState
@@ -8,6 +6,6 @@ namespace Guest
 
         public abstract void UpdateState(GuestStateManager guestStateManager);
 
-        public abstract void LeaveState(GuestStateManager guestStateManager);
+        public abstract void LeaveState(GuestStateManager guestStateManager);   
     }
 }

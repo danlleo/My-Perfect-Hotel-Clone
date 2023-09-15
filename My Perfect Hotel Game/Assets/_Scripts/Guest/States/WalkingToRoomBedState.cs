@@ -27,7 +27,7 @@ namespace Guest.States
 
         public override void LeaveState(GuestStateManager guestStateManager)
         {
-            guestStateManager.SwitchState(guestStateManager.SleepingOnBed);
+            guestStateManager.SwitchState(guestStateManager.SleepingOnBedState);
         }
     }
 }
