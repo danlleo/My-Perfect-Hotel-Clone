@@ -1,21 +1,35 @@
+using System.Collections.Generic;
 using Guest.StateMachine;
 using Guest.StateMachine.States;
 
 namespace Guest
 {
-        public class GuestStateFactory
+    public class GuestStateFactory
+    {
+        private Dictionary<State, GuestState> _states = new();
+
+        public GuestStateFactory(GuestStateManager currentContext)
         {
-            private GuestStateManager _context;
-
-            public GuestStateFactory(GuestStateManager currentContext)
-            {
-                _context = currentContext;
-            }
-
-            public GuestState Sleeping() => new SleepingOnBed(_context, this);
-            public GuestState Waiting() => new WaitingInReceptionLine(_context, this);
-            public GuestState WalkingToReceptionQueueLine() => new WalkingToReceptionQueueLine(_context, this);
-            public GuestState WalkingToRoomBed() => new WalkingToRoomBed(_context, this);
-            public GuestState WalkingToTaxi() => new WalkingToTaxi(_context, this);
+            _states[State.Sleeping] = new SleepingOnBed(currentContext, this);
+            _states[State.Waiting] = new WaitingInReceptionLine(currentContext, this);
+            _states[State.WalkingToReceptionQueueLine] = new WalkingToReceptionQueueLine(currentContext, this);
+            _states[State.WalkingToRoomBed] = new WalkingToRoomBed(currentContext, this);
+            _states[State.WalkingToTaxi] = new WalkingToTaxi(currentContext, this);
         }
+
+        public GuestState Sleeping() => _states[State.Sleeping];
+        public GuestState Waiting() => _states[State.Waiting];
+        public GuestState WalkingToReceptionQueueLine() => _states[State.WalkingToReceptionQueueLine];
+        public GuestState WalkingToRoomBed() => _states[State.WalkingToRoomBed];
+        public GuestState WalkingToTaxi() => _states[State.WalkingToTaxi];
+
+        private enum State
+        {
+            Sleeping,
+            Waiting,
+            WalkingToReceptionQueueLine,
+            WalkingToRoomBed,
+            WalkingToTaxi
+        }
+    }
 }
