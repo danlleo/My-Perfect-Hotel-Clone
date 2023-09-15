@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Guest.States
@@ -8,12 +9,16 @@ namespace Guest.States
     public class WalkingToReceptionQueueLineState : GuestState
     {
         private readonly float _stopMovingThreshold = .2f;
-        
+
+        private GuestStateManager _guestStateManager;
         private Vector3 _endPosition;
         
         public override void EnterState(GuestStateManager guestStateManager)
         {
+            guestStateManager.CurrentGuest.GuestReceptionQueueLinePositionChangedEvent.Event += GuestReceptionQueueLinePositionChangedEventEvent;
+            
             _endPosition = guestStateManager.CurrentGuest.GetPositionInLine();
+            _guestStateManager = guestStateManager;
         }
 
         public override void UpdateState(GuestStateManager guestStateManager)
@@ -31,6 +36,11 @@ namespace Guest.States
         public override void LeaveState(GuestStateManager guestStateManager)
         {
             guestStateManager.SwitchState(guestStateManager.WaitingInReceptionLine);
+        }
+
+        private void GuestReceptionQueueLinePositionChangedEventEvent(object sender, EventArgs e)
+        {
+            _endPosition = _guestStateManager.CurrentGuest.GetPositionInLine();
         }
     }
 }

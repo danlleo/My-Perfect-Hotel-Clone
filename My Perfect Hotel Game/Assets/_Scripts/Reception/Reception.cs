@@ -2,6 +2,7 @@ using System;
 using InteractableObject;
 using Room;
 using StaticEvents.Reception;
+using UI.Helpers;
 using UnityEngine;
 
 namespace Reception
@@ -10,6 +11,7 @@ namespace Reception
     public class Reception : Interactable
     {
         [SerializeField] private int _guestInHotelLimit = 4;
+        [SerializeField] private ProgressBarUI _progressBarUI;
         
         private int _guestInHotelCount;
 
@@ -20,10 +22,11 @@ namespace Reception
         {
             if (!(_timer >= _interactTimeInSeconds)) return;
             
-            print("Interact");
-            
-            PerformAction(() => ReceptionInteractStaticEvent.CallReceptionInteractedEvent(this));
-            ResetTimer();
+            PerformAction(() =>
+            {
+                ReceptionInteractStaticEvent.CallReceptionInteractedEvent(this);
+                ResetTimer();
+            });
         }
         
         /// <summary>
@@ -34,6 +37,7 @@ namespace Reception
             if (_guestInHotelCount >= _guestInHotelLimit)
                 return;
             
+            _progressBarUI.UpdateProgressBar(_timer, _interactTimeInSeconds);
             IncreaseTimer();
         }
 

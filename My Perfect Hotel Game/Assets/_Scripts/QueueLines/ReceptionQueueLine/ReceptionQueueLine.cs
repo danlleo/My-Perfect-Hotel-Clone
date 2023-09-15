@@ -79,7 +79,7 @@ namespace QueueLines.ReceptionQueueLine
             _currentGuestsCountInLine--;
         }
         
-        private Guest.Guest GetNearestStandingToReceptionGuest()
+        private Guest.Guest DequeueNearestStandingToReceptionGuest()
             => _guestsQueue.Dequeue();
 
         private void UpdatePositionInLineToAllGuests()
@@ -110,7 +110,7 @@ namespace QueueLines.ReceptionQueueLine
             if (!_guestsQueue.Peek().HasReachedLinePosition)
                 return;
             
-            receptionInteractStaticEventArgs.InteractedReception.AppointGuestToRoom(GetNearestStandingToReceptionGuest());
+            receptionInteractStaticEventArgs.InteractedReception.AppointGuestToRoom(DequeueNearestStandingToReceptionGuest());
             DecreaseCurrentGuestsCountInLine();
             UpdatePositionInLineToAllGuests();
             NotifyGuestsInLineAboutPositionChange();
