@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using Guest.StateMachine;
 using Guest.StateMachine.States;
 
-namespace Guest
+namespace Guest.StateMachine
 {
     public class GuestStateFactory
     {

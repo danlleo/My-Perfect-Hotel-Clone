@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Events;
 using InteractableObject;
 using UnityEngine;
@@ -19,23 +20,28 @@ namespace Room
 
         private HashSet<Interactable> _objectsToCleanHashSet = new();
 
-        private Maid.Maid _maidOccupied; 
+        private Maid.Maid _maidOccupied;
         
         private void Awake()
         {
             // TODO: Hardcoded for now, change later
-            SetIsAvailable();
             LeftRoomEvent = GetComponent<GuestLeftRoomEvent>();
+            
+            SetIsAvailable();
+            ResetObjectsToCleanHashSetToDefault();
         }
         
         public Vector3 GetBedPosition()
             => _bedTransform.position;
 
-        public void SetIsNotAvailable()
-            => IsAvailable = false;
+        public void OccupyRoomWithGuest()
+        {
+            CleanObjectsToCleanHashSet();
+            SetIsNotAvailable();
+        }
 
-        public void SetIsAvailable()
-            => IsAvailable = true;
+        public void OccupyRoomWithMaid(Maid.Maid maid)
+            => _maidOccupied = maid;
 
         public void TryFinishRoomCleaning(Interactable interactable)
         {
@@ -45,10 +51,28 @@ namespace Room
                 SetIsAvailable();
         }
 
-        public bool IsRoomClean()
+        public bool IsRoomUnclean()
             => _roomObjectList.Count != _objectsToCleanHashSet.Count;
-        
+
         public bool HasMaidOccupied()
-            => _maidOccupied == null;
+            => _maidOccupied != null;
+
+        public Interactable GetUncleanObject()
+            => _objectsToCleanHashSet.First();
+        
+        private void SetIsNotAvailable()
+            => IsAvailable = false;
+        
+        private void SetIsAvailable()
+            => IsAvailable = true;
+
+        private void ResetObjectsToCleanHashSetToDefault()
+        {
+            foreach (var roomItem in _roomObjectList)
+                _objectsToCleanHashSet.Add(roomItem);
+        }
+
+        private void CleanObjectsToCleanHashSet()
+            => _objectsToCleanHashSet.Clear();
     }
 }

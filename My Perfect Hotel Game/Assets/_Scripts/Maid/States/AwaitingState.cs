@@ -12,10 +12,16 @@ namespace Maid.States
 
         public override void UpdateState(MaidStateManager maidStateManager)
         {
+            /*
             if (RoomManager.Instance.TryGetUncleanRoom(out Room.Room room))
             {
+                Debug.Log("Found unclean room");
+                
+                room.OccupyRoomWithMaid(maidStateManager.CurrentMaid);
+                maidStateManager.CurrentMaid.SetRoomForCleaning(room);
                 LeaveState(maidStateManager);
             }
+            */
         }
 
         public override void LeaveState(MaidStateManager maidStateManager)

@@ -11,5 +11,10 @@ namespace Maid
         private NavMeshAgent _navMeshAgent;
 
         public Movement Movement { get; private set; }
+
+        public Room.Room Room { get; private set; }
+
+        public void SetRoomForCleaning(Room.Room room)
+            => Room = room;
     }
 }
