@@ -6,7 +6,7 @@ namespace Guest
 {
     public class GuestStateFactory
     {
-        private Dictionary<State, GuestState> _states = new();
+        private readonly Dictionary<State, GuestState> _states = new();
 
         public GuestStateFactory(GuestStateManager currentContext)
         {

@@ -4,17 +4,17 @@ namespace Guest.StateMachine
     {
         public GuestState(GuestStateManager currentContext, GuestStateFactory guestStateFactory)
         {
-            Ctx = currentContext;
+            CurrentContext = currentContext;
             Factory = guestStateFactory;
         }
         
-        protected readonly GuestStateManager Ctx;
+        protected readonly GuestStateManager CurrentContext;
         protected readonly GuestStateFactory Factory;
         
         public abstract void EnterState();
         
         public abstract void ExitState();
-        
+            
         public abstract void UpdateState();
         
         public abstract void CheckSwitchStates();
@@ -25,7 +25,7 @@ namespace Guest.StateMachine
             
             newState.EnterState();
 
-            Ctx.CurrentState = newState;
+            CurrentContext.CurrentState = newState;
         }
     }
 }

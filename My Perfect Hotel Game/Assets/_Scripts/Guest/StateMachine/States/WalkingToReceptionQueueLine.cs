@@ -16,26 +16,26 @@ namespace Guest.StateMachine.States
 
         public override void EnterState()
         {
-            Ctx.CurrentGuest.GuestReceptionQueueLinePositionChangedEvent.Event += GuestReceptionQueueLinePositionChangedEvent;
+            CurrentContext.Guest.GuestReceptionQueueLinePositionChangedEvent.Event += GuestReceptionQueueLinePositionChangedEvent;
             
-            _endPosition = Ctx.CurrentGuest.GetPositionInLine();
+            _endPosition = CurrentContext.Guest.GetPositionInLine();
         }
 
         public override void ExitState()
         {
-            Ctx.CurrentGuest.GuestReceptionQueueLinePositionChangedEvent.Event -= GuestReceptionQueueLinePositionChangedEvent;
+            CurrentContext.Guest.GuestReceptionQueueLinePositionChangedEvent.Event -= GuestReceptionQueueLinePositionChangedEvent;
         }
         
         public override void UpdateState()
         {
-            Ctx.CurrentGuest.Movement.MoveTo(_endPosition);
+            CurrentContext.Guest.Movement.MoveTo(_endPosition);
             
             CheckSwitchStates();
         }
         
         public override void CheckSwitchStates()
         {
-            if (Vector3.Distance(Ctx.CurrentGuest.transform.position, _endPosition) <= _stopMovingThreshold)
+            if (Vector3.Distance(CurrentContext.Guest.transform.position, _endPosition) <= _stopMovingThreshold)
             {
                 SwitchState(Factory.Waiting());
             }
@@ -43,7 +43,7 @@ namespace Guest.StateMachine.States
         
         private void GuestReceptionQueueLinePositionChangedEvent(object sender, EventArgs e)
         {
-            _endPosition = Ctx.CurrentGuest.GetPositionInLine();
+            _endPosition = CurrentContext.Guest.GetPositionInLine();
         }
     }
 }

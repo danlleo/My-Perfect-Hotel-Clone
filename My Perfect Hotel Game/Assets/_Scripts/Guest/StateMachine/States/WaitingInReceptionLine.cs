@@ -8,18 +8,18 @@ namespace Guest.StateMachine.States
         
         public override void EnterState()
         {
-            Ctx.CurrentGuest.SetHasReachedLinePosition(true);
+            CurrentContext.Guest.SetHasReachedLinePosition(true);
             
-            Ctx.CurrentGuest.GuestAppointedEvent.Event += GuestAppointedEvent;
-            Ctx.CurrentGuest.GuestReceptionQueueLinePositionChangedEvent.Event += GuestReceptionQueueLinePositionChangedEvent;
+            CurrentContext.Guest.GuestAppointedEvent.Event += GuestAppointedEvent;
+            CurrentContext.Guest.GuestReceptionQueueLinePositionChangedEvent.Event += GuestReceptionQueueLinePositionChangedEvent;
         }
         
         public override void ExitState()
         {
-            Ctx.CurrentGuest.SetHasReachedLinePosition(false);
+            CurrentContext.Guest.SetHasReachedLinePosition(false);
             
-            Ctx.CurrentGuest.GuestAppointedEvent.Event -= GuestAppointedEvent;
-            Ctx.CurrentGuest.GuestReceptionQueueLinePositionChangedEvent.Event -= GuestReceptionQueueLinePositionChangedEvent;
+            CurrentContext.Guest.GuestAppointedEvent.Event -= GuestAppointedEvent;
+            CurrentContext.Guest.GuestReceptionQueueLinePositionChangedEvent.Event -= GuestReceptionQueueLinePositionChangedEvent;
         }
         
         public override void UpdateState() { }
@@ -33,7 +33,7 @@ namespace Guest.StateMachine.States
         
         private void GuestReceptionQueueLinePositionChangedEvent(object sender, EventArgs _)
         {
-            Ctx.CurrentGuest.SetHasReachedLinePosition(false);
+            CurrentContext.Guest.SetHasReachedLinePosition(false);
             
             SwitchState(Factory.WalkingToReceptionQueueLine());
         }

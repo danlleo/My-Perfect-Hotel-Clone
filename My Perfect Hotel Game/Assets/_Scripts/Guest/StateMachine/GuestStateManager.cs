@@ -7,7 +7,7 @@ namespace Guest
     [RequireComponent(typeof(Guest))]
     public class GuestStateManager : MonoBehaviour
     {
-        public Guest CurrentGuest { get; private set; }
+        public Guest Guest { get; private set; }
 
         // state variables
         private GuestStateFactory _states;
@@ -16,7 +16,7 @@ namespace Guest
         
         private void Start()
         {
-            CurrentGuest = GetComponent<Guest>();
+            Guest = GetComponent<Guest>();
             
             _states = new GuestStateFactory(this);
             

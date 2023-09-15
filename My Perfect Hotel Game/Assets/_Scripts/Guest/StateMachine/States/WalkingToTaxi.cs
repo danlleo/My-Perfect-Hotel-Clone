@@ -11,21 +11,21 @@ namespace Guest.StateMachine.States
 
         public override void EnterState()
         {
-            _endPosition = Ctx.CurrentGuest.GetTaxiPosition();
+            _endPosition = CurrentContext.Guest.GetTaxiPosition();
         }
         
         public override void ExitState() { }
         
         public override void UpdateState()
         {
-            Ctx.CurrentGuest.Movement.MoveTo(_endPosition);
+            CurrentContext.Guest.Movement.MoveTo(_endPosition);
         }
         
         public override void CheckSwitchStates()
         {
-            if (Vector3.Distance(Ctx.CurrentGuest.transform.position, _endPosition) <= _stopMovingThreshold)
+            if (Vector3.Distance(CurrentContext.Guest.transform.position, _endPosition) <= _stopMovingThreshold)
             {            
-                Ctx.CurrentGuest.DestroyGuest();
+                CurrentContext.Guest.DestroyGuest();
             }
         }
     }

@@ -18,7 +18,7 @@ namespace Guest.StateMachine.States
         
         public override void CheckSwitchStates()
         {
-            if (_timer >= Ctx.CurrentGuest.GetTimeItTakesToGuestToSleepInSeconds())
+            if (_timer >= CurrentContext.Guest.GetTimeItTakesToGuestToSleepInSeconds())
             {
                 // Add sleeping animation
                 SwitchState(Factory.WalkingToTaxi());
@@ -29,7 +29,7 @@ namespace Guest.StateMachine.States
         {
             // guestStateManager.CurrentGuest.Room.SetIsAvailable();
             _timer = 0f;
-            Ctx.CurrentGuest.Room.LeftRoomEvent.Call(Ctx.CurrentGuest.Room);
+            CurrentContext.Guest.Room.LeftRoomEvent.Call(CurrentContext.Guest.Room);
         }
     }
 }
