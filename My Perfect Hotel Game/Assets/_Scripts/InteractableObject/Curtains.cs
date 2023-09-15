@@ -49,6 +49,8 @@ namespace InteractableObject
         private void Clean()
         {
             _isInteractable = false;
+            
+            _room.TryFinishRoomCleaning(this);
         }
         
         private void IncreaseTimer()

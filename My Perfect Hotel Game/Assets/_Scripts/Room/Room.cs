@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Events;
 using InteractableObject;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Room
 {
@@ -15,8 +16,10 @@ namespace Room
         public bool IsAvailable { get; private set; }
 
         [SerializeField] private Transform _bedTransform;
-        [SerializeField] private List<Interactable> _objectsToCleanList;
+        [FormerlySerializedAs("_objectsToCleanList")] [SerializeField] private List<Interactable> _roomObjectList;
 
+        private HashSet<Interactable> _objectsToCleanHashSet = new();
+        
         private void Awake()
         {
             // Hardcoded for now, change later
@@ -32,5 +35,13 @@ namespace Room
 
         public void SetIsAvailable()
             => IsAvailable = true;
+
+        public void TryFinishRoomCleaning(Interactable interactable)
+        {
+            _objectsToCleanHashSet.Add(interactable);
+
+            if (_roomObjectList.Count == _objectsToCleanHashSet.Count)
+                SetIsAvailable();
+        }
     }
 }
