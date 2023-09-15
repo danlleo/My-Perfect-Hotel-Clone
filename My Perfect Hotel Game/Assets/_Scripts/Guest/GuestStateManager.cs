@@ -9,14 +9,14 @@ namespace Guest
     {
         public Guest CurrentGuest { get; private set; }
         
+        public WalkingToReceptionQueueLineState WalkingToReceptionQueueLineState = new();
+        public WaitingInReceptionLineState WaitingInReceptionLineState = new();
+        public WalkingToRoomBedState WalkingToRoomBedState = new();
+        public SleepingOnBedState SleepingOnBedState = new();
+        public WalkingToTaxiState WalkingToTaxiState = new();
+
         private GuestState _currentState;
-
-        public WalkingToReceptionQueueLineState WalkingToReceptionQueueLine = new();
-        public WaitingInReceptionLineState WaitingInReceptionLine = new();
-        public WalkingToRoomBedState WalkingToRoomBed = new();
-        public SleepingOnBedState SleepingOnBed = new();
-        public WalkingToTaxiState WalkingToTaxi = new();
-
+        
         private void Awake()
         {
             CurrentGuest = GetComponent<Guest>();
@@ -24,7 +24,7 @@ namespace Guest
 
         private void Start()
         {
-            SetDefaultState(WalkingToReceptionQueueLine);
+            SetDefaultState(WalkingToReceptionQueueLineState);
             _currentState.EnterState(this);
         }
 

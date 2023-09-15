@@ -25,7 +25,7 @@ namespace Guest.States
             guestStateManager.CurrentGuest.SetHasReachedLinePosition(false);
             guestStateManager.CurrentGuest.GuestAppointedEvent.Event -= GuestAppointedEventEvent;
             guestStateManager.CurrentGuest.GuestReceptionQueueLinePositionChangedEvent.Event -= GuestReceptionQueueLinePositionChangedEventEvent;
-            guestStateManager.SwitchState(guestStateManager.WalkingToRoomBed);
+            guestStateManager.SwitchState(guestStateManager.WalkingToRoomBedState);
         }
         
         private void GuestAppointedEventEvent(object sender, EventArgs _)
@@ -36,7 +36,7 @@ namespace Guest.States
         private void GuestReceptionQueueLinePositionChangedEventEvent(object sender, EventArgs _)
         {
             _guestStateManager.CurrentGuest.SetHasReachedLinePosition(false);
-            _guestStateManager.SwitchState(_guestStateManager.WalkingToReceptionQueueLine);
+            _guestStateManager.SwitchState(_guestStateManager.WalkingToReceptionQueueLineState);
         }
     }
 }
