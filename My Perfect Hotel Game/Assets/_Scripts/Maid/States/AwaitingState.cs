@@ -1,20 +1,26 @@
+using Room;
+using UnityEngine;
+
 namespace Maid.States
 {
     public class AwaitingState : MaidState
     {
         public override void EnterState(MaidStateManager maidStateManager)
         {
-            throw new System.NotImplementedException();
+            Debug.Log("Entered Awaiting State");
         }
 
         public override void UpdateState(MaidStateManager maidStateManager)
         {
-            throw new System.NotImplementedException();
+            if (RoomManager.Instance.TryGetUncleanRoom(out Room.Room room))
+            {
+                LeaveState(maidStateManager);
+            }
         }
 
         public override void LeaveState(MaidStateManager maidStateManager)
         {
-            throw new System.NotImplementedException();
+            maidStateManager.SwitchState(maidStateManager.MovingState);
         }
     }
 }

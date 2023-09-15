@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Events;
 using InteractableObject;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Room
 {
@@ -19,6 +18,8 @@ namespace Room
         [SerializeField] private List<Interactable> _roomObjectList;
 
         private HashSet<Interactable> _objectsToCleanHashSet = new();
+
+        private Maid.Maid _maidOccupied; 
         
         private void Awake()
         {
@@ -43,5 +44,11 @@ namespace Room
             if (_roomObjectList.Count == _objectsToCleanHashSet.Count)
                 SetIsAvailable();
         }
+
+        public bool IsRoomClean()
+            => _roomObjectList.Count != _objectsToCleanHashSet.Count;
+        
+        public bool HasMaidOccupied()
+            => _maidOccupied == null;
     }
 }

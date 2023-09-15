@@ -24,7 +24,7 @@ namespace Guest
         
         [SerializeField] private float _timeItTakesToGuestToSleepInSeconds;
         
-        // Will use it later
+        // TODO: Use it later
         private ReceptionQueueLine _receptionQueueLine;
 
         private Vector3 _positionInLine;

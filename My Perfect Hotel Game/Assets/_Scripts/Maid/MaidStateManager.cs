@@ -1,4 +1,3 @@
-using System;
 using Maid.States;
 using UnityEngine;
 
@@ -12,8 +11,8 @@ namespace Maid
 
         private MaidState _currentState;
 
-        public AwaitingState Awaiting;
-        public MovingState Moving;
+        public AwaitingState AwaitingState = new();
+        public MovingState MovingState = new();
 
         private void Awake()
         {
@@ -22,7 +21,19 @@ namespace Maid
 
         private void Start()
         {
-            SetDefaultState(Awaiting);
+            SetDefaultState(AwaitingState);
+            _currentState.EnterState(this);
+        }
+
+        private void Update()
+        {
+            _currentState.UpdateState(this);
+        }
+
+        public void SwitchState(MaidState targetState)
+        {
+            _currentState = targetState;
+            _currentState.EnterState(this);
         }
         
         private void SetDefaultState(MaidState targetState)
