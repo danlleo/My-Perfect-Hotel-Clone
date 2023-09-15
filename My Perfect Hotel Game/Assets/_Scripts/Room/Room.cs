@@ -12,17 +12,17 @@ namespace Room
     public class Room : MonoBehaviour
     {
         [HideInInspector] public GuestLeftRoomEvent LeftRoomEvent;
-        
+
         public bool IsAvailable { get; private set; }
 
         [SerializeField] private Transform _bedTransform;
-        [FormerlySerializedAs("_objectsToCleanList")] [SerializeField] private List<Interactable> _roomObjectList;
+        [SerializeField] private List<Interactable> _roomObjectList;
 
         private HashSet<Interactable> _objectsToCleanHashSet = new();
         
         private void Awake()
         {
-            // Hardcoded for now, change later
+            // TODO: Hardcoded for now, change later
             SetIsAvailable();
             LeftRoomEvent = GetComponent<GuestLeftRoomEvent>();
         }
