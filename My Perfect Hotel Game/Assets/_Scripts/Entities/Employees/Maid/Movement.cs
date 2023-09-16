@@ -29,9 +29,8 @@ namespace Entities.Employees.Maid
 #endif
 
         public void MoveTo(Vector3 destination)
-<<<<<<< Updated upstream
             => _navMeshAgent.SetDestination(destination);
-
+        
         public void ClearDestination()
             => _navMeshAgent.ResetPath();
         
@@ -40,14 +39,5 @@ namespace Entities.Employees.Maid
         
         private void SetAgentStoppingDistance(float stoppingDistance)
             => _navMeshAgent.stoppingDistance = stoppingDistance;
-=======
-        {
-            _navMeshAgent.SetDestination(destination);
-        }
-
-        private void SetAgentMovementSpeed(float movementSpeed) => _navMeshAgent.speed = movementSpeed;
-
-        private void SetAgentStoppingDistance(float stoppingDistance) => _navMeshAgent.stoppingDistance = stoppingDistance;
->>>>>>> Stashed changes
     }
 }

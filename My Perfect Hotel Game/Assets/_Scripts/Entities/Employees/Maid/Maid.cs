@@ -19,13 +19,9 @@ namespace Entities.Employees.Maid
         public Interactable ObjectToClean { get; private set; }
 
         public MaidRemovedFromRoomEvent MaidRemovedFromRoomEvent { get; private set; }
-<<<<<<< Updated upstream
-        
+
         private NavMeshAgent _navMeshAgent;
         
-=======
-
->>>>>>> Stashed changes
         private void Awake()
         {
             Movement = GetComponent<Movement>();
@@ -46,7 +42,6 @@ namespace Entities.Employees.Maid
 
         public bool HasOccupiedRoom() => Room != null;
 
-<<<<<<< Updated upstream
         public void SetObjectToClean(Interactable objectToClean)
             => ObjectToClean = objectToClean;
         
@@ -54,23 +49,13 @@ namespace Entities.Employees.Maid
             => ObjectToClean = null;
         
         protected override Vector3 GetNextDestination() => throw new NotImplementedException();
-=======
-        public void SetObjectToClean(Interactable objectToClean) => ObjectToClean = objectToClean;
-
-        public void RemoveObjectToClean() => ObjectToClean = null;
 
         private void RemoveRoomForCleaning() => Room = null;
->>>>>>> Stashed changes
 
         private void MaidRemovedFromRoom_Event(object sender, EventArgs e)
         {
             RemoveRoomForCleaning();
             RemoveObjectToClean();
         }
-<<<<<<< Updated upstream
-=======
-
-        protected override Vector3 GetNextDestination() => throw new NotImplementedException();
->>>>>>> Stashed changes
     }
 }

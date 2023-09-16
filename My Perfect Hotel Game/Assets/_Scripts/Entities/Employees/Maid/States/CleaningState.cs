@@ -28,13 +28,7 @@ namespace Entities.Employees.Maid.States
                 maidStateManager.SwitchState(maidStateManager.MovingState);
                 return;
             }
-<<<<<<< Updated upstream
-            
             Debug.Log("I love Rem");
-            
-=======
-
->>>>>>> Stashed changes
             LeaveState(maidStateManager);
         }
 
