@@ -1,4 +1,5 @@
 using UnityEngine;
+using Utilities;
 
 namespace Room
 {
@@ -16,6 +17,13 @@ namespace Room
         {
             SetWallsActive(true);
         }
+        
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            EditorValidation.AreEnumerableValues(this, nameof(_wallsToRemoveOnUpgrade), _wallsToRemoveOnUpgrade);
+        }
+#endif
 
         public void SetWallsActive(bool isActive)
         {
