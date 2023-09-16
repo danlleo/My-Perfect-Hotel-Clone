@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+fusing System.Collections.Generic;
 using Misc;
 using UnityEngine;
 
@@ -37,12 +37,12 @@ namespace Room
             
             foreach (var room in _availableRooms)
             {
-                if (room.IsRoomUnclean())
-                {
-                    print("Unclean room: " + room.name);
-                    uncleanRoom = room;
-                    return true;
-                }
+                if (!room.IsRoomUnclean() || room.HasMaidOccupied()) continue;
+                
+                print("Unclean room: " + room.name);
+                
+                uncleanRoom = room;
+                return true;
             }
 
             return false;
