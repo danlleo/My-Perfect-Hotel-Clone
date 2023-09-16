@@ -1,7 +1,6 @@
-using Guest.StateMachine;
 using UnityEngine;
 
-namespace Guest
+namespace Guest.StateMachine
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Guest))]

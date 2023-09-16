@@ -13,6 +13,7 @@ namespace Maid
 
         public AwaitingState AwaitingState = new();
         public MovingState MovingState = new();
+        public CleaningState CleaningState = new();
 
         private void Awake()
         {

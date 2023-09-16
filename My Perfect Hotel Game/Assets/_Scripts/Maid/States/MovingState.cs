@@ -4,13 +4,17 @@ namespace Maid.States
 {
     public class MovingState : MaidState
     {
-        private readonly float _stopMovingThreshold = .25f;
+        private readonly float _stopMovingThreshold = .35f;
         
         private Vector3 _endPosition;
         
         public override void EnterState(MaidStateManager maidStateManager)
         {
-            _endPosition = maidStateManager.CurrentMaid.Room.GetUncleanObject().transform.position;
+            var uncleanObject = maidStateManager.CurrentMaid.Room.GetUncleanObject();
+            var uncleanObjectPosition = uncleanObject.transform.position;
+            
+            maidStateManager.CurrentMaid.SetObjectToClean(uncleanObject);
+            _endPosition = new Vector3(uncleanObjectPosition.x, maidStateManager.transform.position.y, uncleanObjectPosition.z);
         }
 
         public override void UpdateState(MaidStateManager maidStateManager)
@@ -26,7 +30,7 @@ namespace Maid.States
 
         public override void LeaveState(MaidStateManager maidStateManager)
         {
-            Debug.Log("Farted");
+            maidStateManager.SwitchState(maidStateManager.CleaningState);
         }
     }
 }

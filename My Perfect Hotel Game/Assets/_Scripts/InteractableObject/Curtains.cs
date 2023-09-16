@@ -46,6 +46,29 @@ namespace InteractableObject
             Clean();
             ResetTimer();
         }
+        
+        public override bool TryInteractWithCallback(out Action onComplete)
+        {
+            onComplete = null;
+            
+            if (!_isInteractable)
+                return false;
+            
+            _progressBarUI.UpdateProgressBar(_timer, _interactTimeInSeconds);
+            IncreaseTimer();
+            
+            if (!(_timer >= _interactTimeInSeconds)) return false;
+            
+            // Perform action when timer is over
+            onComplete = () =>
+            {
+                // TODO: Add needed action
+                Clean();
+                ResetTimer();
+            };
+            
+            return true;
+        }
 
         private void Room_LeftRoomEvent(object sender, EventArgs e)
         {

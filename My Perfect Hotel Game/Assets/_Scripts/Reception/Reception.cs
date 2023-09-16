@@ -1,3 +1,4 @@
+using System;
 using InteractableObject;
 using Room;
 using StaticEvents.Reception;
@@ -34,10 +35,20 @@ namespace Reception
             ReceptionInteractStaticEvent.CallReceptionInteractedEvent(this, ResetTimer);
         }
 
+        public override bool TryInteractWithCallback(out Action onComplete)
+        {
+            // TODO: Implement later AI that will appoint guests instead of the player
+            onComplete = null;
+            return false;
+        }
+
+        /// <summary>
+        /// This method is called when guest is standing first in the line, and there's available room for him to appoint
+        /// </summary>
         public void AppointGuestToRoom(Guest.Guest guest)
         {
             var room = RoomManager.Instance.GetAvailableRoom();
-            room.OccupyRoomWithGuest();
+            room.OccupyRoomWithGuest(guest);
             
             guest.SetRoom(room);
             guest.GuestAppointedEvent.Call(this);
