@@ -6,7 +6,6 @@ using Events;
 using InteractableObject;
 using StaticEvents.Room;
 using UnityEngine;
-using Utilities;
 
 namespace Room
 {
@@ -47,14 +46,6 @@ namespace Room
         {
             LeftRoomEvent.Event -= CustomerLeftRoom_Event;
         }
-        
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            EditorValidation.IsNullValue(this, nameof(_bedTransform), _bedTransform);
-            EditorValidation.AreEnumerableValues(this, nameof(_roomObjectList), _roomObjectList);
-        }
-#endif
 
         public Vector3 GetBedPosition()
             => _bedTransform.position;

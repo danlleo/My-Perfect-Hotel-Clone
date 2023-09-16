@@ -5,7 +5,6 @@ using Room;
 using StaticEvents.Reception;
 using UI.Helpers;
 using UnityEngine;
-using Utilities;
 
 namespace Reception
 {
@@ -19,14 +18,6 @@ namespace Reception
 
         private readonly float _interactTimeInSeconds = 1.2f;
         private float _timer;
-        
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            EditorValidation.IsPositiveValue(this, nameof(_guestInHotelLimit), _guestInHotelLimit, false);
-            EditorValidation.IsNullValue(this, nameof(_progressBarUI), _progressBarUI);
-        }
-#endif
         
         /// <summary>
         /// This method will be called when player/servant is close to the counter and interacting with it.

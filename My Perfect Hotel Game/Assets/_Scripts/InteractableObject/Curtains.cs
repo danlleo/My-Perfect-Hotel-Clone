@@ -2,21 +2,20 @@ using System;
 using Events;
 using UI.Helpers;
 using UnityEngine;
-using Utilities;
 
 namespace InteractableObject
 {
     /// <summary>
-    ///     Hardcoded class for now
+    /// Hardcoded class for now
     /// </summary>
     public class Curtains : Interactable
     {
         [SerializeField] private Room.Room _room;
         [SerializeField] private ProgressBarUI _progressBarUI;
 
-        private readonly float _interactTimeInSeconds = 1.2f;
-
         private bool _isInteractable;
+        
+        private readonly float _interactTimeInSeconds = 1.2f;
         private float _timer;
 
         private void Awake()
@@ -33,43 +32,35 @@ namespace InteractableObject
         {
             _room.LeftRoomEvent.Event -= Room_LeftRoomEvent;
         }
-
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            EditorValidation.IsNullValue(this, nameof(_room), _room);
-            EditorValidation.IsNullValue(this, nameof(_progressBarUI), _progressBarUI);
-        }
-#endif
-
+        
         public override void Interact()
         {
             if (!_isInteractable)
                 return;
-
+            
             _progressBarUI.UpdateProgressBar(_timer, _interactTimeInSeconds);
             IncreaseTimer();
-
+            
             if (!(_timer >= _interactTimeInSeconds)) return;
-
+            
             // Perform action when timer is over
             _room.ObjectCleanedEvent.Call(this, new RoomObjectCleanedEventArgs(this));
             Clean();
             ResetTimer();
         }
-
+        
         public override bool TryInteractWithCallback(out Action onComplete)
         {
             onComplete = null;
-
+            
             if (!_isInteractable)
                 return false;
-
+            
             _progressBarUI.UpdateProgressBar(_timer, _interactTimeInSeconds);
             IncreaseTimer();
-
+            
             if (!(_timer >= _interactTimeInSeconds)) return false;
-
+            
             // Perform action when timer is over
             onComplete = () =>
             {
@@ -77,7 +68,7 @@ namespace InteractableObject
                 Clean();
                 ResetTimer();
             };
-
+            
             return true;
         }
 
@@ -90,14 +81,16 @@ namespace InteractableObject
         private void Clean()
         {
             _isInteractable = false;
-
+            
             _room.TryFinishRoomCleaning(this);
             _progressBarUI.ClearProgressBar();
             _progressBarUI.gameObject.SetActive(false);
         }
+        
+        private void IncreaseTimer()
+            => _timer += Time.deltaTime;
 
-        private void IncreaseTimer() => _timer += Time.deltaTime;
-
-        private void ResetTimer() => _timer = 0f;
+        private void ResetTimer()
+            => _timer = 0f;
     }
 }

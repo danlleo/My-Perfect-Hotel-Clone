@@ -1,13 +1,11 @@
 using System;
 using UnityEngine;
-using Utilities;
 
 namespace InteractableObject
 {
-    [SelectionBase] public class Money : Interactable
+    [SelectionBase]
+    public class Money : Interactable
     {
-        [SerializeField] private Vector3 _moneyBillSize = new(0.36f, 0.2f, 0.72f);
-
         public override void Interact()
         {
             print("Interacting");
@@ -19,7 +17,5 @@ namespace InteractableObject
             onComplete = null;
             return false;
         }
-
-        public Vector3 GetMoneyVisualSize() => _moneyBillSize;
     }
 }

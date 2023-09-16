@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.AI;
-using Utilities;
 
 namespace Entities.Customer
 {
@@ -19,14 +18,6 @@ namespace Entities.Customer
             SetAgentMovementSpeed(_movementSpeed);
             //SetAgentStoppingDistance(_stoppingDistance);
         }
-
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            EditorValidation.IsPositiveValue(this, nameof(_movementSpeed), _movementSpeed);
-            EditorValidation.IsPositiveValue(this, nameof(_stoppingDistance), _stoppingDistance);
-        }
-#endif
 
         public void MoveTo(Vector3 destination)
         {

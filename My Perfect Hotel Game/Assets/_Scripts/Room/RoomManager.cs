@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Misc;
 using UnityEngine;
-using Utilities;
 
 namespace Room
 {
@@ -9,13 +8,6 @@ namespace Room
     {
         [Tooltip("Populate with default rooms that are available when player starts a new game")]
         [SerializeField] private List<Room> _availableRooms;
-        
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            EditorValidation.AreEnumerableValues(this, nameof(_availableRooms), _availableRooms);
-        }
-#endif
 
         public Room GetAvailableRoom()
         {
