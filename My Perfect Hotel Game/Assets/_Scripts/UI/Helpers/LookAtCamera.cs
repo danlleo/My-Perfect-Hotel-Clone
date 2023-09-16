@@ -1,4 +1,5 @@
 using UnityEngine;
+using Utilities;
 
 namespace UI.Helpers
 {
@@ -8,7 +9,6 @@ namespace UI.Helpers
         [SerializeField] private bool _isInvert;
 
         private Transform _cameraTransform;
-
         private void Awake() => _cameraTransform = Camera.main.transform;
 
         private void LateUpdate()
