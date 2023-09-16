@@ -1,6 +1,11 @@
 using System.Collections.Generic;
 using InteractableObject;
 using UnityEngine;
+<<<<<<< Updated upstream
+=======
+using UnityEngine.Serialization;
+using Utilities;
+>>>>>>> Stashed changes
 
 namespace Player
 {
@@ -12,11 +17,16 @@ namespace Player
         [Space(5)]
         
         [Tooltip("Populate with transform point from which we will shoot ray from to detect interactable objects")]
+<<<<<<< Updated upstream
         [SerializeField] private Transform _detectInteractableObjectPoint;
         
         [Tooltip("Populate list with objects that will be possible to interact with")]
         [SerializeField] private List<Interactable> _interactableObjectList;
         
+=======
+        [FormerlySerializedAs("_detectInterctableObjectPoint")] [SerializeField] private Transform _detectInteractableObjectPoint;
+
+>>>>>>> Stashed changes
         [Space(10)]
         [Header("Interact Params")]
         [Space(5)]
@@ -34,11 +44,24 @@ namespace Player
             PerformInteract();
         }
 
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            EditorValidation.IsPositiveRange(
+                this, 
+                nameof(_threshold),
+                _threshold, 
+                nameof(_threshold),
+                1f);
+            EditorValidation.IsPositiveValue(this, nameof(_interactDistance), _interactDistance);
+        }
+#endif
+
        private void PerformInteract()
         {
             var ray = new Ray(_detectInteractableObjectPoint.position, _detectInteractableObjectPoint.forward);
             
-            foreach (var interactableObject in _interactableObjectList)
+            foreach (var interactableObject in InteractManager.Instance.GetInteractableObjects())
             {
                 var rayDirection = ray.direction;
                 var directionFromRayOriginToSelectableObject = interactableObject.transform.position - ray.origin;

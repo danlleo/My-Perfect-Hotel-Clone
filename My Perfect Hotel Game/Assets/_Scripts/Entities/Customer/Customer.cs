@@ -1,7 +1,8 @@
+using System;
 using Events;
 using QueueLines.ReceptionQueueLine;
 using UnityEngine;
-using UnityEngine.Serialization;
+using Utilities;
 
 namespace Entities.Customer
 {
@@ -16,18 +17,18 @@ namespace Entities.Customer
         [HideInInspector] public CustomerAppointedEvent CustomerAppointedEvent;
         [HideInInspector] public CustomerReceptionQueueLinePositionChangedEvent CustomerReceptionQueueLinePositionChangedEvent;
 
-        public bool HasReachedLinePosition { get; private set; }
-
-        public Movement Movement { get; private set; }
-        public Room.Room Room { get; private set; }
-
-        [SerializeField] private float _timeItTakesToGuestToSleepInSeconds;
+        [SerializeField] [Min(0)] private float _timeItTakesToGuestToSleepInSeconds;
 
         private Vector3 _positionInLine;
 
         // TODO: Use it later
         private ReceptionQueueLine _receptionQueueLine;
         private Vector3 _taxiPosition;
+
+        public bool HasReachedLinePosition { get; private set; }
+
+        public Movement Movement { get; private set; }
+        public Room.Room Room { get; private set; }
 
         private void Awake()
         {
@@ -36,6 +37,14 @@ namespace Entities.Customer
             CustomerReceptionQueueLinePositionChangedEvent = GetComponent<CustomerReceptionQueueLinePositionChangedEvent>();
             Movement = GetComponent<Movement>();
         }
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            EditorValidation.IsPositiveValue(this, nameof(_timeItTakesToGuestToSleepInSeconds),
+                _timeItTakesToGuestToSleepInSeconds);
+        }
+#endif
 
         public void Initialize(ReceptionQueueLine receptionQueueLine, Vector3 positionInLine, Vector3 taxiPosition)
         {
@@ -61,7 +70,7 @@ namespace Entities.Customer
         public float GetTimeItTakesToGuestToSleepInSeconds() => _timeItTakesToGuestToSleepInSeconds;
 
         public void DestroyGuest() => Destroy(gameObject);
-        
-        protected override Vector3 GetNextDestination() => throw new System.NotImplementedException();
+
+        protected override Vector3 GetNextDestination() => throw new NotImplementedException();
     }
 }

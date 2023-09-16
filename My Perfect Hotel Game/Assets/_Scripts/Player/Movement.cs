@@ -1,6 +1,7 @@
 using Events;
 using Misc;
 using UnityEngine;
+using Utilities;
 
 namespace Player
 {
@@ -52,6 +53,14 @@ namespace Player
             
             _player.WalkingStateChangedEvent.Call(this, new PlayerWalkingStateChangedEventArgs(isWalking: _isWalking));
         }
+        
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            EditorValidation.IsPositiveValue(this, nameof(_moveSpeed), _moveSpeed);
+            EditorValidation.IsPositiveValue(this, nameof(_collisionLayerMask), _collisionLayerMask);
+        }
+#endif
 
         /// <summary>
         /// Move player in the direction in which finger is facing  

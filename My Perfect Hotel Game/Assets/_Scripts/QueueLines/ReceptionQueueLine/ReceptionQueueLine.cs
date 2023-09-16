@@ -6,6 +6,7 @@ using Room;
 using StaticEvents.Reception;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Utilities;
 
 namespace QueueLines.ReceptionQueueLine
 {
@@ -38,6 +39,14 @@ namespace QueueLines.ReceptionQueueLine
             ReceptionInteractStaticEvent.OnReceptionInteracted -= ReceptionInteractStaticEvent_OnOnReceptionInteracted;
             CustomerSpawnedEvent.Event -= CustomerSpawnedEventOnOnCustomerSpawned;
         }
+        
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            EditorValidation.IsPositiveValue(this, nameof(_maxGuestsLimitInQueueLine), _maxGuestsLimitInQueueLine, false);
+            EditorValidation.IsPositiveValue(this, nameof(_distanceBetweenGuestsInLine), _distanceBetweenGuestsInLine);
+        }
+#endif
 
         public bool IsLineFull()
             => _currentGuestsCountInLine == _maxGuestsLimitInQueueLine;
