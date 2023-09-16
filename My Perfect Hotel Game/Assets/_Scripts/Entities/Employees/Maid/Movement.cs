@@ -22,9 +22,10 @@ namespace Entities.Employees.Maid
         }
 
         public void MoveTo(Vector3 destination)
-        {
-            _navMeshAgent.SetDestination(destination);
-        }
+            => _navMeshAgent.SetDestination(destination);
+
+        public void ClearDestination()
+            => _navMeshAgent.ResetPath();
         
         private void SetAgentMovementSpeed(float movementSpeed)
             => _navMeshAgent.speed = movementSpeed;

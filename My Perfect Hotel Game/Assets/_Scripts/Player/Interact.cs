@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using InteractableObject;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Player
 {
@@ -13,7 +12,7 @@ namespace Player
         [Space(5)]
         
         [Tooltip("Populate with transform point from which we will shoot ray from to detect interactable objects")]
-        [FormerlySerializedAs("_detectInterctableObjectPoint")] [SerializeField] private Transform _detectInteractableObjectPoint;
+        [SerializeField] private Transform _detectInteractableObjectPoint;
         
         [Tooltip("Populate list with objects that will be possible to interact with")]
         [SerializeField] private List<Interactable> _interactableObjectList;

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Entities.Customer;
 using Entities.Employees.Maid;
 using Events;
@@ -12,38 +11,40 @@ namespace Room
 {
     [SelectionBase]
     [RequireComponent(typeof(CustomerLeftRoomEvent))]
+    [RequireComponent(typeof(RoomObjectCleanedEvent))]
     [DisallowMultipleComponent]
     public class Room : MonoBehaviour
     {
-        [HideInInspector] public CustomerLeftRoomEvent LeftRoomEvent;
+        public CustomerLeftRoomEvent LeftRoomEvent { get; private set; }
+        public RoomObjectCleanedEvent ObjectCleanedEvent { get; private set; }
 
         public bool IsAvailable { get; private set; }
-
+        
         [SerializeField] private Transform _bedTransform;
         [SerializeField] private List<Interactable> _roomObjectList;
 
-        private readonly HashSet<Interactable> _objectsToCleanHashSet = new();
+        private readonly Dictionary<Interactable, bool> _objectsToCleanDictionary = new();
 
         private Maid _maidOccupied;
         private Customer _customerOccupied;
         
         private void Awake()
         {
-            // TODO: Hardcoded for now, change later
             LeftRoomEvent = GetComponent<CustomerLeftRoomEvent>();
+            ObjectCleanedEvent = GetComponent<RoomObjectCleanedEvent>();
             
             SetIsAvailable();
-            ResetObjectsToCleanHashSetToDefault();
+            CopyItemsFromListToDictionary();
         }
 
         private void OnEnable()
         {
-            LeftRoomEvent.Event += LeftRoom_Event;
+            LeftRoomEvent.Event += CustomerLeftRoom_Event;
         }
 
         private void OnDisable()
         {
-            LeftRoomEvent.Event -= LeftRoom_Event;
+            LeftRoomEvent.Event -= CustomerLeftRoom_Event;
         }
 
         public Vector3 GetBedPosition()
@@ -52,8 +53,6 @@ namespace Room
         public void OccupyRoomWithGuest(Customer customer)
         {
             _customerOccupied = customer;
-            
-            CleanObjectsToCleanHashSet();
             SetIsNotAvailable();
         }
 
@@ -62,28 +61,52 @@ namespace Room
 
         public void TryFinishRoomCleaning(Interactable interactable)
         {
-            _objectsToCleanHashSet.Add(interactable);
+            SetItemAsCleaned(interactable);
             
-            if (_roomObjectList.Count != _objectsToCleanHashSet.Count) return;
+            if (IsRoomUnclean()) return;
             
-            // If Room is indeed cleaned
+            // If Room is indeed cleaned, perform actions below
             SetIsAvailable();
+
+            if (!HasMaidOccupied())
+                return;
+            
             RemoveMaidFromRoom();
         }
 
         public bool IsRoomUnclean()
-            => _roomObjectList.Count != _objectsToCleanHashSet.Count;
+        {
+            foreach (var keyValuePair in _objectsToCleanDictionary)
+            {
+                if (!_objectsToCleanDictionary.TryGetValue(keyValuePair.Key, out bool isClean)) continue;
+                
+                if (!isClean)
+                    return true;
+            }
+
+            return false;
+        }
 
         public bool HasMaidOccupied()
             => _maidOccupied != null;
 
-        public bool HasGuestOccupied()
+        public bool HasCustomerOccupied()
             => _customerOccupied != null;
 
-        public Interactable GetUncleanObject()
-            => _objectsToCleanHashSet.First();
+        public Interactable TryGetUncleanObject()
+        {
+            foreach (var interactable in _roomObjectList)
+            {
+                if (!_objectsToCleanDictionary.TryGetValue(interactable, out bool isClean)) continue;
+                
+                if (!isClean)
+                    return interactable;
+            }
 
-        private void RemoveGuestFromRoom()
+            return null;
+        }
+
+        private void RemoveCustomerFromRoom()
             => _customerOccupied = null;
 
         private void RemoveMaidFromRoom()
@@ -98,19 +121,25 @@ namespace Room
         private void SetIsAvailable()
             => IsAvailable = true;
 
-        private void ResetObjectsToCleanHashSetToDefault()
+        private void ResetObjectsToCleanDictionary()
         {
-            foreach (var roomItem in _roomObjectList)
-                _objectsToCleanHashSet.Add(roomItem);
+            foreach (var interactable in _roomObjectList)
+                _objectsToCleanDictionary[interactable] = false;
         }
 
-        private void CleanObjectsToCleanHashSet()
-            => _objectsToCleanHashSet.Clear();
-
-        private void LeftRoom_Event(object sender, EventArgs e)
+        private void CopyItemsFromListToDictionary()
         {
-            RemoveGuestFromRoom();
-            ResetObjectsToCleanHashSetToDefault();
+            foreach (var interactable in _roomObjectList)
+                _objectsToCleanDictionary.Add(interactable, false);
+        }
+
+        private void SetItemAsCleaned(Interactable interactable)
+            => _objectsToCleanDictionary[interactable] = true;
+        
+        private void CustomerLeftRoom_Event(object sender, EventArgs e)
+        {
+            RemoveCustomerFromRoom();
+            ResetObjectsToCleanDictionary();
             RoomBecameAvailableToCleanStaticEvent.CallRoomBecameAvailableToCleanEvent(this);
         }
     }

@@ -16,7 +16,7 @@ namespace Room
                 if (room.IsAvailable)
                     return room;
             }
-
+            
             return null;
         }
 
@@ -37,9 +37,12 @@ namespace Room
             
             foreach (var room in _availableRooms)
             {
-                if (!room.IsRoomUnclean() || room.HasMaidOccupied() || room.HasGuestOccupied()) continue;
-                uncleanRoom = room;
-                return true;
+                if (room.IsRoomUnclean())
+                {
+                    print("Unclean room: " + room.name);
+                    uncleanRoom = room;
+                    return true;
+                }
             }
 
             return false;

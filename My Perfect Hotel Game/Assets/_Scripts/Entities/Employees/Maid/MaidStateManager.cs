@@ -8,12 +8,12 @@ namespace Entities.Employees.Maid
     public class MaidStateManager : MonoBehaviour
     {
         public Maid CurrentMaid { get; private set; }
-
-        private MaidState _currentState;
-
+        
         public AwaitingState AwaitingState = new();
         public MovingState MovingState = new();
         public CleaningState CleaningState = new();
+        
+        private MaidState _currentState;
 
         private void Awake()
         {

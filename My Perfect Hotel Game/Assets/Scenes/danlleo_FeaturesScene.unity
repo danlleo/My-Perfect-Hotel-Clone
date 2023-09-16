@@ -378,6 +378,7 @@ GameObject:
   - component: {fileID: 292319970}
   - component: {fileID: 292319968}
   - component: {fileID: 292319973}
+  - component: {fileID: 292319974}
   m_Layer: 8
   m_Name: Room (2)
   m_TagString: Untagged
@@ -397,7 +398,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1da4892d14eea544966e0dc10b8de65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeftRoomEvent: {fileID: 0}
   _bedTransform: {fileID: 1254669229}
   _roomObjectList:
   - {fileID: 463124894}
@@ -479,6 +479,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 054916fa115c97d4cbbca4fd83212d8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &292319974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292319967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3d0a78be2c9d9c44974f002fcb77b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &332952595
@@ -867,6 +879,7 @@ GameObject:
   - component: {fileID: 439970950}
   - component: {fileID: 439970953}
   - component: {fileID: 439970954}
+  - component: {fileID: 439970955}
   m_Layer: 8
   m_Name: Room
   m_TagString: Untagged
@@ -933,7 +946,7 @@ Transform:
   m_GameObject: {fileID: 439970948}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.25, y: 0.75, z: 14.360001}
+  m_LocalPosition: {x: -8.25, y: 0.75, z: 8.110001}
   m_LocalScale: {x: 2, y: 1.5, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -954,7 +967,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1da4892d14eea544966e0dc10b8de65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeftRoomEvent: {fileID: 0}
   _bedTransform: {fileID: 1623588127}
   _roomObjectList:
   - {fileID: 1572023411}
@@ -968,6 +980,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 054916fa115c97d4cbbca4fd83212d8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &439970955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439970948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3d0a78be2c9d9c44974f002fcb77b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &463124889
@@ -984,7 +1008,7 @@ GameObject:
   - component: {fileID: 463124891}
   - component: {fileID: 463124894}
   m_Layer: 6
-  m_Name: Curtains
+  m_Name: Curtains_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1136,7 +1160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _receptionQueueLine: {fileID: 1802006966}
-  _guestPrefab: {fileID: 1347430153789584453, guid: 10b41f0822e21634e96aa32effb3866e,
+  _customerPrefab: {fileID: 1347430153789584453, guid: 10b41f0822e21634e96aa32effb3866e,
     type: 3}
   _spawnPoint: {fileID: 486767080}
   _delaySpawnTime: 2
@@ -1153,6 +1177,7 @@ GameObject:
   - component: {fileID: 533738281}
   - component: {fileID: 533738279}
   - component: {fileID: 533738284}
+  - component: {fileID: 533738285}
   m_Layer: 8
   m_Name: Room (1)
   m_TagString: Untagged
@@ -1172,7 +1197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1da4892d14eea544966e0dc10b8de65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeftRoomEvent: {fileID: 0}
   _bedTransform: {fileID: 281738924}
   _roomObjectList:
   - {fileID: 799967318}
@@ -1235,7 +1259,7 @@ Transform:
   m_GameObject: {fileID: 533738278}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.06, y: 0.75, z: 8}
+  m_LocalPosition: {x: 9.190001, y: 0.75, z: 13.75}
   m_LocalScale: {x: 2, y: 1.5, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1254,6 +1278,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 054916fa115c97d4cbbca4fd83212d8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &533738285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533738278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3d0a78be2c9d9c44974f002fcb77b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &572927850
@@ -2067,6 +2103,7 @@ GameObject:
   - component: {fileID: 772795078}
   - component: {fileID: 772795077}
   - component: {fileID: 772795080}
+  - component: {fileID: 772795081}
   m_Layer: 0
   m_Name: Maid
   m_TagString: Untagged
@@ -2102,6 +2139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8a62650e0a1d7a40b8f61d8cd3345b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _idlePoint: {fileID: 0}
 --- !u!114 &772795078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2148,6 +2186,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 547a13d01e4a402aa10df6aad68d0a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &772795081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772795075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e071267cae727d4fb13942298e65111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &785710156
@@ -2412,7 +2462,7 @@ GameObject:
   - component: {fileID: 799967315}
   - component: {fileID: 799967318}
   m_Layer: 6
-  m_Name: Curtains
+  m_Name: Curtains_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4025,7 +4075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12711676170fc1b40ab8111e48afb69b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GuestSpawnedEvent: {fileID: 0}
+  CustomerSpawnedEvent: {fileID: 0}
   _maxGuestsLimitInQueueLine: 5
   _distanceBetweenGuestsInLine: 2.15
 --- !u!114 &1802006967

@@ -1,5 +1,7 @@
 using System;
+using Events;
 using Room;
+using UnityEngine;
 
 namespace Entities.Employees.Maid.States
 {
@@ -10,7 +12,8 @@ namespace Entities.Employees.Maid.States
         public override void EnterState(MaidStateManager maidStateManager)
         {
             _maidStateManager = maidStateManager;
-            maidStateManager.CurrentMaid.MaidRemovedFromRoomEvent.Event += MaidRemovedFromRoomEventOnEvent;
+            maidStateManager.CurrentMaid.MaidRemovedFromRoomEvent.Event += MaidRemovedFromRoom_Event;
+            _maidStateManager.CurrentMaid.Room.ObjectCleanedEvent.Event += ObjectCleaned_Event;
         }
 
         public override void UpdateState(MaidStateManager maidStateManager)
@@ -23,20 +26,34 @@ namespace Entities.Employees.Maid.States
             {
                 maidStateManager.CurrentMaid.SetRoomForCleaning(uncleanRoom);
                 maidStateManager.SwitchState(maidStateManager.MovingState);
+                return;
             }
+            
+            Debug.Log("I love Rem");
             
             LeaveState(maidStateManager);
         }
 
         public override void LeaveState(MaidStateManager maidStateManager)
         {
-            maidStateManager.CurrentMaid.MaidRemovedFromRoomEvent.Event -= MaidRemovedFromRoomEventOnEvent;
+            maidStateManager.CurrentMaid.MaidRemovedFromRoomEvent.Event -= MaidRemovedFromRoom_Event;
             maidStateManager.SwitchState(maidStateManager.AwaitingState);
         }
 
-        private void MaidRemovedFromRoomEventOnEvent(object sender, EventArgs e)
+        private void MaidRemovedFromRoom_Event(object sender, EventArgs e)
         {
             LeaveState(_maidStateManager);
+        }
+
+        private void ObjectCleaned_Event(object sender, RoomObjectCleanedEventArgs roomObjectCleanedEventArgs)
+        {
+            _maidStateManager.CurrentMaid.Room.ObjectCleanedEvent.Event -= ObjectCleaned_Event;
+            
+            if (ReferenceEquals(roomObjectCleanedEventArgs.CleanedObject, _maidStateManager.CurrentMaid.ObjectToClean))
+            {
+                Debug.Log("Player was faster");
+                LeaveState(_maidStateManager);
+            }
         }
     }
 }

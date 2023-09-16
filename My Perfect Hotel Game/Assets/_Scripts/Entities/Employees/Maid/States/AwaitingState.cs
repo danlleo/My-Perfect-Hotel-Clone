@@ -9,7 +9,8 @@ namespace Entities.Employees.Maid.States
         public override void EnterState(MaidStateManager maidStateManager)
         {
             RoomBecameAvailableToCleanStaticEvent.OnRoomBecameAvailableToClean += RoomBecameAvailableToClean_StaticEvent;
-
+            
+            maidStateManager.CurrentMaid.Movement.ClearDestination();
             _maidStateManager = maidStateManager;
         }
         
@@ -21,6 +22,7 @@ namespace Entities.Employees.Maid.States
         public override void LeaveState(MaidStateManager maidStateManager)
         {
             RoomBecameAvailableToCleanStaticEvent.OnRoomBecameAvailableToClean -= RoomBecameAvailableToClean_StaticEvent;
+            
             maidStateManager.SwitchState(maidStateManager.MovingState);
         }
         

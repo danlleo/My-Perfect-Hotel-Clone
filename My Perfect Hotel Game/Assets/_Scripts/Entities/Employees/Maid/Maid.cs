@@ -12,8 +12,6 @@ namespace Entities.Employees.Maid
     [DisallowMultipleComponent]
     public class Maid : Employee
     {
-        private NavMeshAgent _navMeshAgent;
-
         public Movement Movement { get; private set; }
 
         public Room.Room Room { get; private set; }
@@ -21,6 +19,8 @@ namespace Entities.Employees.Maid
         public Interactable ObjectToClean { get; private set; }
         
         public MaidRemovedFromRoomEvent MaidRemovedFromRoomEvent { get; private set; }
+        
+        private NavMeshAgent _navMeshAgent;
         
         private void Awake()
         {
@@ -46,9 +46,11 @@ namespace Entities.Employees.Maid
 
         public void SetObjectToClean(Interactable objectToClean)
             => ObjectToClean = objectToClean;
-
+        
         public void RemoveObjectToClean()
             => ObjectToClean = null;
+        
+        protected override Vector3 GetNextDestination() => throw new NotImplementedException();
 
         private void RemoveRoomForCleaning()
             => Room = null;
@@ -58,7 +60,5 @@ namespace Entities.Employees.Maid
             RemoveRoomForCleaning();
             RemoveObjectToClean();
         }
-        
-        protected override Vector3 GetNextDestination() => throw new NotImplementedException();
     }
 }
