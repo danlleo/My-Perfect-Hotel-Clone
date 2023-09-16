@@ -45,13 +45,13 @@ namespace Reception
         /// <summary>
         /// This method is called when guest is standing first in the line, and there's available room for him to appoint
         /// </summary>
-        public void AppointGuestToRoom(Guest.Guest guest)
+        public void AppointGuestToRoom(Customer.Customer customer)
         {
             var room = RoomManager.Instance.GetAvailableRoom();
-            room.OccupyRoomWithGuest(guest);
+            room.OccupyRoomWithGuest(customer);
             
-            guest.SetRoom(room);
-            guest.GuestAppointedEvent.Call(this);
+            customer.SetRoom(room);
+            customer.CustomerAppointedEvent.Call(this);
         }
         
         private void IncreaseTimer()

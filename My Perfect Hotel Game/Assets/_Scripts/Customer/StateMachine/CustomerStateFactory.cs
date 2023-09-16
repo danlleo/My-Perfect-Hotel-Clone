@@ -1,13 +1,13 @@
 using System.Collections.Generic;
-using Guest.StateMachine.States;
+using Customer.StateMachine.States;
 
-namespace Guest.StateMachine
+namespace Customer.StateMachine
 {
-    public class GuestStateFactory
+    public class CustomerStateFactory
     {
-        private readonly Dictionary<State, GuestState> _states = new();
+        private readonly Dictionary<State, CustomerState> _states = new();
 
-        public GuestStateFactory(GuestStateManager currentContext)
+        public CustomerStateFactory(CustomerStateManager currentContext)
         {
             _states[State.Sleeping] = new SleepingOnBed(currentContext, this);
             _states[State.Waiting] = new WaitingInReceptionLine(currentContext, this);
@@ -16,11 +16,11 @@ namespace Guest.StateMachine
             _states[State.WalkingToTaxi] = new WalkingToTaxi(currentContext, this);
         }
 
-        public GuestState Sleeping() => _states[State.Sleeping];
-        public GuestState Waiting() => _states[State.Waiting];
-        public GuestState WalkingToReceptionQueueLine() => _states[State.WalkingToReceptionQueueLine];
-        public GuestState WalkingToRoomBed() => _states[State.WalkingToRoomBed];
-        public GuestState WalkingToTaxi() => _states[State.WalkingToTaxi];
+        public CustomerState Sleeping() => _states[State.Sleeping];
+        public CustomerState Waiting() => _states[State.Waiting];
+        public CustomerState WalkingToReceptionQueueLine() => _states[State.WalkingToReceptionQueueLine];
+        public CustomerState WalkingToRoomBed() => _states[State.WalkingToRoomBed];
+        public CustomerState WalkingToTaxi() => _states[State.WalkingToTaxi];
 
         private enum State
         {

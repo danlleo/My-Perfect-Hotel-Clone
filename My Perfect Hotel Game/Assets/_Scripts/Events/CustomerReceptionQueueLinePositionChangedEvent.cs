@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace Events
 {
-    public class GuestAppointedEvent : MonoBehaviour, IEvent
+    [DisallowMultipleComponent]
+    public class CustomerReceptionQueueLinePositionChangedEvent : MonoBehaviour, IEvent
     {
         public event EventHandler Event;
 

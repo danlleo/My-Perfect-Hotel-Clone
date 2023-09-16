@@ -1,15 +1,16 @@
 using Events;
 using QueueLines.ReceptionQueueLine;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace Guest
+namespace Customer
 {
     [DisallowMultipleComponent]
-    public class GuestSpawner : MonoBehaviour
+    public class CustomerSpawner : MonoBehaviour
     {
         // Hardcoded for now
         [SerializeField] private ReceptionQueueLine _receptionQueueLine;
-        [SerializeField] private Guest _guestPrefab;
+        [FormerlySerializedAs("_guestPrefab")] [SerializeField] private Customer _customerPrefab;
 
         [SerializeField] private Transform _spawnPoint;
         
@@ -34,10 +35,10 @@ namespace Guest
 
         private void Spawn()
         {
-            var guest = Instantiate(_guestPrefab, _spawnPoint.position, Quaternion.identity);
+            var guest = Instantiate(_customerPrefab, _spawnPoint.position, Quaternion.identity);
             guest.Initialize(_receptionQueueLine, _receptionQueueLine.GetWorldPositionToStayInLine(), transform.position + Vector3.right * 2f);
             
-            _receptionQueueLine.GuestSpawnedEvent.Call(this, new GuestSpawnedEventArgs(guest: guest));
+            _receptionQueueLine.CustomerSpawnedEvent.Call(this, new CustomerSpawnedEventArgs(customer: guest));
         }
 
         private void ResetTimer()

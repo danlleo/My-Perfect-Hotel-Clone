@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Guest
+namespace Customer
 {
     [SelectionBase]
     [RequireComponent(typeof(NavMeshAgent))]

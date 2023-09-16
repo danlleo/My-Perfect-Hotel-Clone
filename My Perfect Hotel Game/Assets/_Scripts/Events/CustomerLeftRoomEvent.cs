@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Events
 {
     [DisallowMultipleComponent]
-    public class GuestReceptionQueueLinePositionChangedEvent : MonoBehaviour, IEvent
+    public class CustomerLeftRoomEvent : MonoBehaviour, IEvent
     {
         public event EventHandler Event;
 

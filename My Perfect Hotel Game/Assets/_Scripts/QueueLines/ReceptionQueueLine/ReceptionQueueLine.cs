@@ -4,37 +4,38 @@ using Events;
 using Room;
 using StaticEvents.Reception;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace QueueLines.ReceptionQueueLine
 {
-    [RequireComponent(typeof(GuestSpawnedEvent))]
+    [RequireComponent(typeof(CustomerSpawnedEvent))]
     [DisallowMultipleComponent]
     public class ReceptionQueueLine : MonoBehaviour
     {
-        [HideInInspector] public GuestSpawnedEvent GuestSpawnedEvent;
+        [FormerlySerializedAs("GuestSpawnedEvent")] [HideInInspector] public CustomerSpawnedEvent CustomerSpawnedEvent;
         
         [SerializeField] private int _maxGuestsLimitInQueueLine = 5;
         [SerializeField] private float _distanceBetweenGuestsInLine = 1.15f;
         
         private int _currentGuestsCountInLine;
 
-        private Queue<Guest.Guest> _guestsQueue = new();
+        private Queue<Customer.Customer> _guestsQueue = new();
 
         private void Awake()
         {
-            GuestSpawnedEvent = GetComponent<GuestSpawnedEvent>();
+            CustomerSpawnedEvent = GetComponent<CustomerSpawnedEvent>();
         }
 
         private void OnEnable()
         {
             ReceptionInteractStaticEvent.OnReceptionInteracted += ReceptionInteractStaticEvent_OnOnReceptionInteracted;
-            GuestSpawnedEvent.Event += GuestSpawnedEvent_OnOnGuestSpawned;
+            CustomerSpawnedEvent.Event += CustomerSpawnedEventOnOnCustomerSpawned;
         }
 
         private void OnDisable()
         {
             ReceptionInteractStaticEvent.OnReceptionInteracted -= ReceptionInteractStaticEvent_OnOnReceptionInteracted;
-            GuestSpawnedEvent.Event -= GuestSpawnedEvent_OnOnGuestSpawned;
+            CustomerSpawnedEvent.Event -= CustomerSpawnedEventOnOnCustomerSpawned;
         }
 
         public bool IsLineFull()
@@ -56,7 +57,7 @@ namespace QueueLines.ReceptionQueueLine
             return transform.position - transform.forward * (_distanceBetweenGuestsInLine * index);
         }
         
-        private void AddGuestToLine(Guest.Guest guest)
+        private void AddGuestToLine(Customer.Customer customer)
         {
             if (_currentGuestsCountInLine == _maxGuestsLimitInQueueLine)
             {
@@ -64,7 +65,7 @@ namespace QueueLines.ReceptionQueueLine
                 return;
             }
             
-            _guestsQueue.Enqueue(guest);
+            _guestsQueue.Enqueue(customer);
             IncreaseCurrentGuestsCountInLine();
         }
 
@@ -79,7 +80,7 @@ namespace QueueLines.ReceptionQueueLine
             _currentGuestsCountInLine--;
         }
         
-        private Guest.Guest DequeueNearestStandingToReceptionGuest()
+        private Customer.Customer DequeueNearestStandingToReceptionGuest()
             => _guestsQueue.Dequeue();
 
         private void UpdatePositionInLineToAllGuests()
@@ -96,7 +97,7 @@ namespace QueueLines.ReceptionQueueLine
         private void NotifyGuestsInLineAboutPositionChange()
         {
             foreach (var guest in _guestsQueue)
-                guest.GuestReceptionQueueLinePositionChangedEvent.Call(this);
+                guest.CustomerReceptionQueueLinePositionChangedEvent.Call(this);
         }
         
         private void ReceptionInteractStaticEvent_OnOnReceptionInteracted(ReceptionInteractStaticEventArgs receptionInteractStaticEventArgs)
@@ -118,9 +119,9 @@ namespace QueueLines.ReceptionQueueLine
             NotifyGuestsInLineAboutPositionChange();
         }
         
-        private void GuestSpawnedEvent_OnOnGuestSpawned(object sender, GuestSpawnedEventArgs guestSpawnedEventArgs)
+        private void CustomerSpawnedEventOnOnCustomerSpawned(object sender, CustomerSpawnedEventArgs customerSpawnedEventArgs)
         {
-            AddGuestToLine(guestSpawnedEventArgs.Guest);
+            AddGuestToLine(customerSpawnedEventArgs.Customer);
         }
     }
 }

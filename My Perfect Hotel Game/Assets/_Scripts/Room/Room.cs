@@ -9,11 +9,11 @@ using UnityEngine;
 namespace Room
 {
     [SelectionBase]
-    [RequireComponent(typeof(GuestLeftRoomEvent))]
+    [RequireComponent(typeof(CustomerLeftRoomEvent))]
     [DisallowMultipleComponent]
     public class Room : MonoBehaviour
     {
-        [HideInInspector] public GuestLeftRoomEvent LeftRoomEvent;
+        [HideInInspector] public CustomerLeftRoomEvent LeftRoomEvent;
 
         public bool IsAvailable { get; private set; }
 
@@ -23,12 +23,12 @@ namespace Room
         private readonly HashSet<Interactable> _objectsToCleanHashSet = new();
 
         private Maid.Maid _maidOccupied;
-        private Guest.Guest _guestOccupied;
+        private Customer.Customer _customerOccupied;
         
         private void Awake()
         {
             // TODO: Hardcoded for now, change later
-            LeftRoomEvent = GetComponent<GuestLeftRoomEvent>();
+            LeftRoomEvent = GetComponent<CustomerLeftRoomEvent>();
             
             SetIsAvailable();
             ResetObjectsToCleanHashSetToDefault();
@@ -47,9 +47,9 @@ namespace Room
         public Vector3 GetBedPosition()
             => _bedTransform.position;
 
-        public void OccupyRoomWithGuest(Guest.Guest guest)
+        public void OccupyRoomWithGuest(Customer.Customer customer)
         {
-            _guestOccupied = guest;
+            _customerOccupied = customer;
             
             CleanObjectsToCleanHashSet();
             SetIsNotAvailable();
@@ -76,13 +76,13 @@ namespace Room
             => _maidOccupied != null;
 
         public bool HasGuestOccupied()
-            => _guestOccupied != null;
+            => _customerOccupied != null;
 
         public Interactable GetUncleanObject()
             => _objectsToCleanHashSet.First();
 
         private void RemoveGuestFromRoom()
-            => _guestOccupied = null;
+            => _customerOccupied = null;
 
         private void RemoveMaidFromRoom()
         {

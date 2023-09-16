@@ -1,15 +1,15 @@
-namespace Guest.StateMachine
+namespace Customer.StateMachine
 {
-    public abstract class GuestState
+    public abstract class CustomerState
     {
-        public GuestState(GuestStateManager currentContext, GuestStateFactory guestStateFactory)
+        public CustomerState(CustomerStateManager currentContext, CustomerStateFactory customerStateFactory)
         {
             CurrentContext = currentContext;
-            Factory = guestStateFactory;
+            Factory = customerStateFactory;
         }
         
-        protected readonly GuestStateManager CurrentContext;
-        protected readonly GuestStateFactory Factory;
+        protected readonly CustomerStateManager CurrentContext;
+        protected readonly CustomerStateFactory Factory;
         
         public abstract void EnterState();
         
@@ -19,7 +19,7 @@ namespace Guest.StateMachine
         
         public abstract void CheckSwitchStates();
 
-        protected void SwitchState(GuestState newState)
+        protected void SwitchState(CustomerState newState)
         {
             ExitState();
             

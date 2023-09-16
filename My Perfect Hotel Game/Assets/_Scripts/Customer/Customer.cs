@@ -1,21 +1,22 @@
 using Events;
 using QueueLines.ReceptionQueueLine;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace Guest
+namespace Customer
 {
-    [RequireComponent(typeof(GuestSetRoomEvent))]
-    [RequireComponent(typeof(GuestAppointedEvent))]
-    [RequireComponent(typeof(GuestReceptionQueueLinePositionChangedEvent))]
+    [RequireComponent(typeof(CustomerSetRoomEvent))]
+    [RequireComponent(typeof(CustomerAppointedEvent))]
+    [RequireComponent(typeof(CustomerReceptionQueueLinePositionChangedEvent))]
     [RequireComponent(typeof(Movement))]
     [DisallowMultipleComponent]
-    public class Guest : MonoBehaviour
+    public class Customer : MonoBehaviour
     {
-        [HideInInspector] public GuestSetRoomEvent GuestSetRoomEvent;
-        [HideInInspector] public GuestAppointedEvent GuestAppointedEvent;
+        [FormerlySerializedAs("GuestSetRoomEvent")] [HideInInspector] public CustomerSetRoomEvent CustomerSetRoomEvent;
+        [FormerlySerializedAs("GuestAppointedEvent")] [HideInInspector] public CustomerAppointedEvent CustomerAppointedEvent;
 
-        [HideInInspector]
-        public GuestReceptionQueueLinePositionChangedEvent GuestReceptionQueueLinePositionChangedEvent;
+        [FormerlySerializedAs("GuestReceptionQueueLinePositionChangedEvent")] [HideInInspector]
+        public CustomerReceptionQueueLinePositionChangedEvent CustomerReceptionQueueLinePositionChangedEvent;
         
         public bool HasReachedLinePosition { get; private set; }
         
@@ -32,9 +33,9 @@ namespace Guest
         
         private void Awake()
         {
-            GuestSetRoomEvent = GetComponent<GuestSetRoomEvent>();
-            GuestAppointedEvent = GetComponent<GuestAppointedEvent>();
-            GuestReceptionQueueLinePositionChangedEvent = GetComponent<GuestReceptionQueueLinePositionChangedEvent>();
+            CustomerSetRoomEvent = GetComponent<CustomerSetRoomEvent>();
+            CustomerAppointedEvent = GetComponent<CustomerAppointedEvent>();
+            CustomerReceptionQueueLinePositionChangedEvent = GetComponent<CustomerReceptionQueueLinePositionChangedEvent>();
             Movement = GetComponent<Movement>();
         }
 
@@ -48,7 +49,7 @@ namespace Guest
         public void SetRoom(Room.Room room)
         {
             Room = room;
-            GuestSetRoomEvent.Call(this, new GuestSetRoomEventArgs(room: room));
+            CustomerSetRoomEvent.Call(this, new CustomerSetRoomEventArgs(room: room));
         }
 
         public void SetPositionInLine(Vector3 positionInLine)

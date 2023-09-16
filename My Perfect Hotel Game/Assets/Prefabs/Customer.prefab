@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 8681906553594337004}
   - component: {fileID: 1071013788750051807}
   - component: {fileID: 7379012898504103594}
-  - component: {fileID: 3019649481278235503}
+  - component: {fileID: 5640613507762204286}
   - component: {fileID: 5692260556286392}
   m_Layer: 9
-  m_Name: Guest
+  m_Name: Customer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,9 +63,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c37e786382b01584da298ad091490a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GuestSetRoomEvent: {fileID: 0}
-  GuestAppointedEvent: {fileID: 0}
-  GuestReceptionQueueLinePositionChangedEvent: {fileID: 0}
+  CustomerSetRoomEvent: {fileID: 0}
+  CustomerAppointedEvent: {fileID: 0}
+  CustomerReceptionQueueLinePositionChangedEvent: {fileID: 0}
   _timeItTakesToGuestToSleepInSeconds: 5
 --- !u!114 &8681906553594337004
 MonoBehaviour:
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb805296d1caba84299dc5fd2efd8c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3019649481278235503
+--- !u!114 &5640613507762204286
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

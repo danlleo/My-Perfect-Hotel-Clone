@@ -1,10 +1,10 @@
 using UnityEngine;
 
-namespace Guest.StateMachine.States
+namespace Customer.StateMachine.States
 {
-    public class SleepingOnBed : GuestState
+    public class SleepingOnBed : CustomerState
     {
-        public SleepingOnBed(GuestStateManager currentContext, GuestStateFactory guestStateFactory) : base(currentContext, guestStateFactory) { }
+        public SleepingOnBed(CustomerStateManager currentContext, CustomerStateFactory customerStateFactory) : base(currentContext, customerStateFactory) { }
 
         private float _timer;
         
@@ -18,7 +18,7 @@ namespace Guest.StateMachine.States
         
         public override void CheckSwitchStates()
         {
-            if (_timer >= CurrentContext.Guest.GetTimeItTakesToGuestToSleepInSeconds())
+            if (_timer >= CurrentContext.Customer.GetTimeItTakesToGuestToSleepInSeconds())
             {
                 // Add sleeping animation
                 SwitchState(Factory.WalkingToTaxi());
@@ -29,7 +29,7 @@ namespace Guest.StateMachine.States
         {
             // guestStateManager.CurrentGuest.Room.SetIsAvailable();
             _timer = 0f;
-            CurrentContext.Guest.Room.LeftRoomEvent.Call(CurrentContext.Guest.Room);
+            CurrentContext.Customer.Room.LeftRoomEvent.Call(CurrentContext.Customer.Room);
         }
     }
 }
