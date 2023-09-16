@@ -1,6 +1,6 @@
 using StaticEvents.Room;
 
-namespace Maid.States
+namespace Entities.Employees.Maid.States
 {
     public class AwaitingState : MaidState
     {

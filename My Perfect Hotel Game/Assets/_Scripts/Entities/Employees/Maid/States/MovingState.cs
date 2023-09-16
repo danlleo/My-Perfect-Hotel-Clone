@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Maid.States
+namespace Entities.Employees.Maid.States
 {
     public class MovingState : MaidState
     {

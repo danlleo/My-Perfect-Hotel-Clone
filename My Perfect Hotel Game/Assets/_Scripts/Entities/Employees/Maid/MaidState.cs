@@ -1,4 +1,4 @@
-namespace Maid
+namespace Entities.Employees.Maid
 {
     public abstract class MaidState
     {

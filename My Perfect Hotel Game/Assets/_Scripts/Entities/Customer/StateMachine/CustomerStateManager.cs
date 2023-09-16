@@ -1,15 +1,13 @@
 using UnityEngine;
 
-namespace Customer.StateMachine
+namespace Entities.Customer.StateMachine
 {
-    [DisallowMultipleComponent] 
-    [RequireComponent(typeof(Customer))]
+    [DisallowMultipleComponent] [RequireComponent(typeof(Customer))]
     public class CustomerStateManager : MonoBehaviour
     {
-        public Customer Customer { get; private set; }
-
         // state variables
         private CustomerStateFactory _states;
+        public Customer Customer { get; private set; }
         public CustomerState CurrentState { get; set; }
 
 

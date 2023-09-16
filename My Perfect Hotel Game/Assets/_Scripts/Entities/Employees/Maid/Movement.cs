@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Customer
+namespace Entities.Employees.Maid
 {
     [SelectionBase]
     [RequireComponent(typeof(NavMeshAgent))]

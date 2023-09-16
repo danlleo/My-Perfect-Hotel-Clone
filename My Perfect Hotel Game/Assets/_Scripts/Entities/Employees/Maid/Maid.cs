@@ -4,13 +4,13 @@ using InteractableObject;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Maid
+namespace Entities.Employees.Maid
 {
     [SelectionBase]
     [RequireComponent(typeof(Movement))]
     [RequireComponent(typeof(MaidRemovedFromRoomEvent))]
     [DisallowMultipleComponent]
-    public class Maid : MonoBehaviour
+    public class Maid : Employee
     {
         private NavMeshAgent _navMeshAgent;
 
@@ -58,5 +58,7 @@ namespace Maid
             RemoveRoomForCleaning();
             RemoveObjectToClean();
         }
+        
+        protected override Vector3 GetNextDestination() => throw new NotImplementedException();
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using Entities.Customer;
 using InteractableObject;
 using Room;
 using StaticEvents.Reception;
@@ -45,7 +46,7 @@ namespace Reception
         /// <summary>
         /// This method is called when guest is standing first in the line, and there's available room for him to appoint
         /// </summary>
-        public void AppointGuestToRoom(Customer.Customer customer)
+        public void AppointGuestToRoom(Customer customer)
         {
             var room = RoomManager.Instance.GetAvailableRoom();
             room.OccupyRoomWithGuest(customer);

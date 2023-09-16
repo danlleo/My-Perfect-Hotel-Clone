@@ -1,7 +1,7 @@
 using System;
 using Room;
 
-namespace Maid.States
+namespace Entities.Employees.Maid.States
 {
     public class CleaningState : MaidState
     {

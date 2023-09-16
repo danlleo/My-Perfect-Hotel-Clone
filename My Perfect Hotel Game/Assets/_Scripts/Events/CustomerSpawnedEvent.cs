@@ -1,4 +1,5 @@
 using System;
+using Entities.Customer;
 using Interfaces;
 using UnityEngine;
 
@@ -15,9 +16,9 @@ namespace Events
 
     public class CustomerSpawnedEventArgs : EventArgs
     {
-        public readonly Customer.Customer Customer;
+        public readonly Customer Customer;
 
-        public CustomerSpawnedEventArgs(Customer.Customer customer)
+        public CustomerSpawnedEventArgs(Customer customer)
         {
             Customer = customer;
         }

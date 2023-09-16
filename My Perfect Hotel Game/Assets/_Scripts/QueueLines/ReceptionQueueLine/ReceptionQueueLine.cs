@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Entities.Customer;
 using Events;
 using Room;
 using StaticEvents.Reception;
@@ -12,14 +13,14 @@ namespace QueueLines.ReceptionQueueLine
     [DisallowMultipleComponent]
     public class ReceptionQueueLine : MonoBehaviour
     {
-        [FormerlySerializedAs("GuestSpawnedEvent")] [HideInInspector] public CustomerSpawnedEvent CustomerSpawnedEvent;
+        [HideInInspector] public CustomerSpawnedEvent CustomerSpawnedEvent;
         
         [SerializeField] private int _maxGuestsLimitInQueueLine = 5;
         [SerializeField] private float _distanceBetweenGuestsInLine = 1.15f;
         
         private int _currentGuestsCountInLine;
 
-        private Queue<Customer.Customer> _guestsQueue = new();
+        private Queue<Customer> _guestsQueue = new();
 
         private void Awake()
         {
@@ -57,7 +58,7 @@ namespace QueueLines.ReceptionQueueLine
             return transform.position - transform.forward * (_distanceBetweenGuestsInLine * index);
         }
         
-        private void AddGuestToLine(Customer.Customer customer)
+        private void AddGuestToLine(Customer customer)
         {
             if (_currentGuestsCountInLine == _maxGuestsLimitInQueueLine)
             {
@@ -80,7 +81,7 @@ namespace QueueLines.ReceptionQueueLine
             _currentGuestsCountInLine--;
         }
         
-        private Customer.Customer DequeueNearestStandingToReceptionGuest()
+        private Customer DequeueNearestStandingToReceptionGuest()
             => _guestsQueue.Dequeue();
 
         private void UpdatePositionInLineToAllGuests()

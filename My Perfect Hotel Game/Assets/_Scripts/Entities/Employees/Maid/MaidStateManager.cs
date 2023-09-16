@@ -1,7 +1,7 @@
-using Maid.States;
+using Entities.Employees.Maid.States;
 using UnityEngine;
 
-namespace Maid
+namespace Entities.Employees.Maid
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Maid))]

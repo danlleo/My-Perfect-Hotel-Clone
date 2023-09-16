@@ -3,34 +3,32 @@ using QueueLines.ReceptionQueueLine;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Customer
+namespace Entities.Customer
 {
     [RequireComponent(typeof(CustomerSetRoomEvent))]
     [RequireComponent(typeof(CustomerAppointedEvent))]
     [RequireComponent(typeof(CustomerReceptionQueueLinePositionChangedEvent))]
     [RequireComponent(typeof(Movement))]
     [DisallowMultipleComponent]
-    public class Customer : MonoBehaviour
+    public class Customer : Entity
     {
-        [FormerlySerializedAs("GuestSetRoomEvent")] [HideInInspector] public CustomerSetRoomEvent CustomerSetRoomEvent;
-        [FormerlySerializedAs("GuestAppointedEvent")] [HideInInspector] public CustomerAppointedEvent CustomerAppointedEvent;
+        [HideInInspector] public CustomerSetRoomEvent CustomerSetRoomEvent;
+        [HideInInspector] public CustomerAppointedEvent CustomerAppointedEvent;
+        [HideInInspector] public CustomerReceptionQueueLinePositionChangedEvent CustomerReceptionQueueLinePositionChangedEvent;
 
-        [FormerlySerializedAs("GuestReceptionQueueLinePositionChangedEvent")] [HideInInspector]
-        public CustomerReceptionQueueLinePositionChangedEvent CustomerReceptionQueueLinePositionChangedEvent;
-        
         public bool HasReachedLinePosition { get; private set; }
-        
+
         public Movement Movement { get; private set; }
         public Room.Room Room { get; private set; }
-        
+
         [SerializeField] private float _timeItTakesToGuestToSleepInSeconds;
-        
-        // TODO: Use it later
-        private ReceptionQueueLine _receptionQueueLine;
 
         private Vector3 _positionInLine;
+
+        // TODO: Use it later
+        private ReceptionQueueLine _receptionQueueLine;
         private Vector3 _taxiPosition;
-        
+
         private void Awake()
         {
             CustomerSetRoomEvent = GetComponent<CustomerSetRoomEvent>();
@@ -49,25 +47,21 @@ namespace Customer
         public void SetRoom(Room.Room room)
         {
             Room = room;
-            CustomerSetRoomEvent.Call(this, new CustomerSetRoomEventArgs(room: room));
+            CustomerSetRoomEvent.Call(this, new CustomerSetRoomEventArgs(room));
         }
 
-        public void SetPositionInLine(Vector3 positionInLine)
-            => _positionInLine = positionInLine;
-        
-        public Vector3 GetPositionInLine()
-            => _positionInLine;
-        
-        public Vector3 GetTaxiPosition()
-            => _taxiPosition;
-        
-        public void SetHasReachedLinePosition(bool hasReachedLinePosition)
-            => HasReachedLinePosition = hasReachedLinePosition;
+        public void SetPositionInLine(Vector3 positionInLine) => _positionInLine = positionInLine;
 
-        public float GetTimeItTakesToGuestToSleepInSeconds()
-            => _timeItTakesToGuestToSleepInSeconds;
+        public Vector3 GetPositionInLine() => _positionInLine;
 
-        public void DestroyGuest()
-            => Destroy(gameObject);
+        public Vector3 GetTaxiPosition() => _taxiPosition;
+
+        public void SetHasReachedLinePosition(bool hasReachedLinePosition) => HasReachedLinePosition = hasReachedLinePosition;
+
+        public float GetTimeItTakesToGuestToSleepInSeconds() => _timeItTakesToGuestToSleepInSeconds;
+
+        public void DestroyGuest() => Destroy(gameObject);
+        
+        protected override Vector3 GetNextDestination() => throw new System.NotImplementedException();
     }
 }

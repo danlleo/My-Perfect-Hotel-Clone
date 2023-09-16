@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Entities.Customer;
+using Entities.Employees.Maid;
 using Events;
 using InteractableObject;
 using StaticEvents.Room;
@@ -22,8 +24,8 @@ namespace Room
 
         private readonly HashSet<Interactable> _objectsToCleanHashSet = new();
 
-        private Maid.Maid _maidOccupied;
-        private Customer.Customer _customerOccupied;
+        private Maid _maidOccupied;
+        private Customer _customerOccupied;
         
         private void Awake()
         {
@@ -47,7 +49,7 @@ namespace Room
         public Vector3 GetBedPosition()
             => _bedTransform.position;
 
-        public void OccupyRoomWithGuest(Customer.Customer customer)
+        public void OccupyRoomWithGuest(Customer customer)
         {
             _customerOccupied = customer;
             
@@ -55,7 +57,7 @@ namespace Room
             SetIsNotAvailable();
         }
 
-        public void OccupyRoomWithMaid(Maid.Maid maid)
+        public void OccupyRoomWithMaid(Maid maid)
             => _maidOccupied = maid;
 
         public void TryFinishRoomCleaning(Interactable interactable)

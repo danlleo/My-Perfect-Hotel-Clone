@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Customer.StateMachine.States;
+using Entities.Customer.StateMachine.States;
 
-namespace Customer.StateMachine
+namespace Entities.Customer.StateMachine
 {
     public class CustomerStateFactory
     {
