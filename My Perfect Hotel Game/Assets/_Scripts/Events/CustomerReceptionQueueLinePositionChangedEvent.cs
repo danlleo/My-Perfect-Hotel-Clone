@@ -4,10 +4,12 @@ using UnityEngine;
 
 namespace Events
 {
-    [DisallowMultipleComponent] public class CustomerReceptionQueueLinePositionChangedEvent : MonoBehaviour, IEvent
+    [DisallowMultipleComponent]
+    public class CustomerReceptionQueueLinePositionChangedEvent : MonoBehaviour, IEvent
     {
         public event EventHandler Event;
 
-        public void Call(object sender) => Event?.Invoke(sender, EventArgs.Empty);
+        public void Call(object sender)
+            => Event?.Invoke(sender, EventArgs.Empty);
     }
 }
