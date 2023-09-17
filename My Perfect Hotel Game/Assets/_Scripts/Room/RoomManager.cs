@@ -12,7 +12,7 @@ namespace Room
 
         public Room GetAvailableRoom()
         {
-            foreach (var room in _availableRooms)
+            foreach (Room room in _availableRooms)
             {
                 if (room.IsAvailable)
                     return room;
@@ -23,7 +23,7 @@ namespace Room
 
         public bool HasAvailableRoom()
         {
-            foreach (var room in _availableRooms)
+            foreach (Room room in _availableRooms)
             {
                 if (room.IsAvailable)
                     return true;
@@ -36,7 +36,7 @@ namespace Room
         {
             uncleanRoom = null;
             
-            foreach (var room in _availableRooms)
+            foreach (Room room in _availableRooms)
             {
                 if (!room.IsRoomUnclean() || room.HasMaidOccupied()) continue;
                 

@@ -3,17 +3,18 @@ using UnityEngine;
 
 namespace Entities.Employees.Maid
 {
-    [DisallowMultipleComponent] [RequireComponent(typeof(Maid))]
+    [DisallowMultipleComponent]
+    [RequireComponent(typeof(Maid))]
     public class MaidStateManager : MonoBehaviour
     {
         public Maid CurrentMaid { get; private set; }
         
-        private MaidState _currentState;
-
         public AwaitingState AwaitingState = new();
         public CleaningState CleaningState = new();
         public MovingState MovingState = new();
 
+        private MaidState _currentState;
+        
         private void Awake()
         {
             CurrentMaid = GetComponent<Maid>();
@@ -36,6 +37,7 @@ namespace Entities.Employees.Maid
             _currentState.EnterState(this);
         }
 
-        private void SetDefaultState(MaidState targetState) => _currentState = targetState;
+        private void SetDefaultState(MaidState targetState) 
+            => _currentState = targetState;
     }
 }
