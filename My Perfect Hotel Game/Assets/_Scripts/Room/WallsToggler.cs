@@ -4,7 +4,7 @@ using Utilities;
 namespace Room
 {
     [RequireComponent(typeof(Room))]
-    public class WallsController : MonoBehaviour
+    public class WallsToggler : MonoBehaviour
     {
         [SerializeField] private Transform[] _wallsToRemoveOnUpgrade;
 
@@ -17,15 +17,8 @@ namespace Room
         {
             SetWallsActive(true);
         }
-        
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            EditorValidation.AreEnumerableValues(this, nameof(_wallsToRemoveOnUpgrade), _wallsToRemoveOnUpgrade);
-        }
-#endif
 
-        public void SetWallsActive(bool isActive)
+        private void SetWallsActive(bool isActive)
         {
             foreach (Transform wall in _wallsToRemoveOnUpgrade)
             {
@@ -33,5 +26,16 @@ namespace Room
                     wall.gameObject.SetActive(isActive);
             }
         }
+
+        #region Validation
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            EditorValidation.AreEnumerableValues(this, nameof(_wallsToRemoveOnUpgrade), _wallsToRemoveOnUpgrade);
+        }
+#endif
+
+        #endregion
     }
 }

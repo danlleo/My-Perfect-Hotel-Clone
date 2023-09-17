@@ -8,6 +8,12 @@ public class InteractManager : Singleton<InteractManager>
 {
     [Tooltip("Populate list with objects that will be possible to interact with")]
     [SerializeField] private List<Interactable> _interactableObjectList = new();
+    
+    public IEnumerable<Interactable> GetInteractableObjects() => _interactableObjectList;
+
+    public void AddInteractableObject(Interactable interactable) => _interactableObjectList.Add(interactable);
+
+    #region Validation
 
 #if UNITY_EDITOR
     private void OnValidate()
@@ -15,8 +21,6 @@ public class InteractManager : Singleton<InteractManager>
         EditorValidation.AreEnumerableValues(this, nameof(_interactableObjectList), _interactableObjectList);
     }
 #endif
-    
-    public IEnumerable<Interactable> GetInteractableObjects() => _interactableObjectList;
 
-    public void AddInteractableObject(Interactable interactable) => _interactableObjectList.Add(interactable);
+    #endregion
 }

@@ -20,13 +20,6 @@ namespace Entities.Customer
             //SetAgentStoppingDistance(_stoppingDistance);
         }
 
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            EditorValidation.IsPositiveValue(this, nameof(_movementSpeed), _movementSpeed);
-            EditorValidation.IsPositiveValue(this, nameof(_stoppingDistance), _stoppingDistance);
-        }
-#endif
 
         public void MoveTo(Vector3 destination)
         {
@@ -36,5 +29,17 @@ namespace Entities.Customer
         private void SetAgentMovementSpeed(float movementSpeed) => _navMeshAgent.speed = movementSpeed;
 
         private void SetAgentStoppingDistance(float stoppingDistance) => _navMeshAgent.stoppingDistance = stoppingDistance;
+
+        #region Validation
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            EditorValidation.IsPositiveValue(this, nameof(_movementSpeed), _movementSpeed);
+            EditorValidation.IsPositiveValue(this, nameof(_stoppingDistance), _stoppingDistance);
+        }
+#endif
     }
+
+        #endregion
 }

@@ -54,13 +54,6 @@ namespace Player
             _player.WalkingStateChangedEvent.Call(this, new PlayerWalkingStateChangedEventArgs(isWalking: _isWalking));
         }
         
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            EditorValidation.IsPositiveValue(this, nameof(_moveSpeed), _moveSpeed);
-            EditorValidation.IsPositiveValue(this, nameof(_collisionLayerMask), _collisionLayerMask);
-        }
-#endif
 
         /// <summary>
         /// Move player in the direction in which finger is facing  
@@ -87,5 +80,17 @@ namespace Player
         /// </summary>
         private void HandleRotation(Vector3 directionToRotate)
             => transform.forward = Vector3.Slerp(transform.forward, directionToRotate, Time.deltaTime * _moveSpeed * 1.5f);
+
+        #region Validation
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            EditorValidation.IsPositiveValue(this, nameof(_moveSpeed), _moveSpeed);
+            EditorValidation.IsPositiveValue(this, nameof(_collisionLayerMask), _collisionLayerMask);
+        }
+#endif
+
+        #endregion
     }
 }

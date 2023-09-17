@@ -1,5 +1,4 @@
 using UnityEngine;
-using Utilities;
 
 namespace UI.Helpers
 {
@@ -15,7 +14,7 @@ namespace UI.Helpers
         {
             if (_isInvert)
             {
-                Vector3 directionToCamera = (_cameraTransform.position - transform.position).normalized;
+                var directionToCamera = (_cameraTransform.position - transform.position).normalized;
                 transform.LookAt(transform.position + directionToCamera * -1);
             }
             else

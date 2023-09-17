@@ -38,14 +38,6 @@ namespace Entities.Customer
             Movement = GetComponent<Movement>();
         }
 
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            EditorValidation.IsPositiveValue(this, nameof(_timeItTakesToGuestToSleepInSeconds),
-                _timeItTakesToGuestToSleepInSeconds);
-        }
-#endif
-
         public void Initialize(ReceptionQueueLine receptionQueueLine, Vector3 positionInLine, Vector3 taxiPosition)
         {
             _receptionQueueLine = receptionQueueLine;
@@ -72,5 +64,17 @@ namespace Entities.Customer
         public void DestroyGuest() => Destroy(gameObject);
 
         protected override Vector3 GetNextDestination() => throw new NotImplementedException();
+
+        #region Validation
+        
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            EditorValidation.IsPositiveValue(this, nameof(_timeItTakesToGuestToSleepInSeconds),
+                _timeItTakesToGuestToSleepInSeconds);
+        }
+#endif
+
+        #endregion
     }
 }

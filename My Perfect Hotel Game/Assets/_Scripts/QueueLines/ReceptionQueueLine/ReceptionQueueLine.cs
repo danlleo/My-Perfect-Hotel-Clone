@@ -40,13 +40,7 @@ namespace QueueLines.ReceptionQueueLine
             CustomerSpawnedEvent.Event -= CustomerSpawnedEventOnOnCustomerSpawned;
         }
         
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            EditorValidation.IsPositiveValue(this, nameof(_maxGuestsLimitInQueueLine), _maxGuestsLimitInQueueLine, false);
-            EditorValidation.IsPositiveValue(this, nameof(_distanceBetweenGuestsInLine), _distanceBetweenGuestsInLine);
-        }
-#endif
+
 
         public bool IsLineFull()
             => _currentGuestsCountInLine == _maxGuestsLimitInQueueLine;
@@ -133,5 +127,17 @@ namespace QueueLines.ReceptionQueueLine
         {
             AddGuestToLine(customerSpawnedEventArgs.Customer);
         }
+
+        #region Validation
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            EditorValidation.IsPositiveValue(this, nameof(_maxGuestsLimitInQueueLine), _maxGuestsLimitInQueueLine, false);
+            EditorValidation.IsPositiveValue(this, nameof(_distanceBetweenGuestsInLine), _distanceBetweenGuestsInLine);
+        }
+#endif
+
+        #endregion
     }
 }

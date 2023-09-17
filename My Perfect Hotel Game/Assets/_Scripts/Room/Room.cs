@@ -47,14 +47,6 @@ namespace Room
         {
             LeftRoomEvent.Event -= CustomerLeftRoom_Event;
         }
-        
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            EditorValidation.IsNullValue(this, nameof(_bedTransform), _bedTransform);
-            EditorValidation.AreEnumerableValues(this, nameof(_roomObjectList), _roomObjectList);
-        }
-#endif
 
         public Vector3 GetBedPosition()
             => _bedTransform.position;
@@ -151,5 +143,17 @@ namespace Room
             ResetObjectsToCleanDictionary();
             RoomBecameAvailableToCleanStaticEvent.CallRoomBecameAvailableToCleanEvent(this);
         }
+
+        #region Validation
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            EditorValidation.IsNullValue(this, nameof(_bedTransform), _bedTransform);
+            EditorValidation.AreEnumerableValues(this, nameof(_roomObjectList), _roomObjectList);
+        }
+#endif
+
+        #endregion
     }
 }

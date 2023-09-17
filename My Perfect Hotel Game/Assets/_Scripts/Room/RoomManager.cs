@@ -9,13 +9,6 @@ namespace Room
     {
         [Tooltip("Populate with default rooms that are available when player starts a new game")]
         [SerializeField] private List<Room> _availableRooms;
-        
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            EditorValidation.AreEnumerableValues(this, nameof(_availableRooms), _availableRooms);
-        }
-#endif
 
         public Room GetAvailableRoom()
         {
@@ -55,5 +48,16 @@ namespace Room
 
             return false;
         }
+
+        #region Validation
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            EditorValidation.AreEnumerableValues(this, nameof(_availableRooms), _availableRooms);
+        }
+#endif
+
+        #endregion
     }
 }

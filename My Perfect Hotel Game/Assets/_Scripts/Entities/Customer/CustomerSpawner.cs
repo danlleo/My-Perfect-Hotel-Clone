@@ -34,16 +34,6 @@ namespace Entities.Customer
             Spawn();
         }
 
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            EditorValidation.IsNullValue(this, nameof(_receptionQueueLine), _receptionQueueLine);
-            EditorValidation.IsNullValue(this, nameof(_customerPrefab), _customerPrefab);
-            EditorValidation.IsNullValue(this, nameof(_spawnPoint), _spawnPoint);
-            EditorValidation.IsPositiveValue(this, nameof(_delaySpawnTime), _delaySpawnTime);
-        }
-#endif
-
         private void Spawn()
         {
             Customer guest = Instantiate(_customerPrefab, _spawnPoint.position, Quaternion.identity);
@@ -55,5 +45,19 @@ namespace Entities.Customer
         }
 
         private void ResetTimer() => _timer = 0f;
+
+        #region Validation
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            EditorValidation.IsNullValue(this, nameof(_receptionQueueLine), _receptionQueueLine);
+            EditorValidation.IsNullValue(this, nameof(_customerPrefab), _customerPrefab);
+            EditorValidation.IsNullValue(this, nameof(_spawnPoint), _spawnPoint);
+            EditorValidation.IsPositiveValue(this, nameof(_delaySpawnTime), _delaySpawnTime);
+        }
+#endif
+
+        #endregion
     }
 }

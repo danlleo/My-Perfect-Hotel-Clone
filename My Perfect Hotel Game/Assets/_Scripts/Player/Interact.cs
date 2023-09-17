@@ -12,7 +12,7 @@ namespace Player
         [Header("Interact Dependencies")]
         [Space(5)]
 
-        [FormerlySerializedAs("_detectInterctableObjectPoint")] [SerializeField] private Transform _detectInteractableObjectPoint;
+        [SerializeField] private Transform _detectInteractableObjectPoint;
 
         [Space(10)]
         [Header("Interact Params")]
@@ -30,22 +30,9 @@ namespace Player
         {
             PerformInteract();
         }
-
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            EditorValidation.IsPositiveRange(
-                this, 
-                nameof(_threshold),
-                _threshold, 
-                nameof(_threshold),
-                1f);
-            EditorValidation.IsPositiveValue(this, nameof(_interactDistance), _interactDistance);
-        }
-#endif
-
+        
        private void PerformInteract()
-        {
+       {
             var ray = new Ray(_detectInteractableObjectPoint.position, _detectInteractableObjectPoint.forward);
             
             foreach (var interactableObject in InteractManager.Instance.GetInteractableObjects())
@@ -63,6 +50,23 @@ namespace Player
                 _interactable = interactableObject;
                 _interactable.Interact();
             }
-        }
+       }
+
+       #region Validation
+
+#if UNITY_EDITOR
+       private void OnValidate()
+       {
+           EditorValidation.IsPositiveRange(
+               this, 
+               nameof(_threshold),
+               _threshold, 
+               nameof(_threshold),
+               1f);
+           EditorValidation.IsPositiveValue(this, nameof(_interactDistance), _interactDistance);
+       }
+#endif
+
+       #endregion
     }
 }

@@ -8,13 +8,6 @@ namespace UI.Helpers
     {
         [SerializeField] private Image _background;
         
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            EditorValidation.IsNullValue(this, nameof(_background), _background);
-        }
-#endif
-        
         public void UpdateProgressBar(float timer, float maxTime)
         {
             float t = timer / maxTime;
@@ -24,5 +17,16 @@ namespace UI.Helpers
 
         public void ClearProgressBar()
             => _background.fillAmount = 0;
+
+        #region Validation
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            EditorValidation.IsNullValue(this, nameof(_background), _background);
+        }
+#endif        
+
+        #endregion
     }
 }

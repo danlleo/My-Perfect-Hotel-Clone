@@ -24,18 +24,9 @@ public class MoneyStacker : MonoBehaviour
         StackMoney();
     }
     
-#if UNITY_EDITOR
-    private void OnValidate()
-    {
-        EditorValidation.IsPositiveValue(this, nameof(_moneyBillGapY), _moneyBillGapY);
-        EditorValidation.IsNullValue(this, nameof(_moneyContainerTransform), _moneyContainerTransform);
-        EditorValidation.IsNullValue(this, nameof(_moneyBillPrefab), _moneyBillPrefab);
-    }
-#endif
-    
     private void StackMoney()
     {
-        Vector3 initialRotation = _moneyContainerTransform.transform.eulerAngles;
+        var initialRotation = _moneyContainerTransform.transform.eulerAngles;
         _moneyContainerTransform.transform.eulerAngles = Vector3.zero;
         
         for (var y = 0; y < _size.y; y++)
@@ -59,4 +50,17 @@ public class MoneyStacker : MonoBehaviour
         
         _moneyContainerTransform.transform.eulerAngles = initialRotation;
     }
+
+    #region Validation
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        EditorValidation.IsPositiveValue(this, nameof(_moneyBillGapY), _moneyBillGapY);
+        EditorValidation.IsNullValue(this, nameof(_moneyContainerTransform), _moneyContainerTransform);
+        EditorValidation.IsNullValue(this, nameof(_moneyBillPrefab), _moneyBillPrefab);
+    }
+#endif
+
+    #endregion
 }

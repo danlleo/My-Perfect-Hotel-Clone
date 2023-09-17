@@ -34,13 +34,6 @@ namespace InteractableObject
             _room.LeftRoomEvent.Event -= Room_LeftRoomEvent;
         }
 
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            EditorValidation.IsNullValue(this, nameof(_room), _room);
-            EditorValidation.IsNullValue(this, nameof(_progressBarUI), _progressBarUI);
-        }
-#endif
 
         public override void Interact()
         {
@@ -99,5 +92,17 @@ namespace InteractableObject
         private void IncreaseTimer() => _timer += Time.deltaTime;
 
         private void ResetTimer() => _timer = 0f;
+
+        #region Validation
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            EditorValidation.IsNullValue(this, nameof(_room), _room);
+            EditorValidation.IsNullValue(this, nameof(_progressBarUI), _progressBarUI);
+        }
+#endif
+
+        #endregion
     }
 }
