@@ -77,7 +77,7 @@ namespace Room
 
         public bool IsRoomUnclean()
         {
-            foreach (var keyValuePair in _objectsToCleanDictionary)
+            foreach (KeyValuePair<Interactable, bool> keyValuePair in _objectsToCleanDictionary)
             {
                 if (!_objectsToCleanDictionary.TryGetValue(keyValuePair.Key, out bool isClean)) continue;
                 
@@ -96,7 +96,7 @@ namespace Room
 
         public Interactable TryGetUncleanObject()
         {
-            foreach (var interactable in _roomObjectList)
+            foreach (Interactable interactable in _roomObjectList)
             {
                 if (!_objectsToCleanDictionary.TryGetValue(interactable, out bool isClean)) continue;
                 
@@ -124,13 +124,13 @@ namespace Room
 
         private void ResetObjectsToCleanDictionary()
         {
-            foreach (var interactable in _roomObjectList)
+            foreach (Interactable interactable in _roomObjectList)
                 _objectsToCleanDictionary[interactable] = false;
         }
 
         private void CopyItemsFromListToDictionary()
         {
-            foreach (var interactable in _roomObjectList)
+            foreach (Interactable interactable in _roomObjectList)
                 _objectsToCleanDictionary.Add(interactable, false);
         }
 
