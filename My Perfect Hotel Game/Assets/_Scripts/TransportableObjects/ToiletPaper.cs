@@ -7,18 +7,18 @@ namespace TransportableObjects
     {
         public override void PickUp()
         {
-            Player.Player player = GameGlobalStorage.Instance.GetPlayer();
+            Player.Inventory inventory = GameGlobalStorage.Instance.GetPlayer().GetInventory();
             
-            player.AddCarryingObject(this);
+            inventory.AddCarryingObject(this);
             
             transform.DOLocalMove(Vector3.zero, PICKUP_SPEED);
         }
         
         public override void Drop()
         {
-            Player.Player player = GameGlobalStorage.Instance.GetPlayer();
+            Player.Inventory inventory = GameGlobalStorage.Instance.GetPlayer().GetInventory();
 
-            player.RemoveCarryingObject();
+            inventory.RemoveCarryingObject();
             
             transform.DOLocalMove(Vector3.zero, PICKUP_SPEED).OnComplete(() => Destroy(gameObject));
         }

@@ -11,14 +11,14 @@ namespace InteractableObject
 
         public override void Interact()
         {
-            Player.Player player = GameGlobalStorage.Instance.GetPlayer();
+            Player.Inventory inventory = GameGlobalStorage.Instance.GetPlayer().GetInventory();
             
-            if (player.GetCarryingObjectsCount() >= Player.Player.MAX_CARRY_COUNT)
+            if (inventory.GetCarryingObjectsCount() >= Player.Player.MAX_CARRY_COUNT)
                 return;
             
             Transportable transportableObject = Instantiate(_objectToSpawn, _spawnPoint.transform.position, Quaternion.identity);
             
-            transportableObject.transform.SetParent(player.GetCarryPoint());
+            transportableObject.transform.SetParent(inventory.GetCarryPoint());
 
             transportableObject.PickUp();
         }

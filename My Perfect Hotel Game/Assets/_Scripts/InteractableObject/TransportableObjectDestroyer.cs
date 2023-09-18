@@ -10,12 +10,12 @@ namespace InteractableObject
         
         public override void Interact()
         {
-            Player.Player player = GameGlobalStorage.Instance.GetPlayer();
+            Player.Inventory inventory = GameGlobalStorage.Instance.GetPlayer().GetInventory();
             
-            if (player.GetCarryingObjectsCount() <= 0)
+            if (inventory.GetCarryingObjectsCount() <= 0)
                 return;
 
-            Transportable transportableObject = player.GetCarryingObject();
+            Transportable transportableObject = inventory.GetCarryingObject();
             transportableObject.transform.SetParent(_destroyPoint);
 
             transportableObject.Drop();
