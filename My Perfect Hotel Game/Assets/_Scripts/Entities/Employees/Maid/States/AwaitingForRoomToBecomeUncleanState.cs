@@ -2,7 +2,7 @@ using StaticEvents.Room;
 
 namespace Entities.Employees.Maid.States
 {
-    public class AwaitingState : MaidState
+    public class AwaitingForRoomToBecomeUncleanState : MaidState
     {
         private MaidStateManager _maidStateManager;
 
