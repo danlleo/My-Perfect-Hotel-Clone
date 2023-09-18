@@ -1,5 +1,6 @@
 using Events;
 using InteractableObject;
+using StaticEvents.Room;
 using UnityEngine;
 
 namespace Entities.Employees.Maid.States
