@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Entities.Employees.Maid.States
 {
-    public class MovingState : MaidState
+    public class MovingToUncleanObjectState : MaidState
     {
         private readonly float _stopMovingThreshold = .35f;
         
@@ -43,6 +43,8 @@ namespace Entities.Employees.Maid.States
             maidStateManager.SwitchState(maidStateManager.CleaningState);
         }
 
+        #region Events
+
         private void ObjectCleanedEventOnEvent(object sender, RoomObjectCleanedEventArgs e)
         {
             if (!ReferenceEquals(e.CleanedObject, _maidStateManager.CurrentMaid.ObjectToClean)) return;
@@ -50,5 +52,7 @@ namespace Entities.Employees.Maid.States
             _maidStateManager.CurrentMaid.Room.ObjectCleanedEvent.Event -= ObjectCleanedEventOnEvent;
             _maidStateManager.SwitchState(_maidStateManager.AwaitingState);
         }
+
+        #endregion
     }
 }

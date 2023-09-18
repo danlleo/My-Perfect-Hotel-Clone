@@ -17,17 +17,16 @@ namespace Entities.Employees.Maid.States
             _maidStateManager = maidStateManager;
         }
 
-        public override void UpdateState(MaidStateManager maidStateManager)
-        {
-            // ...
-        }
+        public override void UpdateState(MaidStateManager maidStateManager) { }
 
         public override void LeaveState(MaidStateManager maidStateManager)
         {
             RoomBecameAvailableToCleanStaticEvent.OnRoomBecameAvailableToClean -= RoomBecameAvailableToClean_StaticEvent;
             
-            maidStateManager.SwitchState(maidStateManager.MovingState);
+            maidStateManager.SwitchState(maidStateManager.MovingToUncleanObjectState);
         }
+
+        #region Events
 
         private void RoomBecameAvailableToClean_StaticEvent(
             RoomBecameAvailableToCleanStaticEventArgs roomBecameAvailableToCleanStaticEventArgs)
@@ -45,5 +44,7 @@ namespace Entities.Employees.Maid.States
 
             LeaveState(_maidStateManager);
         }
+
+        #endregion
     }
 }

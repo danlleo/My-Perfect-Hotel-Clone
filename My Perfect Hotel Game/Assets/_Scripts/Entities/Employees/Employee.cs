@@ -5,14 +5,14 @@ namespace Entities.Employees
 {
     public abstract class Employee : Entity
     {
-        [SerializeField] private Transform _idlePoint;
+        [SerializeField] protected Transform IdlePoint;
 
         #region Validation
 
 #if UNITY_EDITOR
         private void OnValidate()
         {
-            EditorValidation.IsNullValue(this, nameof(_idlePoint), _idlePoint);
+            EditorValidation.IsNullValue(this, nameof(IdlePoint), IdlePoint);
         }
 #endif
 

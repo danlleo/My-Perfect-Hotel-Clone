@@ -42,7 +42,13 @@ namespace Entities.Employees.Maid
             => ObjectToClean = null;
         
         public void RemoveRoomForCleaning() => Room = null;
+
+        public Transform GetIdlePoint()
+            => IdlePoint;
         
-        protected override Vector3 GetNextDestination() => throw new NotImplementedException();
+        protected override Vector3 GetNextDestination()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

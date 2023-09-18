@@ -11,7 +11,8 @@ namespace Entities.Employees.Maid
         
         public AwaitingState AwaitingState = new();
         public CleaningState CleaningState = new();
-        public MovingState MovingState = new();
+        public MovingToUncleanObjectState MovingToUncleanObjectState = new();
+        public MovingToIdlePointState MovingToIdlePointState = new();
 
         private MaidState _currentState;
         

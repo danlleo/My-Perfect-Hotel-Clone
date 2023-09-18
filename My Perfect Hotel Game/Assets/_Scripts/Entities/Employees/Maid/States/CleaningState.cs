@@ -55,7 +55,7 @@ namespace Entities.Employees.Maid.States
             // If another unclean object in this room was found, perform actions
             _maidStateManager.CurrentMaid.SetObjectToClean(uncleanObject);
             LeaveState(_maidStateManager);
-            _maidStateManager.SwitchState(_maidStateManager.MovingState);
+            _maidStateManager.SwitchState(_maidStateManager.MovingToUncleanObjectState);
         }
 
         private void RoomCleaned_StaticEvent(RoomCleanedStaticEventArgs roomCleanedStaticEventArgs)
@@ -78,13 +78,14 @@ namespace Entities.Employees.Maid.States
                 _maidStateManager.CurrentMaid.Room.OccupyRoomWithMaid(_maidStateManager.CurrentMaid);
                 
                 LeaveState(_maidStateManager);
-                _maidStateManager.SwitchState(_maidStateManager.MovingState);
+                _maidStateManager.SwitchState(_maidStateManager.MovingToUncleanObjectState);
                 
                 return;
             }
             
+            // If we didn't find another unclean room, proceed to moving to idle point state
             LeaveState(_maidStateManager);
-            _maidStateManager.SwitchState(_maidStateManager.AwaitingState);
+            _maidStateManager.SwitchState(_maidStateManager.MovingToIdlePointState);
         }
 
         #endregion
