@@ -1,9 +1,5 @@
-using System.Collections.Generic;
 using Events;
-using JetBrains.Annotations;
-using TransportableObjects;
 using UnityEngine;
-using Utilities;
 
 namespace Player
 {
@@ -13,6 +9,8 @@ namespace Player
     [RequireComponent(typeof(Inventory))]
     [RequireComponent(typeof(AnimationsController))]
     [RequireComponent(typeof(PlayerWalkingStateChangedEvent))]
+    [RequireComponent(typeof(PlayerPickedAnObjectEvent))]
+    [RequireComponent(typeof(PlayerDroppedAnObjectEvent))]
     [DisallowMultipleComponent]
     public class Player : MonoBehaviour
     {
@@ -20,11 +18,15 @@ namespace Player
         public const float HEIGHT = 1f;
         
         [HideInInspector] public PlayerWalkingStateChangedEvent WalkingStateChangedEvent;
+        [HideInInspector] public PlayerPickedAnObjectEvent PickedAnObjectEvent;
+        [HideInInspector] public PlayerDroppedAnObjectEvent DroppedAnObjectEvent;
         private Inventory _inventory;
 
         private void Awake()
         {
             WalkingStateChangedEvent = GetComponent<PlayerWalkingStateChangedEvent>();
+            PickedAnObjectEvent = GetComponent<PlayerPickedAnObjectEvent>();
+            DroppedAnObjectEvent = GetComponent<PlayerDroppedAnObjectEvent>();
             _inventory = GetComponent<Inventory>();
         }
 

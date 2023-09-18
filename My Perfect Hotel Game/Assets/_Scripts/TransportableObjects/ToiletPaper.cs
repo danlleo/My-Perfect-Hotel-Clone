@@ -26,8 +26,7 @@ namespace TransportableObjects
             
             mySequence.Append(transform.DOScale(Vector3.zero, PICKUP_SPEED));
             
-            mySequence.onComplete = () => Destroy(gameObject);
-
+            mySequence.OnComplete(() => Destroy(gameObject));
         }
     }
 }
