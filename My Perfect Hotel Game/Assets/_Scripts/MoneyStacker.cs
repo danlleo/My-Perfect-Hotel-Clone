@@ -40,7 +40,7 @@ public class MoneyStacker : MonoBehaviour
             Money moneyBill = Instantiate(_moneyBillPrefab, _moneyContainerTransform);
             moneyBill.transform.localPosition = spawnPosition;
             
-            InteractManager.Instance.AddInteractableObject(moneyBill);
+            InteractableObjectsStorage.Instance.AddInteractableObject(moneyBill);
         }
     }
 

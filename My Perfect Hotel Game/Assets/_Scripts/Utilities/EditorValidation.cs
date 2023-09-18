@@ -18,7 +18,7 @@ namespace Utilities
         {
             if (objectToCheck != null) return false;
             
-            Debug.Log(fieldName + " is null and must contain a value in object " + thisObject.name);
+            Debug.LogWarning(fieldName + " is null and must contain a value in object " + thisObject.name);
             
             return true;
         }
@@ -36,7 +36,7 @@ namespace Utilities
 
             if (enumerableObjectToCheck == null)
             {
-                Debug.Log(fieldName + " is null in object " + thisObject.name);
+                Debug.LogWarning(fieldName + " is null in object " + thisObject.name);
                 return true;
             }
 

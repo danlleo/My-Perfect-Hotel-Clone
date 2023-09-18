@@ -1,4 +1,5 @@
 using InteractableObject;
+using TransportableObjects;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Utilities;
@@ -25,6 +26,7 @@ namespace Player
         [SerializeField] private float _interactDistance = 0.25f;
 
         private Interactable _interactable;
+        private Transportable _transportable;
 
         private void Update()
         {
@@ -35,7 +37,7 @@ namespace Player
        {
             var ray = new Ray(_detectInteractableObjectPoint.position, _detectInteractableObjectPoint.forward);
             
-            foreach (var interactableObject in InteractManager.Instance.GetInteractableObjects())
+            foreach (var interactableObject in InteractableObjectsStorage.Instance.GetInteractableObjects())
             {
                 var rayDirection = ray.direction;
                 var directionFromRayOriginToSelectableObject = interactableObject.transform.position - ray.origin;

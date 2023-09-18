@@ -4,7 +4,7 @@ using Misc;
 using UnityEngine;
 using Utilities;
 
-public class InteractManager : Singleton<InteractManager>
+public class InteractableObjectsStorage : Singleton<InteractableObjectsStorage>
 {
     [Tooltip("Populate list with objects that will be possible to interact with")]
     [SerializeField] private List<Interactable> _interactableObjectList = new();
