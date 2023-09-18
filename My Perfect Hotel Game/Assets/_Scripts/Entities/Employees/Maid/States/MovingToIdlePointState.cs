@@ -1,3 +1,4 @@
+using StaticEvents.Room;
 using UnityEngine;
 
 namespace Entities.Employees.Maid.States
@@ -17,6 +18,8 @@ namespace Entities.Employees.Maid.States
             _endPosition = maidStateManager.CurrentMaid.GetIdlePoint().position;
             
             maidStateManager.CurrentMaid.Movement.MoveTo(_endPosition);
+            
+            RoomBecameAvailableToCleanStaticEvent.OnRoomBecameAvailableToClean += RoomBecameAvailableToCleanStaticEventOnOnRoomBecameAvailableToClean;
         }
 
         public override void UpdateState(MaidStateManager maidStateManager)
@@ -31,7 +34,18 @@ namespace Entities.Employees.Maid.States
 
         public override void LeaveState(MaidStateManager maidStateManager)
         {
+            RoomBecameAvailableToCleanStaticEvent.OnRoomBecameAvailableToClean -= RoomBecameAvailableToCleanStaticEventOnOnRoomBecameAvailableToClean;
+            
             maidStateManager.SwitchState(maidStateManager.AwaitingState);
         }
+
+        #region Events
+
+        private void RoomBecameAvailableToCleanStaticEventOnOnRoomBecameAvailableToClean(RoomBecameAvailableToCleanStaticEventArgs obj)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        #endregion
     }
 }
