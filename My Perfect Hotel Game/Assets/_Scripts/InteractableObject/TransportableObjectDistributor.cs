@@ -13,7 +13,7 @@ namespace InteractableObject
         {
             Player.Inventory inventory = GameGlobalStorage.Instance.GetPlayer().GetInventory();
             
-            if (inventory.GetCarryingObjectsCount() >= Player.Player.MAX_CARRY_COUNT)
+            if (inventory.GetCarryingObjectsCount() >= Player.Inventory.MAX_CARRY_COUNT)
                 return;
             
             Transportable transportableObject = Instantiate(_objectToSpawn, _spawnPoint.transform.position, Quaternion.identity);
