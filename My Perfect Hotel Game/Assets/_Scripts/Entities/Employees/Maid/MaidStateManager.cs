@@ -9,7 +9,7 @@ namespace Entities.Employees.Maid
     {
         public Maid CurrentMaid { get; private set; }
         
-        public AwaitingState AwaitingState = new();
+        public AwaitingForRoomToBecomeUncleanState AwaitingForRoomToBecomeUncleanState = new();
         public CleaningState CleaningState = new();
         public MovingToUncleanObjectState MovingToUncleanObjectState = new();
         public MovingToIdlePointState MovingToIdlePointState = new();
@@ -23,7 +23,7 @@ namespace Entities.Employees.Maid
 
         private void Start()
         {
-            SetDefaultState(AwaitingState);
+            SetDefaultState(AwaitingForRoomToBecomeUncleanState);
             _currentState.EnterState(this);
         }
 

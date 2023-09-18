@@ -34,7 +34,7 @@ namespace Entities.Employees.Maid.States
         {
             RoomBecameAvailableToCleanStaticEvent.OnRoomBecameAvailableToClean -= RoomBecameAvailableToClean_StaticEvent;
             
-            maidStateManager.SwitchState(maidStateManager.AwaitingState);
+            maidStateManager.SwitchState(maidStateManager.AwaitingForRoomToBecomeUncleanState);
         }
 
         #region Events
