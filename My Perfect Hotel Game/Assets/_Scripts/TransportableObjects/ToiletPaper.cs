@@ -19,8 +19,15 @@ namespace TransportableObjects
             Player.Inventory inventory = GameGlobalStorage.Instance.GetPlayer().GetInventory();
 
             inventory.RemoveCarryingObject();
+
+            Sequence mySequence = DOTween.Sequence();
             
-            transform.DOLocalMove(Vector3.zero, PICKUP_SPEED).OnComplete(() => Destroy(gameObject));
+            mySequence.Append(transform.DOLocalMove(Vector3.zero, PICKUP_SPEED));
+            
+            mySequence.Append(transform.DOScale(Vector3.zero, PICKUP_SPEED));
+            
+            mySequence.onComplete = () => Destroy(gameObject);
+
         }
     }
 }
