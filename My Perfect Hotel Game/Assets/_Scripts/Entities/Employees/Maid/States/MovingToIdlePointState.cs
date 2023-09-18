@@ -19,7 +19,7 @@ namespace Entities.Employees.Maid.States
             
             maidStateManager.CurrentMaid.Movement.MoveTo(_endPosition);
             
-            RoomBecameAvailableToCleanStaticEvent.OnRoomBecameAvailableToClean += RoomBecameAvailableToCleanStaticEventOnOnRoomBecameAvailableToClean;
+            RoomBecameAvailableToCleanStaticEvent.OnRoomBecameAvailableToClean += RoomBecameAvailableToClean_StaticEvent;
         }
 
         public override void UpdateState(MaidStateManager maidStateManager)
@@ -34,16 +34,27 @@ namespace Entities.Employees.Maid.States
 
         public override void LeaveState(MaidStateManager maidStateManager)
         {
-            RoomBecameAvailableToCleanStaticEvent.OnRoomBecameAvailableToClean -= RoomBecameAvailableToCleanStaticEventOnOnRoomBecameAvailableToClean;
+            RoomBecameAvailableToCleanStaticEvent.OnRoomBecameAvailableToClean -= RoomBecameAvailableToClean_StaticEvent;
             
             maidStateManager.SwitchState(maidStateManager.AwaitingState);
         }
 
         #region Events
 
-        private void RoomBecameAvailableToCleanStaticEventOnOnRoomBecameAvailableToClean(RoomBecameAvailableToCleanStaticEventArgs obj)
+        private void RoomBecameAvailableToClean_StaticEvent(RoomBecameAvailableToCleanStaticEventArgs roomBecameAvailableToCleanStaticEventArgs)
         {
-            throw new System.NotImplementedException();
+            if (_maidStateManager.CurrentMaid.HasOccupiedRoom())
+                return;
+            
+            if (roomBecameAvailableToCleanStaticEventArgs.Room.HasMaidOccupied())
+                return;
+            
+            _maidStateManager.CurrentMaid.SetRoomForCleaning(roomBecameAvailableToCleanStaticEventArgs.Room);
+            _maidStateManager.CurrentMaid.Room.OccupyRoomWithMaid(_maidStateManager.CurrentMaid);
+            
+            RoomBecameAvailableToCleanStaticEvent.OnRoomBecameAvailableToClean -= RoomBecameAvailableToClean_StaticEvent;
+            
+            _maidStateManager.SwitchState(_maidStateManager.MovingToUncleanObjectState);
         }
 
         #endregion
