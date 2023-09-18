@@ -16,7 +16,6 @@ namespace Player
     [DisallowMultipleComponent]
     public class Player : MonoBehaviour
     {
-        public const int MAX_CARRY_COUNT = 3;
         public const float RADIUS = .5f;
         public const float HEIGHT = 1f;
         
@@ -26,6 +25,7 @@ namespace Player
         private void Awake()
         {
             WalkingStateChangedEvent = GetComponent<PlayerWalkingStateChangedEvent>();
+            _inventory = GetComponent<Inventory>();
         }
 
         public Inventory GetInventory() => _inventory;

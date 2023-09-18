@@ -1,6 +1,4 @@
-#nullable enable
 using System.Collections.Generic;
-using JetBrains.Annotations;
 using TransportableObjects;
 using UnityEngine;
 using Utilities;
@@ -11,18 +9,20 @@ namespace Player
     [RequireComponent(typeof(Player))]
     public class Inventory : MonoBehaviour
     {
+        public const int MAX_CARRY_COUNT = 3;
+        
         [SerializeField] private Transform _carryPointTransform;
-        [NotNull] private List<Transportable> _carryingObjectsList = new();
+        private readonly Stack<Transportable> _carryingObjectsList = new();
         
         public Transform GetCarryPoint() => _carryPointTransform;
 
-        public Transportable GetCarryingObject() => _carryingObjectsList[^1];
+        public Transportable GetCarryingObject() => _carryingObjectsList.Peek();
         
         public int GetCarryingObjectsCount() => _carryingObjectsList.Count;
 
-        public void AddCarryingObject(Transportable transportable) => _carryingObjectsList.Add(transportable);
+        public void AddCarryingObject(Transportable transportable) => _carryingObjectsList.Push(transportable);
 
-        public void RemoveCarryingObject() => _carryingObjectsList.RemoveAt(_carryingObjectsList.Count - 1);
+        public void RemoveCarryingObject() => _carryingObjectsList.Pop();
 
         #region Validation
 
