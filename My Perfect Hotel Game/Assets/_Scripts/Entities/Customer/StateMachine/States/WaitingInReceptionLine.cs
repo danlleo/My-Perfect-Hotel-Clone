@@ -11,36 +11,40 @@ namespace Entities.Customer.StateMachine.States
         {
             CurrentContext.Customer.SetHasReachedLinePosition(true);
 
-            CurrentContext.Customer.CustomerAppointedEvent.Event += CustomerAppointedEvent;
+            CurrentContext.Customer.CustomerAppointedEvent.Event += CustomerAppointed_Event;
 
             CurrentContext.Customer.CustomerReceptionQueueLinePositionChangedEvent.Event +=
-                CustomerReceptionQueueLinePositionChangedEvent;
+                CustomerReceptionQueueLinePositionChanged_Event;
         }
 
         public override void ExitState()
         {
             CurrentContext.Customer.SetHasReachedLinePosition(false);
 
-            CurrentContext.Customer.CustomerAppointedEvent.Event -= CustomerAppointedEvent;
+            CurrentContext.Customer.CustomerAppointedEvent.Event -= CustomerAppointed_Event;
 
             CurrentContext.Customer.CustomerReceptionQueueLinePositionChangedEvent.Event -=
-                CustomerReceptionQueueLinePositionChangedEvent;
+                CustomerReceptionQueueLinePositionChanged_Event;
         }
 
         public override void UpdateState() { }
 
         public override void CheckSwitchStates() { }
 
-        private void CustomerAppointedEvent(object sender, EventArgs _)
+        #region Events
+
+        private void CustomerAppointed_Event(object sender, EventArgs _)
         {
             SwitchState(Factory.WalkingToRoomBed());
         }
 
-        private void CustomerReceptionQueueLinePositionChangedEvent(object sender, EventArgs _)
+        private void CustomerReceptionQueueLinePositionChanged_Event(object sender, EventArgs _)
         {
             CurrentContext.Customer.SetHasReachedLinePosition(false);
 
             SwitchState(Factory.WalkingToReceptionQueueLine());
         }
+
+        #endregion
     }
 }

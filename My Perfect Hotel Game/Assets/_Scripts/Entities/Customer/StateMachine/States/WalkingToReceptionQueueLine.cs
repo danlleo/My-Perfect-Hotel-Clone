@@ -17,7 +17,7 @@ namespace Entities.Customer.StateMachine.States
         public override void EnterState()
         {
             CurrentContext.Customer.CustomerReceptionQueueLinePositionChangedEvent.Event +=
-                CustomerReceptionQueueLinePositionChangedEvent;
+                CustomerReceptionQueueLinePositionChanged_Event;
 
             _endPosition = CurrentContext.Customer.GetPositionInLine();
         }
@@ -25,7 +25,7 @@ namespace Entities.Customer.StateMachine.States
         public override void ExitState()
         {
             CurrentContext.Customer.CustomerReceptionQueueLinePositionChangedEvent.Event -=
-                CustomerReceptionQueueLinePositionChangedEvent;
+                CustomerReceptionQueueLinePositionChanged_Event;
         }
 
         public override void UpdateState()
@@ -40,9 +40,13 @@ namespace Entities.Customer.StateMachine.States
                 SwitchState(Factory.Waiting());
         }
 
-        private void CustomerReceptionQueueLinePositionChangedEvent(object sender, EventArgs e)
+        #region Events
+
+        private void CustomerReceptionQueueLinePositionChanged_Event(object sender, EventArgs e)
         {
             _endPosition = CurrentContext.Customer.GetPositionInLine();
         }
+
+        #endregion
     }
 }

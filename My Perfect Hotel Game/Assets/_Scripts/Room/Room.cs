@@ -92,8 +92,8 @@ namespace Room
         public bool HasMaidOccupied()
             => _maidOccupied != null;
 
-        public bool HasCustomerOccupied()
-            => _customerOccupied != null;
+        public Maid GetMaidOccupied()
+            => _maidOccupied;
 
         public bool TryGetUncleanObject(out Interactable uncleanObject)
         {

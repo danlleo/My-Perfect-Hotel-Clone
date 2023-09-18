@@ -38,8 +38,6 @@ namespace Room
             
             foreach (Room room in _availableRooms)
             {
-                print("Is Room " + room.name + " Unclean:" + room.IsRoomUnclean());
-                
                 if (!room.IsRoomUnclean() || room.HasMaidOccupied()) continue;
                 
                 uncleanRoom = room;

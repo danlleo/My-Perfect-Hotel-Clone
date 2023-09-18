@@ -73,12 +73,6 @@ namespace InteractableObject
             return true;
         }
 
-        private void Room_LeftRoomEvent(object sender, EventArgs e)
-        {
-            _isInteractable = true;
-            _progressBarUI.gameObject.SetActive(true);
-        }
-
         private void Clean()
         {
             _isInteractable = false;
@@ -91,6 +85,16 @@ namespace InteractableObject
         private void IncreaseTimer() => _timer += Time.deltaTime;
 
         private void ResetTimer() => _timer = 0f;
+
+        #region Events
+
+        private void Room_LeftRoomEvent(object sender, EventArgs e)
+        {
+            _isInteractable = true;
+            _progressBarUI.gameObject.SetActive(true);
+        }
+
+        #endregion
 
         #region Validation
 

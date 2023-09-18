@@ -3,7 +3,6 @@ using Events;
 using InteractableObject;
 using Room;
 using StaticEvents.Room;
-using UnityEngine;
 
 namespace Entities.Employees.Maid.States
 {
@@ -13,8 +12,6 @@ namespace Entities.Employees.Maid.States
 
         public override void EnterState(MaidStateManager maidStateManager)
         {
-            Debug.Log("Entered CleaningState");
-
             _maidStateManager = maidStateManager;
             _maidStateManager.CurrentMaid.MaidRemovedFromRoomEvent.Event += MaidRemovedFromRoom_Event;
             _maidStateManager.CurrentMaid.Room.ObjectCleanedEvent.Event += ObjectCleaned_Event;

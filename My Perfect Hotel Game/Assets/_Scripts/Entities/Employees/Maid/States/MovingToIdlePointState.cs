@@ -12,8 +12,6 @@ namespace Entities.Employees.Maid.States
     
         public override void EnterState(MaidStateManager maidStateManager)
         {
-            Debug.Log("Entered MovingToIdlePointState");
-            
             _maidStateManager = maidStateManager;
             _endPosition = maidStateManager.CurrentMaid.GetIdlePoint().position;
             

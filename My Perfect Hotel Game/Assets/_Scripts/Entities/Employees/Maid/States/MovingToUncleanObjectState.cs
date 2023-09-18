@@ -1,6 +1,6 @@
 using Events;
 using InteractableObject;
-using StaticEvents.Room;
+using Room;
 using UnityEngine;
 
 namespace Entities.Employees.Maid.States
@@ -24,7 +24,7 @@ namespace Entities.Employees.Maid.States
             maidStateManager.CurrentMaid.SetObjectToClean(uncleanObject);
             _endPosition = new Vector3(uncleanObjectPosition.x, 0f, uncleanObjectPosition.z);
             
-            maidStateManager.CurrentMaid.Room.ObjectCleanedEvent.Event += ObjectCleanedEventOnEvent;
+            maidStateManager.CurrentMaid.Room.ObjectCleanedEvent.Event += ObjectCleaned_Event;
             maidStateManager.CurrentMaid.Movement.MoveTo(_endPosition);
         }
 
@@ -40,18 +40,45 @@ namespace Entities.Employees.Maid.States
 
         public override void LeaveState(MaidStateManager maidStateManager)
         {
-            maidStateManager.CurrentMaid.Room.ObjectCleanedEvent.Event -= ObjectCleanedEventOnEvent;
+            maidStateManager.CurrentMaid.Room.ObjectCleanedEvent.Event -= ObjectCleaned_Event;
             maidStateManager.SwitchState(maidStateManager.CleaningState);
         }
 
         #region Events
 
-        private void ObjectCleanedEventOnEvent(object sender, RoomObjectCleanedEventArgs e)
+        private void ObjectCleaned_Event(object sender, RoomObjectCleanedEventArgs roomObjectCleanedEventArgs)
         {
-            if (!ReferenceEquals(e.CleanedObject, _maidStateManager.CurrentMaid.ObjectToClean)) return;
+            if (!ReferenceEquals(roomObjectCleanedEventArgs.CleanedObject, _maidStateManager.CurrentMaid.ObjectToClean)) 
+                return;
             
-            _maidStateManager.CurrentMaid.Room.ObjectCleanedEvent.Event -= ObjectCleanedEventOnEvent;
-            _maidStateManager.SwitchState(_maidStateManager.AwaitingState);
+            if (!_maidStateManager.CurrentMaid.Room.TryGetUncleanObject(out Interactable uncleanObject))
+            {
+                if (RoomManager.Instance.TryGetUncleanRoom(out Room.Room uncleanRoom))
+                {
+                    if (_maidStateManager.CurrentMaid.HasOccupiedRoom())
+                        return;
+
+                    if (uncleanRoom.HasMaidOccupied())
+                        return;
+
+                    _maidStateManager.CurrentMaid.RemoveObjectToClean();
+                    _maidStateManager.CurrentMaid.SetRoomForCleaning(uncleanRoom);
+                    _maidStateManager.CurrentMaid.Room.OccupyRoomWithMaid(_maidStateManager.CurrentMaid);
+                    _maidStateManager.CurrentMaid.Room.ObjectCleanedEvent.Event -= ObjectCleaned_Event;
+                    _maidStateManager.SwitchState(_maidStateManager.MovingToUncleanObjectState);
+                    
+                    return;
+                }
+                
+                // If we didn't find unclean room
+                _maidStateManager.CurrentMaid.Room.ObjectCleanedEvent.Event -= ObjectCleaned_Event;
+                _maidStateManager.SwitchState(_maidStateManager.MovingToIdlePointState);                
+            }
+            
+            // If another unclean object in this room was found, perform actions
+            _maidStateManager.CurrentMaid.SetObjectToClean(uncleanObject);
+            LeaveState(_maidStateManager);
+            _maidStateManager.SwitchState(_maidStateManager.MovingToUncleanObjectState);
         }
 
         #endregion
