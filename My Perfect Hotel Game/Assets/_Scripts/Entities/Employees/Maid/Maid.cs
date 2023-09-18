@@ -28,34 +28,21 @@ namespace Entities.Employees.Maid
             MaidRemovedFromRoomEvent = GetComponent<MaidRemovedFromRoomEvent>();
         }
 
-        private void OnEnable()
-        {
-            MaidRemovedFromRoomEvent.Event += MaidRemovedFromRoom_Event;
-        }
-
-        private void OnDisable()
-        {
-            MaidRemovedFromRoomEvent.Event -= MaidRemovedFromRoom_Event;
-        }
-
         public void SetRoomForCleaning(Room.Room room) => Room = room;
 
         public bool HasOccupiedRoom() => Room != null;
 
         public void SetObjectToClean(Interactable objectToClean)
             => ObjectToClean = objectToClean;
+
+        public bool HasObjectToClean()
+            => ObjectToClean != null;
         
         public void RemoveObjectToClean()
             => ObjectToClean = null;
         
+        public void RemoveRoomForCleaning() => Room = null;
+        
         protected override Vector3 GetNextDestination() => throw new NotImplementedException();
-
-        private void RemoveRoomForCleaning() => Room = null;
-
-        private void MaidRemovedFromRoom_Event(object sender, EventArgs e)
-        {
-            RemoveRoomForCleaning();
-            RemoveObjectToClean();
-        }
     }
 }

@@ -25,7 +25,6 @@ namespace Entities.Customer.StateMachine.States
 
         public override void ExitState()
         {
-            // guestStateManager.CurrentGuest.Room.SetIsAvailable();
             _timer = 0f;
             CurrentContext.Customer.Room.LeftRoomEvent.Call(CurrentContext.Customer.Room);
         }

@@ -72,6 +72,7 @@ namespace Room
             if (!HasMaidOccupied())
                 return;
             
+            RoomCleanedStaticEvent.CallRoomCleanedEvent(this);
             RemoveMaidFromRoom();
         }
 
@@ -94,27 +95,28 @@ namespace Room
         public bool HasCustomerOccupied()
             => _customerOccupied != null;
 
-        public Interactable TryGetUncleanObject()
+        public bool TryGetUncleanObject(out Interactable uncleanObject)
         {
+            uncleanObject = null;
+            
             foreach (Interactable interactable in _roomObjectList)
             {
                 if (!_objectsToCleanDictionary.TryGetValue(interactable, out bool isClean)) continue;
+
+                if (isClean) continue;
                 
-                if (!isClean)
-                    return interactable;
+                uncleanObject = interactable;
+                return true;
             }
 
-            return null;
+            return false;
         }
 
         private void RemoveCustomerFromRoom()
             => _customerOccupied = null;
 
         private void RemoveMaidFromRoom()
-        {
-            _maidOccupied.MaidRemovedFromRoomEvent.Call(this);
-            _maidOccupied = null;
-        }
+            => _maidOccupied = null;
         
         private void SetIsNotAvailable()
             => IsAvailable = false;
@@ -122,7 +124,7 @@ namespace Room
         private void SetIsAvailable()
             => IsAvailable = true;
 
-        private void ResetObjectsToCleanDictionary()
+        private void ResetObjectsToUncleanDictionary()
         {
             foreach (Interactable interactable in _roomObjectList)
                 _objectsToCleanDictionary[interactable] = false;
@@ -131,16 +133,19 @@ namespace Room
         private void CopyItemsFromListToDictionary()
         {
             foreach (Interactable interactable in _roomObjectList)
-                _objectsToCleanDictionary.Add(interactable, false);
+                _objectsToCleanDictionary.Add(interactable, true);
         }
 
         private void SetItemAsCleaned(Interactable interactable)
-            => _objectsToCleanDictionary[interactable] = true;
+        {
+            _objectsToCleanDictionary[interactable] = true;
+            ObjectCleanedEvent.Call(this, new RoomObjectCleanedEventArgs(interactable));
+        }
         
         private void CustomerLeftRoom_Event(object sender, EventArgs e)
         {
             RemoveCustomerFromRoom();
-            ResetObjectsToCleanDictionary();
+            ResetObjectsToUncleanDictionary();
             RoomBecameAvailableToCleanStaticEvent.CallRoomBecameAvailableToCleanEvent(this);
         }
 

@@ -1,4 +1,5 @@
 using StaticEvents.Room;
+using UnityEngine;
 
 namespace Entities.Employees.Maid.States
 {
@@ -8,6 +9,8 @@ namespace Entities.Employees.Maid.States
 
         public override void EnterState(MaidStateManager maidStateManager)
         {
+            Debug.Log("Entered AwaitingState");
+            
             RoomBecameAvailableToCleanStaticEvent.OnRoomBecameAvailableToClean += RoomBecameAvailableToClean_StaticEvent;
             
             maidStateManager.CurrentMaid.Movement.ClearDestination();
@@ -29,6 +32,8 @@ namespace Entities.Employees.Maid.States
         private void RoomBecameAvailableToClean_StaticEvent(
             RoomBecameAvailableToCleanStaticEventArgs roomBecameAvailableToCleanStaticEventArgs)
         {
+            Debug.Log("Has Maid occupied the room: " + _maidStateManager.CurrentMaid.HasOccupiedRoom());
+            
             if (_maidStateManager.CurrentMaid.HasOccupiedRoom())
                 return;
 

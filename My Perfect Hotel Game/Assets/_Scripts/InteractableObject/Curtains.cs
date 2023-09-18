@@ -46,7 +46,6 @@ namespace InteractableObject
             if (!(_timer >= _interactTimeInSeconds)) return;
 
             // Perform action when timer is over
-            _room.ObjectCleanedEvent.Call(this, new RoomObjectCleanedEventArgs(this));
             Clean();
             ResetTimer();
         }
