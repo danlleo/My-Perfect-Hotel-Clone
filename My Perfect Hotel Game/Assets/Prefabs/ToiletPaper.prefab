@@ -2217,6 +2217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2396009256411008080}
   - component: {fileID: 4903099225758113149}
+  - component: {fileID: 4453896910132324700}
   m_Layer: 10
   m_Name: ToiletPaper
   m_TagString: Untagged
@@ -2254,3 +2255,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _transportableObject: {fileID: 11400000, guid: 9272bebbc5ab70a4dbdc8ebb739dd074,
     type: 2}
+--- !u!114 &4453896910132324700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6363830949396528708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 760244ff38a64138bd4682a8028c959b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
