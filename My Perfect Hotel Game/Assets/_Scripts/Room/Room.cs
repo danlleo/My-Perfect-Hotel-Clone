@@ -11,6 +11,7 @@ using Utilities;
 namespace Room
 {
     [SelectionBase]
+    [RequireComponent(typeof(WallsToggler))]
     [RequireComponent(typeof(CustomerLeftRoomEvent))]
     [RequireComponent(typeof(RoomObjectCleanedEvent))]
     [DisallowMultipleComponent]
