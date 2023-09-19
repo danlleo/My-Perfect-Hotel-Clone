@@ -61,7 +61,8 @@ namespace Entities.Customer
 
         public float GetTimeItTakesToGuestToSleepInSeconds() => _timeItTakesToGuestToSleepInSeconds;
 
-        public void DestroyGuest() => Destroy(gameObject);
+        public void DestroyGuest()
+            => Destroy(gameObject);
 
         protected override Vector3 GetNextDestination() => throw new NotImplementedException();
 

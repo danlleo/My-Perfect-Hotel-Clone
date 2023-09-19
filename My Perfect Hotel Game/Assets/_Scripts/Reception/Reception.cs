@@ -31,7 +31,8 @@ namespace Reception
             _progressBarUI.UpdateProgressBar(_timer, _interactTimeInSeconds);
             IncreaseTimer();
             
-            if (!(_timer >= _interactTimeInSeconds)) return;
+            if (!(_timer >= _interactTimeInSeconds)) 
+                return;
             
             // Perform action when timer is over
             ReceptionInteractStaticEvent.CallReceptionInteractedEvent(this, ResetTimer);
@@ -39,9 +40,21 @@ namespace Reception
 
         public override bool TryInteractWithCallback(out Action onComplete)
         {
-            // TODO: Implement later AI that will appoint guests instead of the player
             onComplete = null;
-            return false;
+            
+            if (_guestInHotelCount >= _guestInHotelLimit)
+                return false;
+            
+            _progressBarUI.UpdateProgressBar(_timer, _interactTimeInSeconds);
+            IncreaseTimer();
+            
+            if (!(_timer >= _interactTimeInSeconds)) 
+                return false;
+            
+            // Perform action when timer is over
+            ReceptionInteractStaticEvent.CallReceptionInteractedEvent(this, ResetTimer);
+            
+            return true;
         }
 
         /// <summary>
@@ -49,7 +62,7 @@ namespace Reception
         /// </summary>
         public void AppointGuestToRoom(Customer customer)
         {
-            var room = RoomManager.Instance.GetAvailableRoom();
+            Room.Room room = RoomManager.Instance.GetAvailableRoom();
             room.OccupyRoomWithGuest(customer);
             
             customer.SetRoom(room);

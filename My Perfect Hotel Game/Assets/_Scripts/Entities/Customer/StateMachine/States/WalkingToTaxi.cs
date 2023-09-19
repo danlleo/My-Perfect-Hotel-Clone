@@ -4,8 +4,9 @@ namespace Entities.Customer.StateMachine.States
 {
     public class WalkingToTaxi : CustomerState
     {
-        private readonly float _stopMovingThreshold = .2f;
+        private readonly float _stopMovingThreshold = .25f;
         private Vector3 _endPosition;
+        
         public WalkingToTaxi(CustomerStateManager currentContext, CustomerStateFactory customerStateFactory) : base(
             currentContext, customerStateFactory) { }
 
@@ -19,6 +20,7 @@ namespace Entities.Customer.StateMachine.States
         public override void UpdateState()
         {
             CurrentContext.Customer.Movement.MoveTo(_endPosition);
+            CheckSwitchStates();
         }
 
         public override void CheckSwitchStates()
