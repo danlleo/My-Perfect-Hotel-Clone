@@ -2216,7 +2216,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2396009256411008080}
-  - component: {fileID: 5670244626408115350}
+  - component: {fileID: 4903099225758113149}
   m_Layer: 10
   m_Name: ToiletPaper
   m_TagString: Untagged
@@ -2240,7 +2240,7 @@ Transform:
   - {fileID: 8870191848000343234}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5670244626408115350
+--- !u!114 &4903099225758113149
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2249,7 +2249,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6363830949396528708}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bd57803b84e48be9ae0b6b38bd788f5, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c571b268f0641829da382d474149afa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _transportableObject: {fileID: 11400000, guid: 9272bebbc5ab70a4dbdc8ebb739dd074,

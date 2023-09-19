@@ -1,17 +1,45 @@
+using DG.Tweening;
 using UnityEngine;
 
 namespace TransportableObjects
 {
-    [RequireComponent(typeof(TransportableObjectSO))]
-    public abstract class Transportable : MonoBehaviour
+    public class Transportable : MonoBehaviour
     {
-        protected const float PICKUP_SPEED = 0.5f;
-        protected const float OFFSET = .85f;
+        private const float PICKUP_SPEED = 0.5f;
+        private const float OFFSET = .85f;
         
-        public abstract TransportableObjectSO TransportableObject { get; }
+        [SerializeField] private TransportableObjectSO _transportableObject;
         
-        public abstract void PickUp();
+        public void PickUp()
+        {
+            Player.Inventory inventory = GameGlobalStorage.Instance.GetPlayer().GetInventory();
+            
+            inventory.AddCarryingObject(this);
 
-        public abstract void Drop();
+            int carryingObjectsCount = inventory.GetCarryingObjectsCount();
+            
+            Vector3 stackPosition = carryingObjectsCount == 1 
+                ? Vector3.zero 
+                : Vector3.up * ((carryingObjectsCount - 1) * OFFSET);
+            
+            transform.DOLocalMove(stackPosition, PICKUP_SPEED);
+        }
+        
+        public void Drop()
+        {
+            Player.Inventory inventory = GameGlobalStorage.Instance.GetPlayer().GetInventory();
+
+            inventory.RemoveCarryingObject();
+
+            Sequence mySequence = DOTween.Sequence();
+            
+            mySequence.Append(transform.DOLocalMove(Vector3.zero, PICKUP_SPEED));
+            
+            mySequence.Append(transform.DOScale(Vector3.zero, PICKUP_SPEED));
+            
+            mySequence.OnComplete(() => Destroy(gameObject));
+        }
+        
+        public TransportableObjectSO TransportableObject => _transportableObject;
     }
 }

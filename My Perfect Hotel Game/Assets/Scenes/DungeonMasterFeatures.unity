@@ -323,7 +323,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1821618480}
   - {fileID: 998942193}
   - {fileID: 1950195182}
   - {fileID: 1758639306}
@@ -431,7 +430,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 113564701}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.500987, y: 0.000000029782681, z: -0.000000017240342, w: 0.86545485}
+  m_LocalRotation: {x: 0.500987, y: -0.0000000297827, z: 0.000000017240355, w: 0.86545485}
   m_LocalPosition: {x: -8.64246, y: 8, z: -1.8866539}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7332,7 +7331,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573076945}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.500987, y: 0.000000029782681, z: -0.000000017240342, w: 0.86545485}
+  m_LocalRotation: {x: 0.500987, y: -0.0000000297827, z: 0.000000017240355, w: 0.86545485}
   m_LocalPosition: {x: -8.64246, y: 8, z: -1.8866539}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15789,37 +15788,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1767735984}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1821618479
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1821618480}
-  m_Layer: 6
-  m_Name: ReceptionTable
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1821618480
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1821618479}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.6, y: 2.1248002, z: -17.4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 110009106}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1837220069 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5658245735325779528, guid: 1cd52b3db4be5a44da9a9de27fd21a4d,

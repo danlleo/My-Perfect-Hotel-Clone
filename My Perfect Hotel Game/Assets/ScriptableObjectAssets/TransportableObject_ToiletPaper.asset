@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 837bfbc2444302648a485992d5b629bc, type: 3}
   m_Name: TransportableObject_ToiletPaper
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 5670244626408115350, guid: 113842987d9cc6c44854caee279f985b, type: 3}
+  _prefab: {fileID: 4903099225758113149, guid: 113842987d9cc6c44854caee279f985b, type: 3}
   _maxCarryingAmount: 3
   _type: 0
