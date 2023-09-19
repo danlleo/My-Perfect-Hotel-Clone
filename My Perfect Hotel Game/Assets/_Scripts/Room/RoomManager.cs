@@ -38,7 +38,7 @@ namespace Room
             
             foreach (Room room in _availableRooms)
             {
-                if (!room.IsRoomUnclean() || room.HasMaidOccupied()) continue;
+                if (!room.IsRoomUnclean() || room.HasMaidOccupied) continue;
                 
                 uncleanRoom = room;
                 return true;

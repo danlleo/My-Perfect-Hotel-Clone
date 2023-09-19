@@ -249,7 +249,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &89890517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8a62650e0a1d7a40b8f61d8cd3345b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IdlePoint: {fileID: 1972965002}
+  IdlePoint: {fileID: 1857283199}
 --- !u!114 &89890520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4623,6 +4623,8 @@ GameObject:
   - component: {fileID: 1821653561}
   - component: {fileID: 1821653560}
   - component: {fileID: 1821653563}
+  - component: {fileID: 1821653565}
+  - component: {fileID: 1821653564}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4697,6 +4699,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WalkingStateChangedEvent: {fileID: 0}
+  PickedAnObjectEvent: {fileID: 0}
+  DroppedAnObjectEvent: {fileID: 0}
 --- !u!114 &1821653559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4770,6 +4774,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _carryPointTransform: {fileID: 0}
+--- !u!114 &1821653564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821653554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1435d63f6934d49a40ce7ccc2edb3f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1821653565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821653554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc0a8a4aefd74b36a68822be13bb2bcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1834503896
 GameObject:
   m_ObjectHideFlags: 0
