@@ -19,8 +19,8 @@ namespace Entities.Customer.StateMachine.States
 
         public override void UpdateState()
         {
-            CurrentContext.Customer.Movement.MoveTo(_endPosition);
             CheckSwitchStates();
+            CurrentContext.Customer.Movement.MoveTo(_endPosition);
         }
 
         public override void CheckSwitchStates()

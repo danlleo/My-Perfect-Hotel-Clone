@@ -1,27 +1,27 @@
-using System.Collections.Generic;
-using TransportableObjects;
-using UnityEngine;
-using Utilities;
+    using System.Collections.Generic;
+    using TransportableObjects;
+    using UnityEngine;
+    using Utilities;
 
-namespace Player
-{
-    [DisallowMultipleComponent]
-    [RequireComponent(typeof(Player))]
-    public class Inventory : MonoBehaviour
+    namespace Player
     {
-        [Tooltip("Populate with initial spawn point on which object first object will be placed upon")]
-        [SerializeField] private Transform _carryPointTransform;
-        private bool _isCarrying;
-        private Player _player;
-        private readonly Stack<Transportable> _carryingObjectsStack = new();
-
-        private void Awake()
+        [DisallowMultipleComponent]
+        [RequireComponent(typeof(Player))]
+        public class Inventory : MonoBehaviour
         {
-            _player = GetComponent<Player>();
-        }
+            [Tooltip("Populate with initial spawn point on which object first object will be placed upon")]
+            [SerializeField] private Transform _carryPointTransform;
+            private bool _isCarrying;
+            private Player _player;
+            private readonly Stack<Transportable> _carryingObjectsStack = new();
 
-        public Transform GetCarryPoint() 
-            => _carryPointTransform;
+            private void Awake()
+            {
+                _player = GetComponent<Player>();
+            }
+
+            public Transform GetCarryPoint() 
+                => _carryPointTransform;
         
         public Transportable PeekCarryingObject() 
             => _carryingObjectsStack.Peek();

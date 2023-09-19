@@ -4596,6 +4596,7 @@ GameObject:
   - component: {fileID: 1821653563}
   - component: {fileID: 1821653565}
   - component: {fileID: 1821653564}
+  - component: {fileID: 1821653566}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4618,6 +4619,7 @@ Transform:
   m_Children:
   - {fileID: 1858678226}
   - {fileID: 798076821}
+  - {fileID: 2058230728}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1821653556
@@ -4672,6 +4674,7 @@ MonoBehaviour:
   WalkingStateChangedEvent: {fileID: 0}
   PickedAnObjectEvent: {fileID: 0}
   DroppedAnObjectEvent: {fileID: 0}
+  StepEvent: {fileID: 0}
 --- !u!114 &1821653559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4769,6 +4772,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc0a8a4aefd74b36a68822be13bb2bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1821653566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821653554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 849b380b547cac74b80b98696e8ae56b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _movingParticleSystemEffect: {fileID: 1505502165548171982, guid: 8d99e2e51b6d2bc42859476cde148f51,
+    type: 3}
+  _stepsEffectPoint: {fileID: 2058230728}
 --- !u!1 &1834503896
 GameObject:
   m_ObjectHideFlags: 0
@@ -5474,6 +5492,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2058230727
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2058230728}
+  m_Layer: 0
+  m_Name: StepsEffectPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2058230728
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058230727}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1821653555}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

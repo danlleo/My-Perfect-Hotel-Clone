@@ -53,8 +53,6 @@ namespace Player
             
             _player.WalkingStateChangedEvent.Call(this, new PlayerWalkingStateChangedEventArgs(isWalking: _isWalking));
         }
-
-        public bool IsWalking() => _isWalking;
         
         /// <summary>
         /// Move player in the direction in which finger is facing  
