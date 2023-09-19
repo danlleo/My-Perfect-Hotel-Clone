@@ -20,6 +20,8 @@ namespace Player
         [HideInInspector] public PlayerWalkingStateChangedEvent WalkingStateChangedEvent;
         [HideInInspector] public PlayerPickedAnObjectEvent PickedAnObjectEvent;
         [HideInInspector] public PlayerDroppedAnObjectEvent DroppedAnObjectEvent;
+        [HideInInspector] public PlayerMadeAStep StepEvent;
+
         private Inventory _inventory;
 
         private void Awake()
@@ -27,6 +29,7 @@ namespace Player
             WalkingStateChangedEvent = GetComponent<PlayerWalkingStateChangedEvent>();
             PickedAnObjectEvent = GetComponent<PlayerPickedAnObjectEvent>();
             DroppedAnObjectEvent = GetComponent<PlayerDroppedAnObjectEvent>();
+            StepEvent = GetComponent<PlayerMadeAStep>();
             _inventory = GetComponent<Inventory>();
         }
 

@@ -11,14 +11,12 @@ namespace Player
     {
         private Player _player;
         private Animator _animator;
-        private Movement _movement;
         private Inventory _inventory;
 
         private void Awake()
         {
             _player = GetComponent<Player>();
             _animator = GetComponent<Animator>();
-            _movement = GetComponent<Movement>();
             _inventory = GetComponent<Inventory>();
         }
         
@@ -41,5 +39,8 @@ namespace Player
         
         private void Player_OnPickedOrDroppedAnObject(object sender, EventArgs e) => 
             _animator.SetBool(AnimationsParams.IsCarrying, _inventory.IsCarrying());
+
+        private void PlayerMadeAStep_AnimationEvent() => 
+            _player.StepEvent.Call(this);
     }
 }

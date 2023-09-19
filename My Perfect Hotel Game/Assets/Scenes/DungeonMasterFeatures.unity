@@ -13449,6 +13449,21 @@ PrefabInstance:
       propertyPath: _carryPointTransform
       value: 
       objectReference: {fileID: 1490539334}
+    - target: {fileID: 8537867885153769410, guid: 59bea192c7ab9af4495c0c6e2b2aaead,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.4999995
+      objectReference: {fileID: 0}
+    - target: {fileID: 8537867885153769410, guid: 59bea192c7ab9af4495c0c6e2b2aaead,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.6444231
+      objectReference: {fileID: 0}
+    - target: {fileID: 8537867885153769410, guid: 59bea192c7ab9af4495c0c6e2b2aaead,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

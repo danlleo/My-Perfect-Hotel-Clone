@@ -25,8 +25,6 @@ namespace InteractableObject
 
             if (inventory.IsCarrying())
             {
-                print(inventory.PeekCarryingObject().TransportableObject);
-                
                 // Won't allow proceed if type is different from current carrying object
                 if (inventory.PeekCarryingObject().TransportableObject.Type != _objectToSpawn.Type)
                 {
