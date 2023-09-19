@@ -9,29 +9,27 @@ namespace Player
     [RequireComponent(typeof(Player))]
     public class Inventory : MonoBehaviour
     {
-        [Tooltip("Populate with initial spawn point on which object first object will be placed upon")]
+        public const int MAX_CARRY_COUNT = 3;
+
         [SerializeField] private Transform _carryPointTransform;
         private bool _isCarrying;
         private Player _player;
-        private readonly Stack<Transportable> _carryingObjectsStack = new();
+        private readonly Stack<Transportable> _carryingObjectsList = new();
 
         private void Awake()
         {
             _player = GetComponent<Player>();
         }
 
-        public Transform GetCarryPoint() 
-            => _carryPointTransform;
+        public Transform GetCarryPoint() => _carryPointTransform;
+
+        public Transportable GetCarryingObject() => _carryingObjectsList.Peek();
         
-        public Transportable PeekCarryingObject() 
-            => _carryingObjectsStack.Peek();
-        
-        public int GetCarryingObjectsCount() 
-            => _carryingObjectsStack.Count;
+        public int GetCarryingObjectsCount() => _carryingObjectsList.Count;
 
         public void AddCarryingObject(Transportable transportable)
         {
-            _carryingObjectsStack.Push(transportable);
+            _carryingObjectsList.Push(transportable);
             
             _isCarrying = GetCarryingObjectsCount() > 0;
             
@@ -40,7 +38,7 @@ namespace Player
 
         public void RemoveCarryingObject()
         {
-            _carryingObjectsStack.Pop();
+            _carryingObjectsList.Pop();
 
             _isCarrying = GetCarryingObjectsCount() > 0;
             

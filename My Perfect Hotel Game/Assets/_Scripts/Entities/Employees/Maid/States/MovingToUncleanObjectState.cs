@@ -14,20 +14,18 @@ namespace Entities.Employees.Maid.States
 
         public override void EnterState(MaidStateManager maidStateManager)
         {
-            Debug.Log("Entered MovingToUncleanObjectState");
-            
             _maidStateManager = maidStateManager;
 
-            if (!_maidStateManager.CurrentMaid.Room.TryGetUncleanObject(out Interactable uncleanObject))
+            if (!maidStateManager.CurrentMaid.Room.TryGetUncleanObject(out Interactable uncleanObject))
                 return;
             
             Vector3 uncleanObjectPosition = uncleanObject.transform.position;
             
-            _maidStateManager.CurrentMaid.SetObjectToClean(uncleanObject);
+            maidStateManager.CurrentMaid.SetObjectToClean(uncleanObject);
             _endPosition = new Vector3(uncleanObjectPosition.x, 0f, uncleanObjectPosition.z);
             
-            _maidStateManager.CurrentMaid.Room.ObjectCleanedEvent.Event += ObjectCleaned_Event;
-            _maidStateManager.CurrentMaid.Movement.MoveTo(_endPosition);
+            maidStateManager.CurrentMaid.Room.ObjectCleanedEvent.Event += ObjectCleaned_Event;
+            maidStateManager.CurrentMaid.Movement.MoveTo(_endPosition);
         }
 
         public override void UpdateState(MaidStateManager maidStateManager)
@@ -60,12 +58,12 @@ namespace Entities.Employees.Maid.States
                     if (_maidStateManager.CurrentMaid.HasOccupiedRoom())
                         return;
 
-                    if (uncleanRoom.HasMaidOccupied)
+                    if (uncleanRoom.HasMaidOccupied())
                         return;
 
                     _maidStateManager.CurrentMaid.RemoveObjectToClean();
                     _maidStateManager.CurrentMaid.SetRoomForCleaning(uncleanRoom);
-                    _maidStateManager.CurrentMaid.Room.OccupyRoomWithMaid();
+                    _maidStateManager.CurrentMaid.Room.OccupyRoomWithMaid(_maidStateManager.CurrentMaid);
                     _maidStateManager.CurrentMaid.Room.ObjectCleanedEvent.Event -= ObjectCleaned_Event;
                     _maidStateManager.SwitchState(_maidStateManager.MovingToUncleanObjectState);
                     

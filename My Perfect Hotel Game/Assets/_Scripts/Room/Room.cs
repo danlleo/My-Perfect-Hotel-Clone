@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Entities.Customer;
+using Entities.Employees.Maid;
 using Events;
 using InteractableObject;
 using StaticEvents.Room;
@@ -19,13 +20,13 @@ namespace Room
         public RoomObjectCleanedEvent ObjectCleanedEvent { get; private set; }
 
         public bool IsAvailable { get; private set; }
-        public bool HasMaidOccupied { get; private set; }
         
         [SerializeField] private Transform _bedTransform;
         [SerializeField] private List<Interactable> _roomObjectList;
 
         private readonly Dictionary<Interactable, bool> _objectsToCleanDictionary = new();
 
+        private Maid _maidOccupied;
         private Customer _customerOccupied;
         
         private void Awake()
@@ -56,8 +57,8 @@ namespace Room
             SetIsNotAvailable();
         }
 
-        public void OccupyRoomWithMaid()
-            => HasMaidOccupied = true;
+        public void OccupyRoomWithMaid(Maid maid)
+            => _maidOccupied = maid;
 
         public void TryFinishRoomCleaning(Interactable interactable)
         {
@@ -68,7 +69,7 @@ namespace Room
             // If Room is indeed cleaned, perform actions below
             SetIsAvailable();
 
-            if (!HasMaidOccupied)
+            if (!HasMaidOccupied())
                 return;
             
             RoomCleanedStaticEvent.CallRoomCleanedEvent(this);
@@ -87,7 +88,13 @@ namespace Room
 
             return false;
         }
-        
+
+        public bool HasMaidOccupied()
+            => _maidOccupied != null;
+
+        public Maid GetMaidOccupied()
+            => _maidOccupied;
+
         public bool TryGetUncleanObject(out Interactable uncleanObject)
         {
             uncleanObject = null;
@@ -109,7 +116,7 @@ namespace Room
             => _customerOccupied = null;
 
         private void RemoveMaidFromRoom()
-            => HasMaidOccupied = false;
+            => _maidOccupied = null;
         
         private void SetIsNotAvailable()
             => IsAvailable = false;

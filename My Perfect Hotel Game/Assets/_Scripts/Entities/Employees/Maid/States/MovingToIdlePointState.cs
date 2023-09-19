@@ -12,8 +12,6 @@ namespace Entities.Employees.Maid.States
     
         public override void EnterState(MaidStateManager maidStateManager)
         {
-            Debug.Log("Entered MovingToIdlePointState");
-            
             _maidStateManager = maidStateManager;
             _endPosition = maidStateManager.CurrentMaid.GetIdlePoint().position;
             
@@ -46,11 +44,11 @@ namespace Entities.Employees.Maid.States
             if (_maidStateManager.CurrentMaid.HasOccupiedRoom())
                 return;
             
-            if (roomBecameAvailableToCleanStaticEventArgs.Room.HasMaidOccupied)
+            if (roomBecameAvailableToCleanStaticEventArgs.Room.HasMaidOccupied())
                 return;
             
             _maidStateManager.CurrentMaid.SetRoomForCleaning(roomBecameAvailableToCleanStaticEventArgs.Room);
-            _maidStateManager.CurrentMaid.Room.OccupyRoomWithMaid();
+            _maidStateManager.CurrentMaid.Room.OccupyRoomWithMaid(_maidStateManager.CurrentMaid);
             
             RoomBecameAvailableToCleanStaticEvent.OnRoomBecameAvailableToClean -= RoomBecameAvailableToClean_StaticEvent;
             

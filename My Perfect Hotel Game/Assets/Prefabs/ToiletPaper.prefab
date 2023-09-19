@@ -2252,5 +2252,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bd57803b84e48be9ae0b6b38bd788f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _transportableObject: {fileID: 11400000, guid: 9272bebbc5ab70a4dbdc8ebb739dd074,
-    type: 2}
