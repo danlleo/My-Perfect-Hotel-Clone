@@ -25,6 +25,7 @@ namespace Player
         {
             ParticleSystem particle = Instantiate(_movingParticleSystemEffect, _stepsEffectPoint.position, _movingParticleSystemEffect.transform.rotation, _stepsEffectPoint);
             _spawnedMovingParticleSystemEffect = particle;
+            _spawnedMovingParticleSystemEffect.Stop();
         }
         
         private void WalkingStateChanged_Event(object sender, PlayerWalkingStateChangedEventArgs e)

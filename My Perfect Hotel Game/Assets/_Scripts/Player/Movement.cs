@@ -10,6 +10,9 @@ namespace Player
     {
         [Tooltip("Populate with the speed of how fast player will move")]
         [SerializeField] private float _moveSpeed = 4f;
+
+        [Tooltip("Populate with the speed that of how fast player will rotate")] 
+        [SerializeField] private float _rotateSpeed = 6f;
         
         [Tooltip("Populate with layers that will be detected as collision, to prevent player through moving them")]
         [SerializeField] private LayerMask _collisionLayerMask;
@@ -37,9 +40,8 @@ namespace Player
                 if (Vector2.Distance(_startFingerTouchPosition, _heldFingerTouchedPosition) > 0f)
                 {
                     Vector2 screenSpaceDirection = (_heldFingerTouchedPosition - _startFingerTouchPosition).normalized;
-                    _moveDirection = new Vector3(screenSpaceDirection.x, transform.position.y,
-                        screenSpaceDirection.y);
-                    
+                    _moveDirection = new Vector3(screenSpaceDirection.x, 0f, screenSpaceDirection.y);
+
                     HandleMovement(_moveDirection);
                     HandleRotation(_moveDirection);
                 }
@@ -111,13 +113,14 @@ namespace Player
         ///  Rotate player towards his movement direction
         /// </summary>
         private void HandleRotation(Vector3 directionToRotate)
-            => transform.forward = Vector3.Slerp(transform.forward, directionToRotate, Time.deltaTime * _moveSpeed * 1.5f);
+            => transform.forward = Vector3.Slerp(transform.forward, directionToRotate, Time.deltaTime * _rotateSpeed);
 
         #region Validation
 
 #if UNITY_EDITOR
         private void OnValidate()
         {
+            EditorValidation.IsPositiveValue(this, nameof(_rotateSpeed), _rotateSpeed);
             EditorValidation.IsPositiveValue(this, nameof(_moveSpeed), _moveSpeed);
             EditorValidation.IsPositiveValue(this, nameof(_collisionLayerMask), _collisionLayerMask);
         }
