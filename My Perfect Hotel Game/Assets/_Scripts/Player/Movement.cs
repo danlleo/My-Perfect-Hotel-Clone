@@ -8,6 +8,7 @@ namespace Player
     [DisallowMultipleComponent]
     public class Movement : MonoBehaviour
     {
+        [Tooltip("Populate with the speed of how fast player will move")]
         [SerializeField] private float _moveSpeed = 4f;
         
         [Tooltip("Populate with layers that will be detected as collision, to prevent player through moving them")]
@@ -15,15 +16,14 @@ namespace Player
         
         private Player _player;
         
+        private Vector3 _moveDirection;
         private Vector2 _startFingerTouchPosition;
         private Vector2 _heldFingerTouchedPosition;
         
         private bool _isWalking;
 
         private void Awake()
-        {
-            _player = GetComponent<Player>();
-        }
+            => _player = GetComponent<Player>();
 
         private void Update()
         {
@@ -36,16 +36,17 @@ namespace Player
 
                 if (Vector2.Distance(_startFingerTouchPosition, _heldFingerTouchedPosition) > 0f)
                 {
-                    var screenSpaceDirection = (_heldFingerTouchedPosition - _startFingerTouchPosition).normalized;
-                    var worldSpaceDirection = new Vector3(screenSpaceDirection.x, transform.position.y,
+                    Vector2 screenSpaceDirection = (_heldFingerTouchedPosition - _startFingerTouchPosition).normalized;
+                    _moveDirection = new Vector3(screenSpaceDirection.x, transform.position.y,
                         screenSpaceDirection.y);
                     
-                    HandleMovement(worldSpaceDirection);
-                    HandleRotation(worldSpaceDirection);
+                    HandleMovement(_moveDirection);
+                    HandleRotation(_moveDirection);
                 }
             }
 
-            if (!InputHandler.IsMouseButtonUpThisFrame()) return;
+            if (!InputHandler.IsMouseButtonUpThisFrame()) 
+                return;
 
             _startFingerTouchPosition = Vector2.zero;
             _heldFingerTouchedPosition = Vector2.zero;
@@ -61,13 +62,35 @@ namespace Player
         {
             float moveDistance = _moveSpeed * Time.deltaTime;
 
-            var playerBottomPoint = transform.position;
-            var playerTopPoint = playerBottomPoint + Vector3.up * Player.HEIGHT;
+            Vector3 playerBottomPoint = transform.position;
+            Vector3 playerTopPoint = playerBottomPoint + Vector3.up * Player.HEIGHT;
             
             bool canMove = !Physics.CapsuleCast(playerBottomPoint, playerTopPoint, Player.RADIUS, directionToMove,
                 moveDistance,_collisionLayerMask);
-            
-            if (canMove) transform.position += _moveSpeed * Time.deltaTime * directionToMove;
+
+            if (!canMove)
+            {
+                var moveDirectionX = new Vector3(_moveDirection.x, 0f, 0f).normalized;
+
+                canMove = _moveDirection.x != 0 && !Physics.CapsuleCast(playerBottomPoint, playerTopPoint,
+                    Player.RADIUS, moveDirectionX, moveDistance);
+
+                if (canMove)
+                    _moveDirection = moveDirectionX;
+                else
+                {
+                    var moveDirectionZ = new Vector3(0f, 0f, _moveDirection.z);
+
+                    canMove = _moveDirection.z != 0 && !Physics.CapsuleCast(playerBottomPoint, playerTopPoint,
+                        Player.RADIUS, moveDirectionZ, moveDistance);
+
+                    if (canMove)
+                        _moveDirection = moveDirectionZ;
+                }
+            }
+
+            if (canMove)
+                transform.position += moveDistance * _moveDirection;
 
             _isWalking = true;
             
