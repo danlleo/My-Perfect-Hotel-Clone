@@ -65,25 +65,35 @@ namespace Player
             Vector3 playerBottomPoint = transform.position;
             Vector3 playerTopPoint = playerBottomPoint + Vector3.up * Player.HEIGHT;
             
+            // First time trying to detect the wall with the capsule cast
             bool canMove = !Physics.CapsuleCast(playerBottomPoint, playerTopPoint, Player.RADIUS, directionToMove,
                 moveDistance,_collisionLayerMask);
 
+            // If we detected wall, then we can't move. Let's check if we can't move horizontally
             if (!canMove)
             {
-                var moveDirectionX = new Vector3(_moveDirection.x, 0f, 0f).normalized;
+                // We create a horizontal direction vector
+                Vector3 moveDirectionX = new Vector3(_moveDirection.x, 0f, 0f).normalized;
 
+                // We're setting up 'canMove' boolean value again.
+                // If direction vector is present, and we didn't detect the obstacle on the sides, then we can move.
+                // Otherwise we can't
                 canMove = _moveDirection.x != 0 && !Physics.CapsuleCast(playerBottomPoint, playerTopPoint,
                     Player.RADIUS, moveDirectionX, moveDistance);
 
+                // If we can move, we just set _moveDirection as horizontal direction
                 if (canMove)
                     _moveDirection = moveDirectionX;
                 else
                 {
-                    var moveDirectionZ = new Vector3(0f, 0f, _moveDirection.z);
-
+                    // Otherwise we try to create a forward direction vector
+                    Vector3 moveDirectionZ = new Vector3(0f, 0f, _moveDirection.z);
+                    
+                    // We again check if direction vector is present, and we didn't detect the obstacle on the sides, then we can move.
                     canMove = _moveDirection.z != 0 && !Physics.CapsuleCast(playerBottomPoint, playerTopPoint,
                         Player.RADIUS, moveDirectionZ, moveDistance);
 
+                    // If we can move, then set _moveDirection as forward direction
                     if (canMove)
                         _moveDirection = moveDirectionZ;
                 }
