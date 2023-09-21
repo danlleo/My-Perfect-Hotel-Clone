@@ -8,7 +8,8 @@ namespace UI.Helpers
         [SerializeField] private bool _isInvert;
 
         private Transform _cameraTransform;
-        private void Awake() => _cameraTransform = Camera.main.transform;
+        private void Awake() 
+            => _cameraTransform = Camera.main.transform;
 
         private void LateUpdate()
         {

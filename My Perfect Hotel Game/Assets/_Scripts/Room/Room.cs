@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Entities.Customer;
 using Events;
 using InteractableObject;
+using StaticEvents.CameraView;
 using StaticEvents.Room;
 using UnityEngine;
 using Utilities;
@@ -24,6 +25,8 @@ namespace Room
         
         [SerializeField] private Transform _bedTransform;
         [SerializeField] private List<Interactable> _roomObjectList;
+        
+        [SerializeField] private bool _isLeftSided;
 
         private readonly Dictionary<Interactable, bool> _objectsToCleanDictionary = new();
 
@@ -46,6 +49,18 @@ namespace Room
         private void OnDisable()
         {
             LeftRoomEvent.Event -= CustomerLeftRoom_Event;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.TryGetComponent(out Player.Player player))
+                CameraViewChangedStaticEvent.CallCameraViewChangedEvent(true, _isLeftSided);
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.TryGetComponent(out Player.Player player))
+                CameraViewChangedStaticEvent.CallCameraViewChangedEvent(false, _isLeftSided);
         }
 
         public Vector3 GetBedPosition()
