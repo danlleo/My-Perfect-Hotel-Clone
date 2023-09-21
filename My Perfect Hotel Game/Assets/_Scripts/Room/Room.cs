@@ -25,9 +25,9 @@ namespace Room
         
         [SerializeField] private Transform _bedTransform;
         [SerializeField] private List<Interactable> _roomObjectList;
-        
-        [SerializeField] private bool _isLeftSided;
 
+        [SerializeField] private bool _isLeftSided;
+        
         private readonly Dictionary<Interactable, bool> _objectsToCleanDictionary = new();
 
         private Customer _customerOccupied;
@@ -50,7 +50,7 @@ namespace Room
         {
             LeftRoomEvent.Event -= CustomerLeftRoom_Event;
         }
-
+        
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent(out Player.Player player))
