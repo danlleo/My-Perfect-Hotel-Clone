@@ -1,17 +1,17 @@
 using System;
 using TransportableObjects;
 using UnityEngine;
+using Utilities;
 
 namespace InteractableObject
 {
     public class TransportableObjectDistributor : Interactable
     {
-        [SerializeField] private TransportableObjectSO _objectToSpawn;
-        [SerializeField] private Transform _spawnPoint;
-
         [Tooltip("Populate with the time in seconds that will take Player to interact")] 
         [SerializeField] [Min(0.1f)] private float _interactTime = .35f;
-
+        [SerializeField] private TransportableObjectSO _objectToSpawn;
+        [SerializeField] private Transform _spawnPoint;
+        
         private float _timer;
         
         public override void Interact()
@@ -53,5 +53,18 @@ namespace InteractableObject
 
         private void ResetTimer()
             => _timer = 0f;
+        
+        #region Validation
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            EditorValidation.IsPositiveValue(this, nameof(_interactTime), _interactTime);
+            EditorValidation.IsNullValue(this, nameof(_objectToSpawn), _objectToSpawn);
+            EditorValidation.IsNullValue(this, nameof(_spawnPoint), _spawnPoint);
+        }
+#endif
+
+        #endregion
     }
 }

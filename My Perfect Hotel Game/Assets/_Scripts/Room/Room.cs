@@ -10,7 +10,7 @@ using Utilities;
 namespace Room
 {
     [SelectionBase]
-    [RequireComponent(typeof(WallsToggler))]
+    [RequireComponent(typeof(TransformsToggler))]
     [RequireComponent(typeof(CustomerLeftRoomEvent))]
     [RequireComponent(typeof(RoomObjectCleanedEvent))]
     [DisallowMultipleComponent]

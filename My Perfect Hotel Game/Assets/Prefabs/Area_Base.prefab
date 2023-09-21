@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 7890626839747819061}
   - component: {fileID: -4997919850207252838}
   - component: {fileID: 7906149210330581983}
-  - component: {fileID: 7185868244188394286}
+  - component: {fileID: 1600721568268385382}
   m_Layer: 0
   m_Name: Area_Base
   m_TagString: Untagged
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d0a78be2c9d9c44974f002fcb77b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7185868244188394286
+--- !u!114 &1600721568268385382
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,10 +121,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3567192235233074168}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd93a8e1df799984b9406c72b3f7bb35, type: 3}
+  m_Script: {fileID: 11500000, guid: 3bffa3a7ea4d4504bacf53a7a32f2c39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wallsToRemoveOnUpgrade: []
+  _objectsToToggle: []
 --- !u!1 &5329014178245161588
 GameObject:
   m_ObjectHideFlags: 0
