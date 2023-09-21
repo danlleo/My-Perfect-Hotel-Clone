@@ -30,7 +30,16 @@ namespace TransportableObjects
 
             inventory.RemoveCarryingObject();
 
-            _objectAnimator.Drop();
+            _objectAnimator.Drop(() => Destroy(gameObject));
+        }
+
+        public void Use()
+        {
+            Player.Inventory inventory = GameGlobalStorage.Instance.GetPlayer().GetInventory();
+
+            inventory.RemoveCarryingObject();
+            
+            _objectAnimator.Use(() => Destroy(gameObject));
         }
         
         public TransportableObjectSO TransportableObject => _transportableObject;
