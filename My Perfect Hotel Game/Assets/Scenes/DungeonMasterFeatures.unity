@@ -7374,6 +7374,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1343725978}
+    - target: {fileID: 5091162151418296114, guid: 9d02cf767adb1974bb5d34023e045803,
+        type: 3}
+      propertyPath: _transformsToToggle.Array.data[0]
+      value: 
+      objectReference: {fileID: 1760545499}
     - target: {fileID: 5121199035327392424, guid: 9d02cf767adb1974bb5d34023e045803,
         type: 3}
       propertyPath: m_Mesh
