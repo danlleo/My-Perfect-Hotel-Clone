@@ -12,8 +12,8 @@ namespace StaticEvents.CameraView
 
     public class CameraViewChangedStaticEventArgs : EventArgs
     {
-        public bool IsInRoomArea;
-        public bool IsLeftSided;
+        public readonly bool IsInRoomArea;
+        public readonly bool IsLeftSided;
         
         public CameraViewChangedStaticEventArgs(bool isInRoomArea, bool isLeftSided)
         {

@@ -379,7 +379,9 @@ GameObject:
   - component: {fileID: 292319968}
   - component: {fileID: 292319973}
   - component: {fileID: 292319974}
-  - component: {fileID: 292319975}
+  - component: {fileID: 292319977}
+  - component: {fileID: 292319976}
+  - component: {fileID: 292319978}
   m_Layer: 8
   m_Name: Room (2)
   m_TagString: Untagged
@@ -402,7 +404,7 @@ MonoBehaviour:
   _bedTransform: {fileID: 1254669229}
   _roomObjectList:
   - {fileID: 463124894}
-  _isLeftSided: 0
+  _isLeftSided: 1
 --- !u!23 &292319970
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -495,7 +497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d0a78be2c9d9c44974f002fcb77b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &292319975
+--- !u!114 &292319976
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -504,10 +506,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 292319967}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd93a8e1df799984b9406c72b3f7bb35, type: 3}
+  m_Script: {fileID: 11500000, guid: 3bffa3a7ea4d4504bacf53a7a32f2c39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wallsToRemoveOnUpgrade: []
+  _transformsToToggle: []
+--- !u!114 &292319977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292319967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c764549d3640c8bba1755f7ab6cc50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &292319978
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292319967}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.118136, y: 1, z: 2.495245}
+  m_Center: {x: -0.2846282, y: 0, z: -0.20503426}
 --- !u!1 &332952595
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,8 +1081,9 @@ GameObject:
   - component: {fileID: 439970953}
   - component: {fileID: 439970954}
   - component: {fileID: 439970955}
-  - component: {fileID: 439970956}
   - component: {fileID: 439970957}
+  - component: {fileID: 439970959}
+  - component: {fileID: 439970958}
   m_Layer: 8
   m_Name: Room
   m_TagString: Untagged
@@ -1140,7 +1176,7 @@ MonoBehaviour:
   _roomObjectList:
   - {fileID: 1572023411}
   - {fileID: 655841121}
-  _isLeftSided: 0
+  _isLeftSided: 1
 --- !u!114 &439970954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1165,19 +1201,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d0a78be2c9d9c44974f002fcb77b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &439970956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 439970948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd93a8e1df799984b9406c72b3f7bb35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _wallsToRemoveOnUpgrade: []
 --- !u!65 &439970957
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1199,6 +1222,31 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.1047115, y: 1.9377846, z: 2.5235012}
   m_Center: {x: 0.9965272, y: 0.55178374, z: -0.17667472}
+--- !u!114 &439970958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439970948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bffa3a7ea4d4504bacf53a7a32f2c39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transformsToToggle: []
+--- !u!114 &439970959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439970948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c764549d3640c8bba1755f7ab6cc50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &463124889
 GameObject:
   m_ObjectHideFlags: 0
@@ -1505,7 +1553,9 @@ GameObject:
   - component: {fileID: 533738279}
   - component: {fileID: 533738284}
   - component: {fileID: 533738285}
-  - component: {fileID: 533738286}
+  - component: {fileID: 533738288}
+  - component: {fileID: 533738287}
+  - component: {fileID: 533738289}
   m_Layer: 8
   m_Name: Room (1)
   m_TagString: Untagged
@@ -1621,7 +1671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d0a78be2c9d9c44974f002fcb77b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &533738286
+--- !u!114 &533738287
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1630,10 +1680,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 533738278}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd93a8e1df799984b9406c72b3f7bb35, type: 3}
+  m_Script: {fileID: 11500000, guid: 3bffa3a7ea4d4504bacf53a7a32f2c39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wallsToRemoveOnUpgrade: []
+  _transformsToToggle: []
+--- !u!114 &533738288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533738278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c764549d3640c8bba1755f7ab6cc50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &533738289
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533738278}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.189687, y: 1, z: 2.5138793}
+  m_Center: {x: -0.36657447, y: 0, z: 0.014923334}
 --- !u!1 &572927850
 GameObject:
   m_ObjectHideFlags: 0
@@ -3867,6 +3950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _angle: 35
+  _rotateDuration: 0.2
 --- !u!1001 &1415049161
 PrefabInstance:
   m_ObjectHideFlags: 0
