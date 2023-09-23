@@ -4,6 +4,7 @@ using DG.Tweening;
 using Enums;
 using StaticEvents.CameraView;
 using UnityEngine;
+using Utilities;
 
 namespace CameraView
 {
@@ -93,6 +94,21 @@ namespace CameraView
             ResetCameraRotation();
             ZoomOut();
         }
+
+        #endregion
+
+        #region Validation
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            EditorValidation.IsPositiveValue(this, nameof(_targetXRotationAngle), _targetXRotationAngle);
+            EditorValidation.IsPositiveValue(this, nameof(_targetYRotationAngle), _targetYRotationAngle);
+            EditorValidation.IsPositiveValue(this, nameof(_rotateDuration), _rotateDuration);
+            EditorValidation.IsPositiveValue(this, nameof(_zoomDuration), _zoomDuration);
+            EditorValidation.IsPositiveValue(this, nameof(_targetZoomInValue), _targetZoomInValue);
+        }
+#endif
 
         #endregion
     }
