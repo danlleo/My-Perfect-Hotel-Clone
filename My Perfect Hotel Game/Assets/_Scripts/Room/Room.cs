@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Entities.Customer;
+using Enums;
 using Events;
 using InteractableObject;
 using StaticEvents.CameraView;
@@ -24,9 +25,8 @@ namespace Room
         public bool HasMaidOccupied { get; private set; }
         
         [SerializeField] private Transform _bedTransform;
+        [SerializeField] private RoomDirection _roomDirection;
         [SerializeField] private List<Interactable> _roomObjectList;
-
-        [SerializeField] private bool _isLeftSided;
         
         private readonly Dictionary<Interactable, bool> _objectsToCleanDictionary = new();
 
@@ -54,13 +54,13 @@ namespace Room
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent(out Player.Player player))
-                CameraViewChangedStaticEvent.CallCameraViewChangedEvent(true, _isLeftSided);
+                CameraViewChangedStaticEvent.CallCameraViewChangedEvent(true, _roomDirection);
         }
 
         private void OnTriggerExit(Collider other)
         {
             if (other.TryGetComponent(out Player.Player player))
-                CameraViewChangedStaticEvent.CallCameraViewChangedEvent(false, _isLeftSided);
+                CameraViewChangedStaticEvent.CallCameraViewChangedEvent(false, _roomDirection);
         }
 
         public Vector3 GetBedPosition()
@@ -150,13 +150,17 @@ namespace Room
             _objectsToCleanDictionary[interactable] = true;
             ObjectCleanedEvent.Call(this, new RoomObjectCleanedEventArgs(interactable));
         }
-        
+
+        #region Events
+
         private void CustomerLeftRoom_Event(object sender, EventArgs e)
         {
             RemoveCustomerFromRoom();
             ResetObjectsToUncleanDictionary();
             RoomBecameAvailableToCleanStaticEvent.CallRoomBecameAvailableToCleanEvent(this);
         }
+
+        #endregion
 
         #region Validation
 

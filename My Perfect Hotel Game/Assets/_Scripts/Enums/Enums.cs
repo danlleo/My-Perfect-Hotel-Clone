@@ -6,4 +6,12 @@ namespace Enums
         HAIRDRYER,
         IRON
     }
+
+    public enum RoomDirection
+    {
+        North,
+        East,
+        South,
+        West
+    }
 }
