@@ -25,9 +25,6 @@ namespace Reception
         /// </summary>
         public override void Interact()
         {
-            if (_guestInHotelCount >= _guestInHotelLimit)
-                return;
-            
             _progressBarUI.UpdateProgressBar(_timer, _interactTimeInSeconds);
             IncreaseTimer();
             
@@ -41,9 +38,6 @@ namespace Reception
         public override bool TryInteractWithCallback(out Action onComplete)
         {
             onComplete = null;
-            
-            if (_guestInHotelCount >= _guestInHotelLimit)
-                return false;
             
             _progressBarUI.UpdateProgressBar(_timer, _interactTimeInSeconds);
             IncreaseTimer();

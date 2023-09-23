@@ -1,7 +1,6 @@
 using InteractableObject;
 using TransportableObjects;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Utilities;
 
 namespace Player
@@ -29,24 +28,24 @@ namespace Player
         private Transportable _transportable;
 
         private void Update()
-        {
-            PerformInteract();
-        }
+            => PerformInteract();
         
        private void PerformInteract()
        {
             var ray = new Ray(_detectInteractableObjectPoint.position, _detectInteractableObjectPoint.forward);
             
-            foreach (var interactableObject in InteractableObjectsStorage.Instance.GetInteractableObjects())
+            foreach (Interactable interactableObject in InteractableObjectsStorage.Instance.GetInteractableObjects())
             {
-                var rayDirection = ray.direction;
-                var directionFromRayOriginToSelectableObject = interactableObject.transform.position - ray.origin;
+                Vector3 directionFromRayOriginToSelectableObject3D = interactableObject.transform.position - ray.origin;
+                
+                var rayDirection = new Vector2(ray.direction.x, ray.direction.z);
+                var directionFromRayOriginToSelectableObject2D = new Vector2(directionFromRayOriginToSelectableObject3D.x, directionFromRayOriginToSelectableObject3D.z);
 
-                float lookPercentage = Vector3.Dot(rayDirection.normalized, directionFromRayOriginToSelectableObject.normalized);
+                float lookPercentage = Vector2.Dot(rayDirection.normalized, directionFromRayOriginToSelectableObject2D.normalized);
 
                 if (!(lookPercentage > _threshold)) continue;
 
-                if (!(Vector3.Distance(transform.position, interactableObject.transform.position) <=
+                if (!(Vector2.Distance(transform.position, interactableObject.transform.position) <=
                       _interactDistance)) continue;
                 
                 _interactable = interactableObject;

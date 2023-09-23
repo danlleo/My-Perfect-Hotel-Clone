@@ -5,6 +5,7 @@ using Utilities;
 
 namespace InteractableObject
 {
+    [SelectionBase]
     public class TransportableObjectDistributor : Interactable
     {
         [Tooltip("Populate with the time in seconds that will take Player to interact")] 
