@@ -45,7 +45,7 @@ namespace Player
 
                 if (!(lookPercentage > _threshold)) continue;
 
-                if (!(Vector2.Distance(transform.position, interactableObject.transform.position) <=
+                if (!(Vector3.Distance(transform.position, interactableObject.transform.position) <=
                       _interactDistance)) continue;
                 
                 _interactable = interactableObject;
