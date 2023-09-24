@@ -17,7 +17,7 @@ namespace Events
 
     public class RoomObjectCleanedEventArgs : EventArgs
     {
-        public Interactable CleanedObject;
+        public readonly Interactable CleanedObject;
 
         public RoomObjectCleanedEventArgs(Interactable cleanedObject)
         {

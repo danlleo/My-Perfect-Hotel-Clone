@@ -1717,7 +1717,7 @@ GameObject:
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &486767080
 Transform:
   m_ObjectHideFlags: 0
@@ -2352,6 +2352,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030874295457714328, guid: 59bea192c7ab9af4495c0c6e2b2aaead,
+        type: 3}
+      propertyPath: _interactDistance
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4095629705546210036, guid: 59bea192c7ab9af4495c0c6e2b2aaead,
         type: 3}

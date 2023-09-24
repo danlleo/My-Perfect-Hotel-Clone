@@ -12,7 +12,7 @@ namespace StaticEvents.Room
     
     public class RoomBecameAvailableToCleanStaticEventArgs : EventArgs
     {
-        public global::Room.Room Room;
+        public readonly global::Room.Room Room;
 
         public RoomBecameAvailableToCleanStaticEventArgs(global::Room.Room room)
         {

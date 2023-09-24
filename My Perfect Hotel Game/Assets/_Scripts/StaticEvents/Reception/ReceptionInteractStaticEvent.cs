@@ -12,8 +12,8 @@ namespace StaticEvents.Reception
 
     public class ReceptionInteractStaticEventArgs : EventArgs
     {
-        public global::Reception.Reception InteractedReception;
-        public Action OnSuccess;
+        public readonly global::Reception.Reception InteractedReception;
+        public readonly Action OnSuccess;
 
         public ReceptionInteractStaticEventArgs(global::Reception.Reception reception, Action onSuccess)
         {

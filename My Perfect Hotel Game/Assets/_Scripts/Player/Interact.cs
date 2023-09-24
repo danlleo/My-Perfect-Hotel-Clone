@@ -22,7 +22,7 @@ namespace Player
         [SerializeField] private float _threshold = 0.925f;
         
         [Tooltip("Populate with the value of interact distance")]
-        [SerializeField] private float _interactDistance = 0.25f;
+        [SerializeField] private float _interactDistance = 2f;
 
         private Interactable _interactable;
         private Transportable _transportable;
