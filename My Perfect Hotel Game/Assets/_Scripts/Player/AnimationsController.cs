@@ -40,7 +40,14 @@ namespace Player
         private void Player_OnPickedOrDroppedAnObject(object sender, EventArgs e) => 
             _animator.SetBool(AnimationsParams.IsCarrying, _inventory.IsCarrying());
 
-        private void PlayerMadeAStep_AnimationEvent() => 
-            _player.StepEvent.Call(this);
+        private void PlayerMadeAStep_AnimationEvent()
+        {
+            if (!_player.GetMovement().IsWalking()) return;
+            
+            _player.StepEvent.Call(this, new PlayerMadeAStepEventArgs
+            (
+                floorFMODMaterialIndex: _player.GetSurface().GetFMODMaterialIndex()
+            ));
+        }
     }
 }

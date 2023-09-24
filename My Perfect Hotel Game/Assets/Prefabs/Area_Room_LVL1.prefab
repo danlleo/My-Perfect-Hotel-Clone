@@ -221,7 +221,7 @@ PrefabInstance:
     - target: {fileID: 3567192235233074168, guid: 0e851b6b8691da24ba4bf2a0e8241be2,
         type: 3}
       propertyPath: m_Name
-      value: Room_LVL1
+      value: Area_Room_LVL1
       objectReference: {fileID: 0}
     - target: {fileID: 6456284687672212672, guid: 0e851b6b8691da24ba4bf2a0e8241be2,
         type: 3}
@@ -284,7 +284,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6487350321246651235}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7603145079037492247, guid: 0e851b6b8691da24ba4bf2a0e8241be2,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7225983831865120550}
   m_SourcePrefab: {fileID: 100100000, guid: 0e851b6b8691da24ba4bf2a0e8241be2, type: 3}
 --- !u!4 &219024585050901487 stripped
 Transform:
@@ -292,3 +296,21 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5386140192907482777}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2539086660272761486 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7603145079037492247, guid: 0e851b6b8691da24ba4bf2a0e8241be2,
+    type: 3}
+  m_PrefabInstance: {fileID: 5386140192907482777}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7225983831865120550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2539086660272761486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb08e48fd1e4c0fbf1916f96c187e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

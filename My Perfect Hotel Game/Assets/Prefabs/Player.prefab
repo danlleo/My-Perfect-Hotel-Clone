@@ -429,6 +429,9 @@ MonoBehaviour:
   PickedAnObjectEvent: {fileID: 0}
   DroppedAnObjectEvent: {fileID: 0}
   StepEvent: {fileID: 0}
+  _floorLayerMask:
+    serializedVersion: 2
+    m_Bits: 4096
 --- !u!114 &1030874295457714328
 MonoBehaviour:
   m_ObjectHideFlags: 0
