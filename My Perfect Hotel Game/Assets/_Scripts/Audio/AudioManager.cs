@@ -28,8 +28,6 @@ namespace Audio
 
             description.getParameterLabelByIndex(0, e.FloorFMODMaterialIndex, out string label);
 
-            print(label);
-
             eventInstance.setParameterByIDWithLabel(parameterDescription.id, label);
             
             eventInstance.start();

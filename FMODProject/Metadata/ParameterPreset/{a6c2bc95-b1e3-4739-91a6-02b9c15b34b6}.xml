@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{a6c2bc95-b1e3-4739-91a6-02b9c15b34b6}">
+		<property name="name">
+			<value>Carpet</value>
+		</property>
+		<relationship name="folder">
+			<destination>{3e848f82-43cb-47be-8837-c2452e1fc822}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{72813b04-346c-41ae-ba48-b0d3115b3678}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{72813b04-346c-41ae-ba48-b0d3115b3678}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

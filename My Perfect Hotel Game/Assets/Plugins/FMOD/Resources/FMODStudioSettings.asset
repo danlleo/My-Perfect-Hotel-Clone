@@ -350,11 +350,11 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../../../FMOD/MyPerfectHotelGameClone/MyPerfectHotelGameClone.fspro
-  sourceBankPath: ../../../FMOD/MyPerfectHotelGameClone/Build
+  sourceProjectPath: ../FMODProject/MyPerfectHotelGameClone.fspro
+  sourceBankPath: ../FMODProject/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
-  ShowBankRefreshWindow: 1
+  ShowBankRefreshWindow: 0
   AutomaticEventLoading: 1
   BankLoadType: 0
   AutomaticSampleLoading: 0
