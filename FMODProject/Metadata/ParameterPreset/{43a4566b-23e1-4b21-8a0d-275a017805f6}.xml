@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{43a4566b-23e1-4b21-8a0d-275a017805f6}">
+		<property name="name">
+			<value>Outdoors</value>
+		</property>
+		<relationship name="folder">
+			<destination>{3e848f82-43cb-47be-8837-c2452e1fc822}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{8214af61-94d3-4920-b9dc-6b1bc6f30c4c}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{8214af61-94d3-4920-b9dc-6b1bc6f30c4c}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="seekSpeed">
+			<value>1.5</value>
+		</property>
+		<relationship name="automators">
+			<destination>{0d7ed9bb-29d4-4e4f-8191-e96af33a1aef}</destination>
+		</relationship>
+	</object>
+	<object class="Automator" id="{0d7ed9bb-29d4-4e4f-8191-e96af33a1aef}">
+		<property name="nameOfPropertyBeingAutomated">
+			<value>cursorPosition</value>
+		</property>
+	</object>
+</objects>

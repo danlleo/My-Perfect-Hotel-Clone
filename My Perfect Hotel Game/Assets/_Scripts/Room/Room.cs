@@ -27,6 +27,7 @@ namespace Room
         [SerializeField] private Transform _bedTransform;
         [SerializeField] private RoomDirection _roomDirection;
         [SerializeField] private List<Interactable> _roomObjectList;
+        [SerializeField] private bool _isOutdoors;
         
         private readonly Dictionary<Interactable, bool> _objectsToCleanDictionary = new();
 
@@ -120,6 +121,8 @@ namespace Room
 
             return false;
         }
+        
+        public bool IsOutdoors() => _isOutdoors;
 
         private void RemoveCustomerFromRoom()
             => _customerOccupied = null;

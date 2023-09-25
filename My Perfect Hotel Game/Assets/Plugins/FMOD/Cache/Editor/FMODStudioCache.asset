@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7738546316991559889
+--- !u!114 &-5991102588082916099
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,36 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MusicHotel/Outdoors
   m_EditorClassIdentifier: 
-  Path: ../../../FMOD/MyPerfectHotelGameClone/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 638311610540013549
-  FileSizes:
-  - Name: Desktop
-    Value: 1036
-  Exists: 1
---- !u!114 &-7584164000595224618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: ../../../FMOD/MyPerfectHotelGameClone/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 638311610540048677
-  FileSizes:
-  - Name: Desktop
-    Value: 1010
+  Name: Outdoors
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 823487329
+    data2: 387179607
+  Type: 0
+  IsGlobal: 0
+  Labels: []
   Exists: 1
 --- !u!114 &-5562590894784702502
 MonoBehaviour:
@@ -59,14 +43,35 @@ MonoBehaviour:
     Data3: 1596238486
     Data4: -1708771873
   Banks:
-  - {fileID: 7607063588253091447}
+  - {fileID: 1919938077341613958}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
-  Parameters: []
+  Parameters:
+  - {fileID: 4971039335048383885}
   MinDistance: 1
   MaxDistance: 20
   Length: 62500
+--- !u!114 &-4819398588890610875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMODProject/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638312550595173853
+  FileSizes:
+  - Name: Desktop
+    Value: 1036
+  Exists: 1
 --- !u!114 &-2968321498847178682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,7 +91,7 @@ MonoBehaviour:
     Data3: 1083493013
     Data4: -739401296
   Banks:
-  - {fileID: 7518313796582652747}
+  - {fileID: -540444920685895912}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -114,14 +119,35 @@ MonoBehaviour:
     Data3: 772399235
     Data4: -1907028009
   Banks:
-  - {fileID: 7607063588253091447}
+  - {fileID: 1919938077341613958}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
-  Parameters: []
+  Parameters:
+  - {fileID: -5991102588082916099}
   MinDistance: 1
   MaxDistance: 20
-  Length: 21573
+  Length: 21000
+--- !u!114 &-540444920685895912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SFX.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMODProject/Build/Desktop/SFX.bank
+  Name: SFX
+  StudioPath: bank:/SFX
+  lastModified: 638311610540439703
+  FileSizes:
+  - Name: Desktop
+    Value: 29728
+  Exists: 1
 --- !u!114 &-273440320774358414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,42 +188,22 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -7584164000595224618}
-  - {fileID: 7607063588253091447}
-  - {fileID: -7738546316991559889}
-  - {fileID: 7518313796582652747}
+  - {fileID: 5830688838607163391}
+  - {fileID: 1919938077341613958}
+  - {fileID: -4819398588890610875}
+  - {fileID: -540444920685895912}
   EditorEvents:
   - {fileID: -1388133405618330944}
   - {fileID: -5562590894784702502}
   - {fileID: -2968321498847178682}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -7738546316991559889}
+  - {fileID: -4819398588890610875}
   StringsBanks:
-  - {fileID: -7584164000595224618}
-  cacheTime: 638311610540439703
+  - {fileID: 5830688838607163391}
+  cacheTime: 638312598702962468
   cacheVersion: 131607
---- !u!114 &7518313796582652747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/SFX.bank
-  m_EditorClassIdentifier: 
-  Path: ../../../FMOD/MyPerfectHotelGameClone/Build/Desktop/SFX.bank
-  Name: SFX
-  StudioPath: bank:/SFX
-  lastModified: 638311610540439703
-  FileSizes:
-  - Name: Desktop
-    Value: 29728
-  Exists: 1
---- !u!114 &7607063588253091447
+--- !u!114 &1919938077341613958
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -209,11 +215,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/BGM.bank
   m_EditorClassIdentifier: 
-  Path: ../../../FMOD/MyPerfectHotelGameClone/Build/Desktop/BGM.bank
+  Path: ../FMODProject/Build/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 638311582560125349
+  lastModified: 638312598702962468
   FileSizes:
   - Name: Desktop
-    Value: 1088352
+    Value: 1102944
+  Exists: 1
+--- !u!114 &4971039335048383885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/CityAmbience/Outdoors
+  m_EditorClassIdentifier: 
+  Name: Outdoors
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 823487329
+    data2: 387179607
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &5830688838607163391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMODProject/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638312550595198854
+  FileSizes:
+  - Name: Desktop
+    Value: 1062
   Exists: 1
