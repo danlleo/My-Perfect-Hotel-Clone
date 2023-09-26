@@ -1,5 +1,6 @@
 using System;
 using Enums;
+using Interfaces;
 
 namespace StaticEvents.CameraView
 {

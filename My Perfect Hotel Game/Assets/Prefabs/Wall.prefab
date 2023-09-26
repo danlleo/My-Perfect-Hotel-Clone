@@ -259,10 +259,10 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 0.5600193, g: 0.4461266, b: 0.27985317, a: 1}
-  - {r: 0.5600193, g: 0.4461266, b: 0.27985317, a: 1}
-  - {r: 0.5600193, g: 0.4461266, b: 0.27985317, a: 1}
-  - {r: 0.5600193, g: 0.4461266, b: 0.27985317, a: 1}
+  - {r: 0.45641106, g: 0.3927064, b: 0.31398875, a: 1}
+  - {r: 0.45641106, g: 0.3927064, b: 0.31398875, a: 1}
+  - {r: 0.45641106, g: 0.3927064, b: 0.31398875, a: 1}
+  - {r: 0.45641106, g: 0.3927064, b: 0.31398875, a: 1}
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -271,19 +271,11 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1495
+  m_VersionIndex: 1498
   m_IsSelectable: 1
-  m_SelectedFaces: 04000000
-  m_SelectedEdges:
-  - a: 16
-    b: 17
-  - a: 18
-    b: 16
-  - a: 17
-    b: 19
-  - a: 19
-    b: 18
-  m_SelectedVertices: 10000000110000001200000013000000
+  m_SelectedFaces: 
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!114 &5110295950612375102
 MonoBehaviour:
   m_ObjectHideFlags: 0
