@@ -2,7 +2,6 @@ using System;
 using DG.Tweening;
 using UnityEngine;
 
-[RequireComponent(typeof(TransformsToggler))]
 public class TransformsTogglerAnimator : MonoBehaviour
 {
     private const float DURATION = 0.3f;

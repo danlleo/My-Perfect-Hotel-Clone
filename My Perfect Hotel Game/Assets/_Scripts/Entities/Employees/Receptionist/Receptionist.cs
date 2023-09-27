@@ -19,7 +19,7 @@ namespace Entities.Employees.Receptionist
 
         protected override Vector3 GetNextDestination()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
         
         #region Validation

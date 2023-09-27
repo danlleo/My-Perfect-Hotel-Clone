@@ -1,4 +1,5 @@
 using System;
+using Areas;
 using Events;
 using InteractableObject;
 using UnityEngine;
@@ -14,7 +15,7 @@ namespace Entities.Employees.Maid
     {
         public Movement Movement { get; private set; }
 
-        public Room.Room Room { get; private set; }
+        public Room Room { get; private set; }
 
         public Interactable ObjectToClean { get; private set; }
 
@@ -28,7 +29,7 @@ namespace Entities.Employees.Maid
             MaidRemovedFromRoomEvent = GetComponent<MaidRemovedFromRoomEvent>();
         }
 
-        public void SetRoomForCleaning(Room.Room room) => Room = room;
+        public void SetRoomForCleaning(Room room) => Room = room;
 
         public bool HasOccupiedRoom() => Room != null;
 

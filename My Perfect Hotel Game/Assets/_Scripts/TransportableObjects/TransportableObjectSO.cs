@@ -1,3 +1,4 @@
+using Enums;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -20,7 +21,7 @@ namespace TransportableObjects
         [SerializeField] [Min(1)] private int _maxCarryingAmount;
 
         [Tooltip("Populate with the object type")]
-        [SerializeField] private Enums.TransportableObjectType _type;
+        [SerializeField] private TransportableObjectType _type;
 
         #endregion
 
@@ -28,7 +29,7 @@ namespace TransportableObjects
 
         public Transportable Prefab => _prefab;
         public int MaxCarryingAmount => _maxCarryingAmount;
-        public Enums.TransportableObjectType Type => _type;
+        public TransportableObjectType Type => _type;
 
         #endregion
     }

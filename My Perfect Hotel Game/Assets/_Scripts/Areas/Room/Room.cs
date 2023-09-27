@@ -1,21 +1,19 @@
 using System;
 using System.Collections.Generic;
 using Entities.Customer;
-using Enums;
 using Events;
 using InteractableObject;
-using StaticEvents.CameraView;
 using StaticEvents.Room;
 using UnityEngine;
 using Utilities;
 
-namespace Room
+namespace Areas
 {
     [SelectionBase]
+    [DisallowMultipleComponent]
     [RequireComponent(typeof(TransformsToggler))]
     [RequireComponent(typeof(CustomerLeftRoomEvent))]
     [RequireComponent(typeof(RoomObjectCleanedEvent))]
-    [DisallowMultipleComponent]
     public class Room : MonoBehaviour
     {
         public CustomerLeftRoomEvent LeftRoomEvent { get; private set; }
@@ -25,9 +23,7 @@ namespace Room
         public bool HasMaidOccupied { get; private set; }
         
         [SerializeField] private Transform _bedTransform;
-        [SerializeField] private RoomDirection _roomDirection;
         [SerializeField] private List<Interactable> _roomObjectList;
-        [SerializeField] private bool _isOutdoors;
         
         private readonly Dictionary<Interactable, bool> _objectsToCleanDictionary = new();
 
@@ -50,18 +46,6 @@ namespace Room
         private void OnDisable()
         {
             LeftRoomEvent.Event -= CustomerLeftRoom_Event;
-        }
-        
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.TryGetComponent(out Player.Player player))
-                CameraViewChangedStaticEvent.CallCameraViewChangedEvent(true, _roomDirection);
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.TryGetComponent(out Player.Player player))
-                CameraViewChangedStaticEvent.CallCameraViewChangedEvent(false, _roomDirection);
         }
 
         public Vector3 GetBedPosition()
@@ -121,8 +105,6 @@ namespace Room
 
             return false;
         }
-        
-        public bool IsOutdoors() => _isOutdoors;
 
         private void RemoveCustomerFromRoom()
             => _customerOccupied = null;

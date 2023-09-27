@@ -6,15 +6,15 @@ namespace StaticEvents.Room
     {
         public static event Action<RoomCleanedStaticEventArgs> OnRoomCleaned;
 
-        public static void CallRoomCleanedEvent(global::Room.Room room)
+        public static void CallRoomCleanedEvent(Areas.Room room)
             => OnRoomCleaned?.Invoke(new RoomCleanedStaticEventArgs(room));
     }
 
     public class RoomCleanedStaticEventArgs : EventArgs
     {
-        public readonly global::Room.Room Room;
+        public readonly Areas.Room Room;
 
-        public RoomCleanedStaticEventArgs(global::Room.Room room)
+        public RoomCleanedStaticEventArgs(Areas.Room room)
         {
             Room = room;
         }

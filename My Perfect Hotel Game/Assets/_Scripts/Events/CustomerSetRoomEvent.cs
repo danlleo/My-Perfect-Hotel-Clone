@@ -1,4 +1,5 @@
 using System;
+using Areas;
 using Interfaces;
 using UnityEngine;
 
@@ -13,9 +14,9 @@ namespace Events
 
     public class CustomerSetRoomEventArgs : EventArgs
     {
-        public Room.Room SetRoom;
+        public Room SetRoom;
 
-        public CustomerSetRoomEventArgs(Room.Room room)
+        public CustomerSetRoomEventArgs(Room room)
         {
             SetRoom = room;
         }

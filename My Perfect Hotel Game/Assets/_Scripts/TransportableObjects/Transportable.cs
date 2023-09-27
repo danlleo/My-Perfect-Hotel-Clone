@@ -1,3 +1,4 @@
+using Player;
 using UnityEngine;
 
 namespace TransportableObjects
@@ -15,7 +16,7 @@ namespace TransportableObjects
 
         public void PickUp()
         {
-            Player.Inventory inventory = GameGlobalStorage.Instance.GetPlayer().GetInventory();
+            Inventory inventory = GameGlobalStorage.Instance.GetPlayer().GetInventory();
             
             inventory.AddCarryingObject(this);
 
@@ -26,7 +27,7 @@ namespace TransportableObjects
         
         public void Drop()
         {
-            Player.Inventory inventory = GameGlobalStorage.Instance.GetPlayer().GetInventory();
+            Inventory inventory = GameGlobalStorage.Instance.GetPlayer().GetInventory();
 
             inventory.RemoveCarryingObject();
 
@@ -35,7 +36,7 @@ namespace TransportableObjects
 
         public void Use()
         {
-            Player.Inventory inventory = GameGlobalStorage.Instance.GetPlayer().GetInventory();
+            Inventory inventory = GameGlobalStorage.Instance.GetPlayer().GetInventory();
 
             inventory.RemoveCarryingObject();
             

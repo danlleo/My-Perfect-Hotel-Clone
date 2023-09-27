@@ -1,5 +1,5 @@
 using System;
-using Events;
+using Areas;
 using UI.Helpers;
 using UnityEngine;
 using Utilities;
@@ -11,7 +11,7 @@ namespace InteractableObject
     /// </summary>
     public class Curtains : Interactable
     {
-        [SerializeField] private Room.Room _room;
+        [SerializeField] private Room _room;
         [SerializeField] private ProgressBarUI _progressBarUI;
 
         private readonly float _interactTimeInSeconds = 1.2f;

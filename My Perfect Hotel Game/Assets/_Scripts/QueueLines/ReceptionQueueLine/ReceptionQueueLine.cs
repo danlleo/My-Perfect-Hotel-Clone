@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Areas;
 using Entities.Customer;
 using Events;
-using Room;
 using StaticEvents.Reception;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Utilities;
 
 namespace QueueLines.ReceptionQueueLine

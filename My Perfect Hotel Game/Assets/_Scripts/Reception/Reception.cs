@@ -1,7 +1,7 @@
 using System;
+using Areas;
 using Entities.Customer;
 using InteractableObject;
-using Room;
 using StaticEvents.Reception;
 using UI.Helpers;
 using UnityEngine;
@@ -56,7 +56,7 @@ namespace Reception
         /// </summary>
         public void AppointGuestToRoom(Customer customer)
         {
-            Room.Room room = RoomManager.Instance.GetAvailableRoom();
+            Room room = RoomManager.Instance.GetAvailableRoom();
             room.OccupyRoomWithGuest(customer);
             
             customer.SetRoom(room);

@@ -1,4 +1,5 @@
 using System;
+using Player;
 using TransportableObjects;
 using UnityEngine;
 using Utilities;
@@ -20,7 +21,7 @@ namespace InteractableObject
             if (_timer < _interactTime)
                 return;
             
-            Player.Inventory inventory = GameGlobalStorage.Instance.GetPlayer().GetInventory();
+            Inventory inventory = GameGlobalStorage.Instance.GetPlayer().GetInventory();
             
             if (inventory.GetCarryingObjectsCount() <= 0)
             {

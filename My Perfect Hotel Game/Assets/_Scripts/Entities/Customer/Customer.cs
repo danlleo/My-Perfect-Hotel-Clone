@@ -1,4 +1,5 @@
 using System;
+using Areas;
 using Events;
 using QueueLines.ReceptionQueueLine;
 using UnityEngine;
@@ -28,7 +29,7 @@ namespace Entities.Customer
         public bool HasReachedLinePosition { get; private set; }
 
         public Movement Movement { get; private set; }
-        public Room.Room Room { get; private set; }
+        public Room Room { get; private set; }
 
         private void Awake()
         {
@@ -45,7 +46,7 @@ namespace Entities.Customer
             _taxiPosition = taxiPosition;
         }
 
-        public void SetRoom(Room.Room room)
+        public void SetRoom(Room room)
         {
             Room = room;
             CustomerSetRoomEvent.Call(this, new CustomerSetRoomEventArgs(room));

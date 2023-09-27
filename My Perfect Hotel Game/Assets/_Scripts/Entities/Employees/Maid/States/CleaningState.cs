@@ -1,7 +1,7 @@
 using System;
+using Areas;
 using Events;
 using InteractableObject;
-using Room;
 using StaticEvents.Room;
 using UnityEngine;
 
@@ -65,7 +65,7 @@ namespace Entities.Employees.Maid.States
             _maidStateManager.CurrentMaid.Room.ObjectCleanedEvent.Event -= ObjectCleaned_Event;
             _maidStateManager.CurrentMaid.RemoveRoomForCleaning();
 
-            if (RoomManager.Instance.TryGetUncleanRoom(out Room.Room uncleanRoom))
+            if (RoomManager.Instance.TryGetUncleanRoom(out Room uncleanRoom))
             {
                 if (_maidStateManager.CurrentMaid.HasOccupiedRoom())
                     return;

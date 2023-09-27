@@ -3,7 +3,7 @@ using Misc;
 using UnityEngine;
 using Utilities;
 
-namespace Room
+namespace Areas
 {
     public class RoomManager : Singleton<RoomManager>
     {

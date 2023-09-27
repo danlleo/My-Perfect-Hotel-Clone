@@ -2,6 +2,7 @@ using System;
 using Events;
 using FMOD.Studio;
 using FMODUnity;
+using StaticEvents;
 using UnityEngine;
 
 namespace Audio
@@ -22,11 +23,19 @@ namespace Audio
             _footStepsEventInstance = InitializeAndStart(FMODEvents.Instance.PlayerFootSteps);
         }
 
-        private void OnEnable() => 
+        private void OnEnable()
+        {
             _playerMadeAStep.Event += Player_OnMadeAStep;
-        
-        private void OnDisable() => 
+            OnAnyOutdoorsRoomTookPlayer.Event += AnyOutdoorsRoom_OnTookPlayer;
+            OnAnyOutdoorsRoomLostPlayer.Event += AnyOutdoorsRoom_OnLostPlayer;
+        }
+
+        private void OnDisable()
+        {
             _playerMadeAStep.Event -= Player_OnMadeAStep;
+            OnAnyOutdoorsRoomTookPlayer.Event -= AnyOutdoorsRoom_OnTookPlayer;
+            OnAnyOutdoorsRoomLostPlayer.Event -= AnyOutdoorsRoom_OnLostPlayer;
+        }
 
         private EventInstance InitializeAndStart(EventReference musicEventReference)
         {
@@ -48,6 +57,18 @@ namespace Audio
             _footStepsEventInstance.setParameterByIDWithLabel(parameterDescription.id, label);
             
             _footStepsEventInstance.start();
+        }
+
+        private void AnyOutdoorsRoom_OnTookPlayer(object sender, EventArgs e)
+        {
+            _ambienceEventInstance.setParameterByName(FMODEventParams.Outdoors, 1);
+            _musicHotelEventInstance.setParameterByName(FMODEventParams.Outdoors, 1);
+        }
+        
+        private void AnyOutdoorsRoom_OnLostPlayer(object sender, EventArgs e)
+        {
+            _ambienceEventInstance.setParameterByName(FMODEventParams.Outdoors, 0);
+            _musicHotelEventInstance.setParameterByName(FMODEventParams.Outdoors, 0);
         }
     }
 }

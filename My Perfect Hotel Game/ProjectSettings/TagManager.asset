@@ -13,7 +13,7 @@ TagManager:
   - UI
   - Obstacle
   - Interactable Object
-  - Room
+  - Area
   - Guest
   - Transportable Object
   - Player

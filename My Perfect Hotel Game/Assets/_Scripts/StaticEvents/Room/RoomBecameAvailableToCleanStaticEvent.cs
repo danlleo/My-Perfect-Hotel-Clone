@@ -6,15 +6,15 @@ namespace StaticEvents.Room
     {
         public static event Action<RoomBecameAvailableToCleanStaticEventArgs> OnRoomBecameAvailableToClean;
 
-        public static void CallRoomBecameAvailableToCleanEvent(global::Room.Room room)
+        public static void CallRoomBecameAvailableToCleanEvent(Areas.Room room)
             => OnRoomBecameAvailableToClean?.Invoke(new RoomBecameAvailableToCleanStaticEventArgs(room));
     }
     
     public class RoomBecameAvailableToCleanStaticEventArgs : EventArgs
     {
-        public readonly global::Room.Room Room;
+        public readonly Areas.Room Room;
 
-        public RoomBecameAvailableToCleanStaticEventArgs(global::Room.Room room)
+        public RoomBecameAvailableToCleanStaticEventArgs(Areas.Room room)
         {
             Room = room;
         }
