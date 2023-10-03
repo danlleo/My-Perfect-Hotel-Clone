@@ -4,7 +4,9 @@ using Utilities;
 
 namespace Entities.Employees.Maid
 {
-    [SelectionBase] [RequireComponent(typeof(NavMeshAgent))] [DisallowMultipleComponent]
+    [SelectionBase] 
+    [RequireComponent(typeof(NavMeshAgent))] 
+    [DisallowMultipleComponent]
     public class Movement : MonoBehaviour
     {
         [SerializeField] private float _movementSpeed = 4.5f;

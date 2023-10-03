@@ -39,7 +39,8 @@ namespace Player
             _movement = GetComponent<Movement>();
         }
 
-        private void Update() => UpdateSurface();
+        private void Update() 
+            => UpdateSurface();
         
         private void UpdateSurface()
         {

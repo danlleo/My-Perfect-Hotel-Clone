@@ -7,6 +7,7 @@ namespace Player
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Player))]
     [RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(Inventory))]
     public class AnimationsController : MonoBehaviour
     {
         private Player _player;
