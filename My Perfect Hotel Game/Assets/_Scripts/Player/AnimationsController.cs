@@ -43,7 +43,7 @@ namespace Player
 
         private void PlayerMadeAStep_AnimationEvent()
         {
-            if (!_player.GetMovement().IsWalking()) return;
+            if (_player.GetMovement().IsWalking() is false) return;
             
             _player.StepEvent.Call(this, new PlayerMadeAStepEventArgs
             (
