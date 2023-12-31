@@ -2476,6 +2476,16 @@ PrefabInstance:
       propertyPath: m_SelectedVertices.Array.data[7]
       value: 27
       objectReference: {fileID: 0}
+    - target: {fileID: 7032640045591960947, guid: 0e851b6b8691da24ba4bf2a0e8241be2,
+        type: 3}
+      propertyPath: _material
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7032640045591960947, guid: 0e851b6b8691da24ba4bf2a0e8241be2,
+        type: 3}
+      propertyPath: _selectedMaterial
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7476159640366636127, guid: 0e851b6b8691da24ba4bf2a0e8241be2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4560,10 +4570,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8942038339377674890}
-    - targetCorrespondingSourceObject: {fileID: 7603145079037492247, guid: 0e851b6b8691da24ba4bf2a0e8241be2,
-        type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 8225515557426923158}
   m_SourcePrefab: {fileID: 100100000, guid: 0e851b6b8691da24ba4bf2a0e8241be2, type: 3}
 --- !u!4 &1863227513057528702 stripped
 Transform:
@@ -4571,24 +4577,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4630500012390463422}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &3008715785237449641 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7603145079037492247, guid: 0e851b6b8691da24ba4bf2a0e8241be2,
-    type: 3}
-  m_PrefabInstance: {fileID: 4630500012390463422}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8225515557426923158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3008715785237449641}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7eecc6c269145bfb79ba41f0ca07638, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8197643456707882054 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3567192235233074168, guid: 0e851b6b8691da24ba4bf2a0e8241be2,

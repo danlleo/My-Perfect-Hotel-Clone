@@ -1,5 +1,4 @@
 using Events;
-using Surface.Material;
 using UnityEngine;
 
 namespace Player
@@ -27,7 +26,7 @@ namespace Player
         [SerializeField] private LayerMask _floorLayerMask;
         private Inventory _inventory;
         private Movement _movement;
-        private Surface.Surface _surfaceMaterial;
+        private Floor _floorMaterial;
 
         private void Awake()
         {
@@ -49,19 +48,18 @@ namespace Player
             if (!Physics.Raycast(transform.position + Vector3.up, Vector3.down, out RaycastHit hitInfo, HEIGHT, _floorLayerMask))
                 return;
 
-            if (!hitInfo.transform.TryGetComponent(out Surface.Surface surface))
+            if (!hitInfo.transform.TryGetComponent(out Floor surface))
             {
                 Debug.LogWarning($"{hitInfo.transform.gameObject} doesn't have Surface material assigned");
-                hitInfo.transform.gameObject.AddComponent<Wood>();
             }
             
-            _surfaceMaterial = surface;
+            _floorMaterial = surface;
         }
 
         public Inventory GetInventory() => _inventory;
 
         public Movement GetMovement() => _movement;
 
-        public Surface.Surface GetSurface() => _surfaceMaterial;
+        public Floor GetSurface() => _floorMaterial;
     }
 }

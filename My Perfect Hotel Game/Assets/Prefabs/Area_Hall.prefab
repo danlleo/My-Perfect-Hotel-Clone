@@ -4468,30 +4468,8 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7853306966813878180}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7603145079037492247, guid: 0e851b6b8691da24ba4bf2a0e8241be2,
-        type: 3}
-      insertIndex: 3
-      addedObject: {fileID: 1244477283038183055}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e851b6b8691da24ba4bf2a0e8241be2, type: 3}
---- !u!1 &6049770633919249096 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7603145079037492247, guid: 0e851b6b8691da24ba4bf2a0e8241be2,
-    type: 3}
-  m_PrefabInstance: {fileID: 4212790330263684831}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1244477283038183055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6049770633919249096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b41dfb614ff24c36a5aebbcfd3e5d9ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &7201118139154676255 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6456284687672212672, guid: 0e851b6b8691da24ba4bf2a0e8241be2,
@@ -4575,12 +4553,12 @@ PrefabInstance:
     - target: {fileID: 8936893635309863822, guid: 9b6e513db2a12be4fbb5ad46707b0aa9,
         type: 3}
       propertyPath: m_SelectedEdges.Array.size
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8936893635309863822, guid: 9b6e513db2a12be4fbb5ad46707b0aa9,
         type: 3}
       propertyPath: m_SelectedFaces.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8936893635309863822, guid: 9b6e513db2a12be4fbb5ad46707b0aa9,
         type: 3}
@@ -4670,7 +4648,7 @@ PrefabInstance:
     - target: {fileID: 8936893635309863822, guid: 9b6e513db2a12be4fbb5ad46707b0aa9,
         type: 3}
       propertyPath: m_SelectedVertices.Array.size
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8936893635309863822, guid: 9b6e513db2a12be4fbb5ad46707b0aa9,
         type: 3}
